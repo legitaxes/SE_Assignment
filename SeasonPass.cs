@@ -12,7 +12,7 @@ namespace SEAssignment
         private DateTime endDate;
         private Vehicle vehicle;
 
-        //states implementation - season parking pass
+        //states properties implementation - season parking pass
         private SeasonPassState pendingState;
         private SeasonPassState validState;
         private SeasonPassState terminatedState;
@@ -56,6 +56,7 @@ namespace SEAssignment
         public SeasonPassState getValidState() { return validState; }
         public SeasonPassState getTerminatedState() { return terminatedState; }
         public SeasonPassState getExpiredState() { return expiredState; }
+        
         //sets the state
         public void setCurrentState(SeasonPassState currentState) { 
             this.currentState = currentState;
@@ -63,6 +64,7 @@ namespace SEAssignment
 
         //constructor for seasonpass
         public SeasonPass() {
+            // season pass states goes here
             pendingState = new PendingState(this);
             validState = new ValidState(this);
             terminatedState = new TerminatedState(this);
@@ -70,8 +72,11 @@ namespace SEAssignment
 
             currentState = validState;
 
+            //rest of the property defined below for seasonpass
+
         }
 
+        // !!! functions to be called to run the function in the specific state !!!
         public void renew() { currentState.renew(); }
         public void transferPass(string vt, Vehicle v) { currentState.transferPass(vt, v); }
         public void terminatePass() { currentState.terminatePass(); }
