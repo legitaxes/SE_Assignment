@@ -35,6 +35,16 @@ namespace SEAssignment
             set { offences = value; }
         }
 
+        // many to one association (vehicle and carpark class)
+        private CarPark theCarPark;
 
+        public CarPark TheCarPark {
+            set {
+                if (theCarPark != value) {
+                    theCarPark = value;
+                    value.addVehicle(this);
+                }
+            }
+        }
     }
 }

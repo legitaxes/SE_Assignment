@@ -6,6 +6,40 @@ namespace SEAssignment
     {
         static void Main(string[] args)
         {
+            // initialize a few students 
+
+
+
+
+
+            // initialize a few lecturers
+
+
+
+
+            // create many vehicles and assign to students and lecturer
+
+
+
+
+
+            // set parking pass to a few students's vehicle and lecturer's vehicle
+
+
+
+
+            // initialize 3 carparks
+
+
+
+
+
+
+            // have a few vehicles parked in some of the carparks
+
+
+
+
             while (true)
             {
                 int main_choice;

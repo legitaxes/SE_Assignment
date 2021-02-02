@@ -28,7 +28,7 @@ namespace SEAssignment
             while (condition)
             {
                 Console.WriteLine();
-                Console.WriteLine("===Student Landing Page===");
+                Console.WriteLine("===Manager Landing Page===");
                 Console.WriteLine("1) Process Season Parking Pass");
                 Console.WriteLine("2) Generate Report for Specific Car Park");
                 Console.WriteLine("3) Logout");
