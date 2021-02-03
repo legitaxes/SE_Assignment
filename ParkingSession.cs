@@ -4,6 +4,7 @@ using System.Text;
 
 namespace SEAssignment
 {
+    // association class
     class ParkingSession
     {
         //---properties---
@@ -11,6 +12,9 @@ namespace SEAssignment
         private DateTime checkInDate;
         private DateTime checkOutDate;
         private Vehicle vehicleInSession;
+
+        private Vehicle vehicle;
+        private CarPark vehicleCarPark;
 
         //---getter setter properties---
         public int SessionID
@@ -31,14 +35,5 @@ namespace SEAssignment
             set { checkOutDate = value; }
         }
 
-        public Vehicle VehicleInSession {
-            set
-            {
-                if (vehicleInSession != value) {
-                    vehicleInSession = value;
-                    value.vehicleParkingSession = this;
-                }
-            }
-        }
     }
 }

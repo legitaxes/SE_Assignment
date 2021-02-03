@@ -12,9 +12,9 @@ namespace SEAssignment
 
         void TerminatePass();
 
-        void EnterParking();
+        //void EnterParking();
 
-        void ExitParking();
+        //void ExitParking();
     }
 
     //pendingstate class
@@ -45,12 +45,12 @@ namespace SEAssignment
             // implementation here - should not allow
         }
 
-        public void EnterParking() { 
-            // implementation here...?? idk
-        }
-        public void ExitParking() {
-            // implementation here...?? idk
-        }
+        //public void EnterParking() { 
+        //    // implementation here...?? idk
+        //}
+        //public void ExitParking() {
+        //    // implementation here...?? idk
+        //}
     }
 
     //validstate class
@@ -83,14 +83,14 @@ namespace SEAssignment
             // implementation here - should not allow
         }
 
-        public void EnterParking()
-        {
-            // implementation here...?? idk
-        }
-        public void ExitParking()
-        {
-            // implementation here...?? idk
-        }
+        //public void EnterParking()
+        //{
+        //    // implementation here...?? idk
+        //}
+        //public void ExitParking()
+        //{
+        //    // implementation here...?? idk
+        //}
 
     }
 
@@ -124,14 +124,14 @@ namespace SEAssignment
             // implementation here - should not allow
         }
 
-        public void EnterParking()
-        {
-            // implementation here...?? idk
-        }
-        public void ExitParking()
-        {
-            // implementation here...?? idk
-        }
+        //public void EnterParking()
+        //{
+        //    // implementation here...?? idk
+        //}
+        //public void ExitParking()
+        //{
+        //    // implementation here...?? idk
+        //}
 
     }
 
@@ -165,13 +165,13 @@ namespace SEAssignment
             // implementation here - should not allow
         }
 
-        public void EnterParking()
-        {
-            // implementation here...?? idk
-        }
-        public void ExitParking()
-        {
-            // implementation here...?? idk
-        }
+        //public void EnterParking()
+        //{
+        //    // implementation here...?? idk
+        //}
+        //public void ExitParking()
+        //{
+        //    // implementation here...?? idk
+        //}
     }
 }

@@ -85,7 +85,7 @@ namespace SEAssignment
         public void Renew() { currentState.Renew(); }
         public void TransferPass(string vt, Vehicle v) { currentState.TransferPass(vt, v); }
         public void TerminatePass() { currentState.TerminatePass(); }
-        public void EnterParking() { currentState.EnterParking(); }
-        public void ExitParking() { currentState.ExitParking(); }
+        //public void EnterParking() { currentState.EnterParking(); }
+        //public void ExitParking() { currentState.ExitParking(); }
     }
 }

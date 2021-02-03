@@ -13,7 +13,9 @@ namespace SEAssignment
         private string description;
         private string location;
         private int remainingSpace;
-        private List<Vehicle> vehicleList;
+        //private List<Vehicle> vehicleList;
+        private List<ParkingSession> vehicleParkingList; // many to many association (Vehicle and ParkingSession)
+
 
         //---getter setter properties---
         public int CarParkID
@@ -59,8 +61,9 @@ namespace SEAssignment
             description = desc;
             location = loc;
             remainingSpace = totalParkingSpace;
-            // defining vehicleList in carpark - one to many association with vehicles
-            vehicleList = new List<Vehicle>();
+
+            // defining vehicleList in carpark - many to many association with vehicles
+            vehicleParkingList = new List<ParkingSession>();
         }
 
         //---methods---
@@ -71,12 +74,18 @@ namespace SEAssignment
         }
 
         //add vehicle function to the carpark
-        public void AddVehicle(Vehicle v) {
-            if (!vehicleList.Contains(v)) {
-                vehicleList.Add(v);
-                v.CarPark = this;
+        //public void AddVehicle(Vehicle v) {
+        //    if (!vehicleList.Contains(v)) {
+        //        vehicleList.Add(v);
+        //        v.CarPark = this;
+        //    }
+        //}
+        public void AddVehicleParking(ParkingSession ps)
+        {
+            if (!vehicleParkingList.Contains(ps))
+            {
+                vehicleParkingList.Add(ps);
             }
         }
-
     }
 }
