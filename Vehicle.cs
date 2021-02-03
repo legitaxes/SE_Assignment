@@ -51,8 +51,14 @@ namespace SEAssignment
         }
 
         //---constructor---
-        public Vehicle()
+        public Vehicle(int id, string lp, string vt, SeasonPass vsp)
         {
+            vehicleID = id;
+            licensePlate = lp;
+            vehicleType = vt;
+            vehicleSeasonPass = vsp;
+
+            offences = new List<string>();
             vehicleParkingList = new List<ParkingSession>();
         }
 

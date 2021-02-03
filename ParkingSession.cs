@@ -11,7 +11,6 @@ namespace SEAssignment
         private int sessionID;
         private DateTime checkInDate;
         private DateTime checkOutDate;
-        private Vehicle vehicleInSession;
 
         private Vehicle vehicle;
         private CarPark vehicleCarPark;

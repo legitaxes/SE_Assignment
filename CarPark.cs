@@ -13,7 +13,7 @@ namespace SEAssignment
         private string description;
         private string location;
         private int remainingSpace;
-        //private List<Vehicle> vehicleList;
+        
         private List<ParkingSession> vehicleParkingList; // many to many association (Vehicle and ParkingSession)
 
 
@@ -72,14 +72,8 @@ namespace SEAssignment
             Console.WriteLine("There are about " + remainingSpace + " spaces left");
             //return totalParkingSpace - occupiedSpace; // find out the number parking slots used
         }
-
-        //add vehicle function to the carpark
-        //public void AddVehicle(Vehicle v) {
-        //    if (!vehicleList.Contains(v)) {
-        //        vehicleList.Add(v);
-        //        v.CarPark = this;
-        //    }
-        //}
+        
+        // adds to the parksession list
         public void AddVehicleParking(ParkingSession ps)
         {
             if (!vehicleParkingList.Contains(ps))
