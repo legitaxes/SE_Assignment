@@ -6,14 +6,16 @@ namespace SEAssignment
 {
     class CarPark
     {
+        //---properties---
         private int carParkID;
         private string carParkName;
         private int totalParkingSpace;
         private string description;
         private string location;
-        private int occupiedSpace;
+        private int remainingSpace;
         private List<Vehicle> vehicleList;
 
+        //---getter setter properties---
         public int CarParkID
         {
             get { return carParkID; }
@@ -44,34 +46,35 @@ namespace SEAssignment
             set { location = value; }
         }
 
-        public int OccupiedSpace {
-            get { return occupiedSpace; }
-            set { occupiedSpace = value; }
+        public int RemainingSpace {
+            get { return remainingSpace; }
+            set { remainingSpace = value; }
         }
        
-        //constructor
+        //---constructor---
         public CarPark(int id, string name, int tps, string desc, string loc) {
             carParkID = id;
             carParkName = name;
             totalParkingSpace = tps;
             description = desc;
             location = loc;
-            occupiedSpace = 0;
-            // defining vehicleList in carpark
+            remainingSpace = totalParkingSpace;
+            // defining vehicleList in carpark - one to many association with vehicles
             vehicleList = new List<Vehicle>();
         }
 
+        //---methods---
         //check parking space and return the number of space
-        public int checkParkingSpace() {
-            Console.WriteLine("There are about " + (totalParkingSpace - occupiedSpace) + " spaces left");
-            return totalParkingSpace - occupiedSpace; // find out the number parking slots used
+        public void CheckParkingSpace() {
+            Console.WriteLine("There are about " + remainingSpace + " spaces left");
+            //return totalParkingSpace - occupiedSpace; // find out the number parking slots used
         }
 
         //add vehicle function to the carpark
-        public void addVehicle(Vehicle v) {
+        public void AddVehicle(Vehicle v) {
             if (!vehicleList.Contains(v)) {
                 vehicleList.Add(v);
-                v.TheCarPark = this;
+                v.CarPark = this;
             }
         }
 

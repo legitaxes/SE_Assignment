@@ -6,21 +6,22 @@ namespace SEAssignment
 {
     class SeasonPass
     {
+        //---properties---
         private int seasonPassID;
         private string vehicleType;
         private DateTime startDate;
         private DateTime endDate;
-        private Vehicle vehicle;
+        private Vehicle vehicle; // one to one association with Vehicle class
 
         //states properties implementation - season parking pass
-        private SeasonPassState pendingState;
-        private SeasonPassState validState;
-        private SeasonPassState terminatedState;
-        private SeasonPassState expiredState;
+        private ISeasonPassState pendingState;
+        private ISeasonPassState validState;
+        private ISeasonPassState terminatedState;
+        private ISeasonPassState expiredState;
 
-        private SeasonPassState currentState;
+        private ISeasonPassState currentState;
 
-        //properties
+        //---getter setter of properties---
         public int SeasonPassID
         {
             get { return seasonPassID; }
@@ -45,20 +46,24 @@ namespace SEAssignment
             set { endDate = value; }
         }
 
+        // one to one association with vehicle
         public Vehicle Vehicle {
-            get { return vehicle; }
-            set { vehicle = value; }
-
+            set {
+                if (vehicle != value) {
+                    vehicle = value;
+                    value.VehicleSeasonPass = this;
+                }
+            }
         }
 
         //retrieve states
-        public SeasonPassState getPendingState() { return pendingState; }
-        public SeasonPassState getValidState() { return validState; }
-        public SeasonPassState getTerminatedState() { return terminatedState; }
-        public SeasonPassState getExpiredState() { return expiredState; }
+        public ISeasonPassState GetPendingState() { return pendingState; }
+        public ISeasonPassState GetValidState() { return validState; }
+        public ISeasonPassState GetTerminatedState() { return terminatedState; }
+        public ISeasonPassState GetExpiredState() { return expiredState; }
         
         //sets the state
-        public void setCurrentState(SeasonPassState currentState) { 
+        public void SetCurrentState(ISeasonPassState currentState) { 
             this.currentState = currentState;
         }
 
@@ -72,15 +77,15 @@ namespace SEAssignment
 
             currentState = validState;
 
-            //rest of the property defined below for seasonpass
+            //rest of the property define below for seasonpass
 
         }
 
         // !!! functions to be called to run the function in the specific state !!!
-        public void renew() { currentState.renew(); }
-        public void transferPass(string vt, Vehicle v) { currentState.transferPass(vt, v); }
-        public void terminatePass() { currentState.terminatePass(); }
-        public void enterParking() { currentState.enterParking(); }
-        public void exitParking() { currentState.exitParking(); }
+        public void Renew() { currentState.Renew(); }
+        public void TransferPass(string vt, Vehicle v) { currentState.TransferPass(vt, v); }
+        public void TerminatePass() { currentState.TerminatePass(); }
+        public void EnterParking() { currentState.EnterParking(); }
+        public void ExitParking() { currentState.ExitParking(); }
     }
 }

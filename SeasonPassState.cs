@@ -4,33 +4,33 @@ using System.Text;
 
 namespace SEAssignment
 {
-    interface SeasonPassState
+    interface ISeasonPassState
     {
-        void renew();
+        void Renew();
 
-        void transferPass(string vt, Vehicle v);
+        void TransferPass(string vt, Vehicle v);
 
-        void terminatePass();
+        void TerminatePass();
 
-        void enterParking();
+        void EnterParking();
 
-        void exitParking();
+        void ExitParking();
     }
 
     //pendingstate class
-    class PendingState : SeasonPassState {
+    class PendingState : ISeasonPassState {
         private SeasonPass sp;
         public PendingState(SeasonPass sp)
         {
             this.sp = sp;
         }
 
-        public void renew() {
+        public void Renew() {
             // implementation
             Console.WriteLine("You are not allowed to renew when you don't have a season pass!");
         }
 
-        public void transferPass(string vt, Vehicle v) { 
+        public void TransferPass(string vt, Vehicle v) { 
             // vt - vehicletype in string (Lorry, Car, Motorbike)
             // implementation of transfering pass to another vehicle
             // code below works, i accidentally did it lol. all i did was create a class called vehicle and put vehicle property under seasonpass
@@ -40,33 +40,33 @@ namespace SEAssignment
             // if vehicle type does not match
             //    do something..
         }
-        public void terminatePass()
+        public void TerminatePass()
         {
             // implementation here - should not allow
         }
 
-        public void enterParking() { 
+        public void EnterParking() { 
             // implementation here...?? idk
         }
-        public void exitParking() {
+        public void ExitParking() {
             // implementation here...?? idk
         }
     }
 
     //validstate class
-    class ValidState : SeasonPassState {
+    class ValidState : ISeasonPassState {
         private SeasonPass sp;
         public ValidState(SeasonPass sp)
         {
             this.sp = sp;
         }
 
-        public void renew()
+        public void Renew()
         {
             // implementation here
         }
 
-        public void transferPass(string vt, Vehicle v)
+        public void TransferPass(string vt, Vehicle v)
         {
             // vt - vehicletype in string (Lorry, Car, Motorbike)
             // implementation of transfering pass to another vehicle
@@ -78,16 +78,16 @@ namespace SEAssignment
             //    do something..
         }
 
-        public void terminatePass()
+        public void TerminatePass()
         {
             // implementation here - should not allow
         }
 
-        public void enterParking()
+        public void EnterParking()
         {
             // implementation here...?? idk
         }
-        public void exitParking()
+        public void ExitParking()
         {
             // implementation here...?? idk
         }
@@ -95,19 +95,19 @@ namespace SEAssignment
     }
 
     //terminatedstate class
-    class TerminatedState : SeasonPassState {
+    class TerminatedState : ISeasonPassState {
         private SeasonPass sp;
         public TerminatedState(SeasonPass sp)
         {
             this.sp = sp;
         }
 
-        public void renew()
+        public void Renew()
         {
             // implementation here
         }
 
-        public void transferPass(string vt, Vehicle v)
+        public void TransferPass(string vt, Vehicle v)
         {
             // vt - vehicletype in string (Lorry, Car, Motorbike)
             // implementation of transfering pass to another vehicle
@@ -119,16 +119,16 @@ namespace SEAssignment
             //    do something..
         }
 
-        public void terminatePass()
+        public void TerminatePass()
         {
             // implementation here - should not allow
         }
 
-        public void enterParking()
+        public void EnterParking()
         {
             // implementation here...?? idk
         }
-        public void exitParking()
+        public void ExitParking()
         {
             // implementation here...?? idk
         }
@@ -136,19 +136,19 @@ namespace SEAssignment
     }
 
     // expiredstate class
-    class ExpiredState : SeasonPassState {
+    class ExpiredState : ISeasonPassState {
         private SeasonPass sp;
         public ExpiredState(SeasonPass sp)
         {
             this.sp = sp;
         }
 
-        public void renew()
+        public void Renew()
         {
             // implementation here
         }
 
-        public void transferPass(string vt, Vehicle v)
+        public void TransferPass(string vt, Vehicle v)
         {
             // vt - vehicletype in string (Lorry, Car, Motorbike)
             // implementation of transfering pass to another vehicle
@@ -160,16 +160,16 @@ namespace SEAssignment
             //    do something..
         }
 
-        public void terminatePass()
+        public void TerminatePass()
         {
             // implementation here - should not allow
         }
 
-        public void enterParking()
+        public void EnterParking()
         {
             // implementation here...?? idk
         }
-        public void exitParking()
+        public void ExitParking()
         {
             // implementation here...?? idk
         }
