@@ -47,8 +47,6 @@ namespace SEAssignment
 
         //constructor
         public Lecturer(int id, string sname, string pw, string add, int mobile) {
-
-
             StaffID = id;
             name = sname;
             password = pw;

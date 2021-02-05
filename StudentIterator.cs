@@ -18,7 +18,7 @@ namespace SEAssignment
 
             while (position < studentList.NumberOfStudents)
             {
-                if (studentList.studentCollection[position].StudentID == studentID)
+                if (studentList.StudentCollection[position].StudentID == studentID)
                 {
                     isfound = true;
                     break;
@@ -46,7 +46,7 @@ namespace SEAssignment
 
         public object Found()
         {
-            Student student = studentList.studentCollection[position];
+            Student student = studentList.StudentCollection[position];
             return student;
         }
 

@@ -12,8 +12,8 @@ namespace SEAssignment
             Student s2 = new Student("2", "Jane", "1234", "Def Street", 12346789);
 
             StudentList studentList = new StudentList();
-            studentList.studentCollection.Add(s1);
-            studentList.studentCollection.Add(s2);
+            studentList.StudentCollection.Add(s1);
+            studentList.StudentCollection.Add(s2);
 
 
 
@@ -141,6 +141,71 @@ namespace SEAssignment
                 }
 
             }
+            void ManagerMenu()
+            {
+                bool condition = true;
+                while (condition)
+                {
+                    Console.WriteLine();
+                    //Console.WriteLine("Testing something");
+                    Console.WriteLine("===Manager Landing Page===");
+                    Console.WriteLine("1) Process Season Parking Pass");
+                    Console.WriteLine("2) Generate Report for Specific Car Park");
+                    Console.WriteLine("3) Logout");
+                    Console.WriteLine();
+
+                    int manager_choice;
+                    Console.Write("Enter choice: ");
+                    string choice = Console.ReadLine();
+                    bool success = Int32.TryParse(choice, out manager_choice);
+
+                    if (!success)
+                    {
+                        Console.WriteLine("Please Enter an Interger Input only!");
+                        continue;
+                    }
+
+                    switch (manager_choice)
+                    {
+                        case 1: // process season parking pass
+                            //processSeasonParking();
+                            break;
+
+                        case 2: // generate report for specific car park
+                                // code to test generatereport function (should not be here!! but its just for testing whether it works)
+                            Console.Write("Enter Month in numbers to Generate Report for: ");
+                            string month = Console.ReadLine();
+                            int months;
+                            bool c = Int32.TryParse(month, out months);
+                            if (!c)
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("Please Enter an Interger Input only!");
+                                //continue;
+                            }
+
+                            cp2.GenerateReport(months);
+
+                            //generateReport();
+                            break;
+
+                        case 3: // log out of manager
+                            Console.WriteLine();
+                            Console.WriteLine("Logging out...");
+                            condition = false;
+                            Console.WriteLine();
+                            break;
+
+                        default: // if wrong option is entered
+                            Console.WriteLine();
+                            Console.WriteLine("Please enter a valid option!!");
+                            break;
+                    }
+
+                }
+
+            }
+
 
             //commented out original menu, highlight all and control + k + u to to uncomment
             //while (true)
