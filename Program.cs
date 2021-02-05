@@ -7,13 +7,15 @@ namespace SEAssignment
         static void Main(string[] args)
         {
             // initialize a few students 
-
+            Student s1 = new Student(1, "Peter", "1234", "Abc Street", 12346689);
+            Student s2 = new Student(2, "Jane", "1234", "Def Street", 12346789);
 
 
 
 
             // initialize a few lecturers
-
+            Lecturer lect1 = new Lecturer(1, "Mr Tan", "1234", "Xyz Street", 52634789);
+            Lecturer lect2 = new Lecturer(2, "Ms Lee", "1234", "Lmn Street", 58749632);
 
 
 
@@ -85,8 +87,8 @@ namespace SEAssignment
 
                         // retrieve student details, check to ensure its a valid ID as well
 
-                        Student student = new Student();
-                        student.studentMenu();
+                        //Student student = new Student();
+                        s1.studentMenu();
                         break;
 
                     case 2:
@@ -95,8 +97,8 @@ namespace SEAssignment
 
                         // retrieve lecturer details, check to ensure its a valid ID as well
 
-                        Lecturer lecturer = new Lecturer();
-                        lecturer.lecturerMenu();
+                        //Lecturer lecturer = new Lecturer();
+                        lect1.lecturerMenu();
                         break;
 
                     case 3:

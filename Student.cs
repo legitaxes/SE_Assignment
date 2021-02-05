@@ -8,17 +8,52 @@ namespace SEAssignment
     {
         //attributes 
         // use propfull, <tab>, <tab> to create the variables with getter and setter
-        private int myVar;
+        private int studentID;
+        private string name;
+        private string password;
+        private string address;
+        private int mobileNumber;
 
-        public int MyProperty
+        //---getter setter for properties---
+        public int StudentID
         {
-            get { return myVar; }
-            set { myVar = value; }
+            get { return studentID; }
+            set { studentID = value; }
         }
 
 
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        public string Password
+        {
+            get { return password; }
+            set { password = value; }
+        }
+
+        public string Address
+        {
+            get { return address; }
+            set { address = value; }
+        }
+
+        public int MobileNumber
+        {
+            get { return mobileNumber; }
+            set { mobileNumber = value; }
+        }
+
         //constructor
-        public Student() { 
+        public Student(int id, string sname, string pw, string add, int mobile) {
+
+            id = studentID;
+            sname = name;
+            pw = password;
+            add = address;
+            mobile = mobileNumber;
 
         }
 

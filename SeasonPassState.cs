@@ -63,6 +63,10 @@ namespace SEAssignment
 
         public void Renew()
         {
+            if(sp.StartDate <= sp.EndDate)
+            {
+                sp.SetCurrentState(sp.GetValidState());
+            }
             // implementation here
         }
 
@@ -145,6 +149,7 @@ namespace SEAssignment
 
         public void Renew()
         {
+            sp.SetCurrentState(sp.GetValidState());
             // implementation here
         }
 
