@@ -28,11 +28,24 @@ namespace SEAssignment
 
 
 
-            // initialize 3 carparks
+            // initialize 3 carparks - int id, string name, int tps, string desc, string loc, int gr [Refer to constructor of carpark]
+            CarPark cp1 = new CarPark(1, "NP CarPark #1", 50, "Carpark at IS Block", "Blk 56", 343.67);
+            CarPark cp2 = new CarPark(2, "NP CarPark #2", 70, "Carpark at IS Block", "Blk 56", 1124.30);
+            CarPark cp3 = new CarPark(3, "NP CarPark #3", 50, "Carpark at IS Block", "Blk 56", 524.46);
 
+            // code to test generatereport function (should not be here!! but its just for testing whether it works)
+            Console.Write("Enter Month in numbers to Generate Report for: ");
+            string month = Console.ReadLine();
+            int months;
+            bool c = Int32.TryParse(month, out months);
+            if (!c)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Please Enter an Interger Input only!");
+                //continue;
+            }
 
-
-
+            cp2.GenerateReport(months);
 
 
             // have a few vehicles parked in some of the carparks
