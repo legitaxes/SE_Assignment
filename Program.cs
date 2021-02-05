@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SEAssignment
 {
@@ -32,8 +33,15 @@ namespace SEAssignment
 
             // initialize 3 carparks - int id, string name, int tps, string desc, string loc, int gr [Refer to constructor of carpark]
             CarPark cp1 = new CarPark(1, "NP CarPark #1", 50, "Carpark at IS Block", "Blk 56", 343.67);
-            CarPark cp2 = new CarPark(2, "NP CarPark #2", 70, "Carpark at IS Block", "Blk 56", 1124.30);
-            CarPark cp3 = new CarPark(3, "NP CarPark #3", 50, "Carpark at IS Block", "Blk 56", 524.46);
+            CarPark cp2 = new CarPark(2, "NP CarPark #2", 70, "Carpark near Munch Canteen", "Blk 16", 1124.30);
+            CarPark cp3 = new CarPark(3, "NP CarPark #3", 50, "Carpark at FMS Block", "Blk 76", 524.46);
+
+            // create a list of carpark and add all initialized carpark into the list
+            List<CarPark> cpList = new List<CarPark>();
+            cpList.Add(cp1);
+            cpList.Add(cp2);
+            cpList.Add(cp3);
+
 
             // code to test generatereport function (should not be here!! but its just for testing whether it works)
             Console.Write("Enter Month in numbers to Generate Report for: ");
@@ -108,6 +116,7 @@ namespace SEAssignment
                         // retrieve manager details, check to ensure its a valid ID as well
 
                         Manager manager = new Manager();
+                        ManagerMenu();
                         manager.managerMenu();
                         break;
 
@@ -124,6 +133,71 @@ namespace SEAssignment
                 }
 
             }
+            void ManagerMenu()
+            {
+                bool condition = true;
+                while (condition)
+                {
+                    Console.WriteLine();
+                    //Console.WriteLine("Testing something");
+                    Console.WriteLine("===Manager Landing Page===");
+                    Console.WriteLine("1) Process Season Parking Pass");
+                    Console.WriteLine("2) Generate Report for Specific Car Park");
+                    Console.WriteLine("3) Logout");
+                    Console.WriteLine();
+
+                    int manager_choice;
+                    Console.Write("Enter choice: ");
+                    string choice = Console.ReadLine();
+                    bool success = Int32.TryParse(choice, out manager_choice);
+
+                    if (!success)
+                    {
+                        Console.WriteLine("Please Enter an Interger Input only!");
+                        continue;
+                    }
+
+                    switch (manager_choice)
+                    {
+                        case 1: // process season parking pass
+                            //processSeasonParking();
+                            break;
+
+                        case 2: // generate report for specific car park
+                                // code to test generatereport function (should not be here!! but its just for testing whether it works)
+                            Console.Write("Enter Month in numbers to Generate Report for: ");
+                            string month = Console.ReadLine();
+                            int months;
+                            bool c = Int32.TryParse(month, out months);
+                            if (!c)
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("Please Enter an Interger Input only!");
+                                //continue;
+                            }
+
+                            cp2.GenerateReport(months);
+
+                            //generateReport();
+                            break;
+
+                        case 3: // log out of manager
+                            Console.WriteLine();
+                            Console.WriteLine("Logging out...");
+                            condition = false;
+                            Console.WriteLine();
+                            break;
+
+                        default: // if wrong option is entered
+                            Console.WriteLine();
+                            Console.WriteLine("Please enter a valid option!!");
+                            break;
+                    }
+
+                }
+
+            }
+
         }
     }
 }

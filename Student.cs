@@ -21,7 +21,6 @@ namespace SEAssignment
             set { studentID = value; }
         }
 
-
         public string Name
         {
             get { return name; }
@@ -48,12 +47,11 @@ namespace SEAssignment
 
         //constructor
         public Student(int id, string sname, string pw, string add, int mobile) {
-
-            id = studentID;
-            sname = name;
-            pw = password;
-            add = address;
-            mobile = mobileNumber;
+            StudentID = id;
+            name = sname;
+            password = pw;
+            address = add;
+            mobileNumber = mobile;
 
         }
 
