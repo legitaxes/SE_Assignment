@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SEAssignment
 {
@@ -6,7 +7,7 @@ namespace SEAssignment
     {
         static void Main(string[] args)
         {
-            // initialize a few students 
+            // initialize a few students
             Student s1 = new Student("1", "Peter", "1234", "Abc Street", 12346689);
             Student s2 = new Student("2", "Jane", "1234", "Def Street", 12346789);
 
@@ -35,8 +36,15 @@ namespace SEAssignment
 
             // initialize 3 carparks - int id, string name, int tps, string desc, string loc, int gr [Refer to constructor of carpark]
             CarPark cp1 = new CarPark(1, "NP CarPark #1", 50, "Carpark at IS Block", "Blk 56", 343.67);
-            CarPark cp2 = new CarPark(2, "NP CarPark #2", 70, "Carpark at IS Block", "Blk 56", 1124.30);
-            CarPark cp3 = new CarPark(3, "NP CarPark #3", 50, "Carpark at IS Block", "Blk 56", 524.46);
+            CarPark cp2 = new CarPark(2, "NP CarPark #2", 70, "Carpark near Munch Canteen", "Blk 16", 1124.30);
+            CarPark cp3 = new CarPark(3, "NP CarPark #3", 50, "Carpark at FMS Block", "Blk 76", 524.46);
+
+            // create a list of carpark and add all initialized carpark into the list
+            List<CarPark> cpList = new List<CarPark>();
+            cpList.Add(cp1);
+            cpList.Add(cp2);
+            cpList.Add(cp3);
+
 
             // code to test generatereport function (should not be here!! but its just for testing whether it works)
             Console.Write("Enter Month in numbers to Generate Report for: ");
@@ -116,6 +124,7 @@ namespace SEAssignment
                         // retrieve manager details, check to ensure its a valid ID as well
 
                         Manager manager = new Manager();
+                        ManagerMenu();
                         manager.managerMenu();
                         break;
 
@@ -206,4 +215,3 @@ namespace SEAssignment
         }
     }
 }
-

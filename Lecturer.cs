@@ -49,11 +49,11 @@ namespace SEAssignment
         public Lecturer(int id, string sname, string pw, string add, int mobile) {
 
 
-            id = staffID;
-            sname = name;
-            pw = password;
-            add = address;
-            mobile = mobileNumber;
+            StaffID = id;
+            name = sname;
+            password = pw;
+            address = add;
+            mobileNumber = mobile;
 
         }
 
