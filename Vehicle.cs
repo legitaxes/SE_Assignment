@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SEAssignment
 {
-    class Vehicle
+    public class Vehicle
     {
         //---properties---
         private int vehicleID;
@@ -50,6 +50,18 @@ namespace SEAssignment
             }
         }
 
+        // one to many assoication with Users to Vehicles
+        private User userVehicle;
+
+        public User UserVehicle {
+            set {
+                if (userVehicle != value) {
+                    userVehicle = value;
+                    value.RegisterVehicle(this);
+                }
+            }
+        }
+        
         //---constructor---
         public Vehicle(int id, string lp, string vt, SeasonPass vsp)
         {

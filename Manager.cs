@@ -4,85 +4,30 @@ using System.Text;
 
 namespace SEAssignment
 {
-    class Manager
+    class Manager : User
     {
         //attributes 
         // use propfull, <tab>, <tab> to create the variables with getter and setter
-        private int myVar;
+        private string managerID;
 
-        public int MyProperty
+        public string ManagerID
         {
-            get { return myVar; }
-            set { myVar = value; }
+            get { return managerID; }
+            set { managerID = value; }
         }
 
         //constructor
-        public Manager() { 
-        
+        public Manager(string id, string sname, string pw, string add, int mobile) : base(sname, pw, add, mobile)
+        {
+            managerID = id;
         }
 
         // methods / actions
-        public void managerMenu() 
-        {
-            bool condition = true;
-            while (condition)
-            {
-                Console.WriteLine();
-                Console.WriteLine("===Manager Landing Page===");
-                Console.WriteLine("1) Process Season Parking Pass");
-                Console.WriteLine("2) Generate Report for Specific Car Park");
-                Console.WriteLine("3) Logout");
-                Console.WriteLine();
+        //public void processSeasonParking() 
+        //{ 
+        //    // implementation of process season parking
 
-                int manager_choice;
-                Console.Write("Enter choice: ");
-                string choice = Console.ReadLine();
-                bool success = Int32.TryParse(choice, out manager_choice);
-
-                if (!success)
-                {
-                    Console.WriteLine("Please Enter an Interger Input only!");
-                    continue;
-                }
-
-                switch (manager_choice)
-                {
-                    case 1: // process season parking pass
-                        processSeasonParking();
-                        break;
-
-                    case 2: // generate report for specific car park
-                        generateReport();
-                        break;
-
-                    case 3: // log out of manager
-                        Console.WriteLine();
-                        Console.WriteLine("Logging out...");
-                        condition = false;
-                        Console.WriteLine();
-                        break;
-
-                    default: // if wrong option is entered
-                        Console.WriteLine();
-                        Console.WriteLine("Please enter a valid option!!");
-                        break;
-                }
-
-            }
-
-        }
-       
-        public void processSeasonParking() 
-        { 
-            // implementation of process season parking
-
-        }
-
-        public void generateReport()
-        {
-            // implementation of generating report
-
-        }
+        //}
 
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 namespace SEAssignment
 {
     // association class
-    class ParkingSession
+    public class ParkingSession
     {
         //---properties---
         private int sessionID;

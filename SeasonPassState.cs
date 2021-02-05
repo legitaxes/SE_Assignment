@@ -4,11 +4,11 @@ using System.Text;
 
 namespace SEAssignment
 {
-    interface ISeasonPassState
+    public interface ISeasonPassState
     {
         void Renew();
 
-        void TransferPass(string vt, Vehicle v);
+        void TransferPass(Vehicle v);
 
         void TerminatePass();
 
@@ -27,7 +27,7 @@ namespace SEAssignment
             Console.WriteLine("You are not allowed to renew when you don't have a season pass!");
         }
 
-        public void TransferPass(string vt, Vehicle v) { 
+        public void TransferPass(Vehicle v) { 
             // vt - vehicletype in string (Lorry, Car, Motorbike)
             // implementation of transfering pass to another vehicle
             // code below works, i accidentally did it lol. all i did was create a class called vehicle and put vehicle property under seasonpass
@@ -61,7 +61,7 @@ namespace SEAssignment
             // implementation here
         }
 
-        public void TransferPass(string vt, Vehicle v)
+        public void TransferPass(Vehicle v)
         {
             // vt - vehicletype in string (Lorry, Car, Motorbike)
             // implementation of transfering pass to another vehicle
@@ -93,7 +93,7 @@ namespace SEAssignment
             // implementation here
         }
 
-        public void TransferPass(string vt, Vehicle v)
+        public void TransferPass(Vehicle v)
         {
             // vt - vehicletype in string (Lorry, Car, Motorbike)
             // implementation of transfering pass to another vehicle
@@ -126,7 +126,7 @@ namespace SEAssignment
             // implementation here
         }
 
-        public void TransferPass(string vt, Vehicle v)
+        public void TransferPass(Vehicle v)
         {
             // vt - vehicletype in string (Lorry, Car, Motorbike)
             // implementation of transfering pass to another vehicle

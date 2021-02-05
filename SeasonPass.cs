@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SEAssignment
 {
-    class SeasonPass
+    public class SeasonPass
     {
         //---properties---
         private int seasonPassID;
@@ -83,9 +83,7 @@ namespace SEAssignment
 
         // !!! functions to be called to run the function in the specific state !!!
         public void Renew() { currentState.Renew(); }
-        public void TransferPass(string vt, Vehicle v) { currentState.TransferPass(vt, v); }
+        public void TransferPass(Vehicle v) { currentState.TransferPass(v); }
         public void TerminatePass() { currentState.TerminatePass(); }
-        //public void EnterParking() { currentState.EnterParking(); }
-        //public void ExitParking() { currentState.ExitParking(); }
     }
 }

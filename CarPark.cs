@@ -64,6 +64,11 @@ namespace SEAssignment
             set { generatedRevenue = value; }
         }
 
+        public Dictionary<string, string> PastRevenue {
+            get { return pastRevenue; }
+            set { pastRevenue = value; }
+        }
+
         //---constructor---
         public CarPark(int id, string name, int tps, string desc, string loc, double gr) {
             carParkID = id;
@@ -76,20 +81,7 @@ namespace SEAssignment
 
             // defining vehicleList in carpark - many to many association with vehicles
             vehicleParkingList = new List<ParkingSession>();
-            pastRevenue = new Dictionary<string, string>() { //initializing some dummy data for pastRevenue
-                { "Jan", "2019: 1204.24,2020: 2367.70"},
-                { "Feb", "2019: 4897.30,2020: 2314.76"},
-                { "Mar", "2019: 2189.68,2020: 7893.11"},
-                { "Apr", "2019: 443.24,2020: 202.60"},
-                { "May", "2019: 1234.74,2020: 4874.75"},
-                { "Jun", "2019: 5768.58,2020: 4562.73"},
-                { "Jul", "2019: 1204.47,2020: 2344.20"},
-                { "Aug", "2019: 2345.88,2020: 2367.17"},
-                { "Sep", "2019: 5655.34,2020: 1311.11"},
-                { "Oct", "2019: 1336.37,2020: 3908.22"},
-                { "Nov", "2019: 333.24,2020: 221.82"},
-                { "Dec", "2019: 112.44,2020: 228.45"}
-            };
+            pastRevenue = new Dictionary<string, string>();
         }
 
         //---methods---
@@ -106,13 +98,18 @@ namespace SEAssignment
             {
                 vehicleParkingList.Add(ps);
             }
+            else {
+                Console.WriteLine("The Vehicle is already parked at the Carpark!");
+            }
         }
 
         public void GenerateReport(int month) {
             int currentMonth = DateTime.Now.Month;
+            Console.WriteLine();
             Console.WriteLine("Generating Financial Report...");
             Thread.Sleep(TimeSpan.FromSeconds(2));
             Console.WriteLine("=========== " + DateTime.Now + " ===========");
+            Console.WriteLine();
             Console.WriteLine("Financial Report for the Month of {0} for {1}", pastRevenue.ElementAt(Convert.ToInt32(month - 1)).Key, carParkName);
 
             // if month entered is the same as the current month in the computer, the printed revenue will be for the current month as well
