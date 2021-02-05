@@ -7,9 +7,12 @@ namespace SEAssignment
         static void Main(string[] args)
         {
             // initialize a few students 
-            Student s1 = new Student(1, "Peter", "1234", "Abc Street", 12346689);
-            Student s2 = new Student(2, "Jane", "1234", "Def Street", 12346789);
+            Student s1 = new Student("1", "Peter", "1234", "Abc Street", 12346689);
+            Student s2 = new Student("2", "Jane", "1234", "Def Street", 12346789);
 
+            StudentList studentList = new StudentList();
+            studentList.studentCollection.Add(s1);
+            studentList.studentCollection.Add(s2);
 
 
 
@@ -52,8 +55,8 @@ namespace SEAssignment
 
             // have a few vehicles parked in some of the carparks
 
-
-
+            // Indian tier code for proof of concept that student iterator is working
+            // Will adjust and fix as I understand more of what I need to do
 
             while (true)
             {
@@ -85,10 +88,15 @@ namespace SEAssignment
                         Console.Write("Enter your StudentID: ");
                         string studID = Console.ReadLine();
 
-                        // retrieve student details, check to ensure its a valid ID as well
-
-                        //Student student = new Student();
-                        s1.studentMenu();
+                        StudentIterator iterator = new StudentIterator(studentList, studID);
+                        if (iterator.isfound == true)
+                        {
+                            Student student = (Student)iterator.Found();
+                            Console.Write("Welcome, {0}", student.Name);
+                            student.studentMenu();
+                            break;
+                        }
+                        Console.Write("No student with the given student ID found.");
                         break;
 
                     case 2:
@@ -124,6 +132,77 @@ namespace SEAssignment
                 }
 
             }
+
+            //commented out original menu, highlight all and control + k + u to to uncomment
+            //while (true)
+            //{
+            //    int main_choice;
+            //    // simple login option
+            //    console.writeline();
+            //    console.writeline("===login page===");
+            //    console.writeline("1) student");
+            //    console.writeline("2) lecturer");
+            //    console.writeline("3) manager");
+            //    console.writeline("4) exit");
+            //    console.writeline();
+
+            //    //validation to ensure the input are numbers only
+            //    console.write("enter choice: ");
+            //    string main_input = console.readline();
+            //    bool success = int32.tryparse(main_input, out main_choice);
+            //    if (!success)
+            //    {
+            //        console.writeline();
+            //        console.writeline("please enter an interger input only!");
+            //        continue;
+            //    }
+
+            //    // choosing the options
+            //    switch (main_choice)
+            //    {
+            //        case 1:
+            //            console.write("enter your studentid: ");
+            //            string studid = console.readline();
+
+            //            // retrieve student details, check to ensure its a valid id as well
+
+            //            //student student = new student();
+            //            s1.studentmenu();
+            //            break;
+
+            //        case 2:
+            //            console.write("enter your lecturerid: ");
+            //            string lecturerid = console.readline();
+
+            //            // retrieve lecturer details, check to ensure its a valid id as well
+
+            //            //lecturer lecturer = new lecturer();
+            //            lect1.lecturermenu();
+            //            break;
+
+            //        case 3:
+            //            console.write("enter your managerid: ");
+            //            string managerid = console.readline();
+
+            //            // retrieve manager details, check to ensure its a valid id as well
+
+            //            manager manager = new manager();
+            //            manager.managermenu();
+            //            break;
+
+            //        case 4:
+            //            system.environment.exit(1);
+            //            break;
+
+            //        default: //if entered anything other than the numbers
+            //            console.writeline();
+            //            console.writeline("please enter a valid option!!");
+            //            console.writeline();
+            //            break;
+
+            //    }
+
+            //}
         }
     }
 }

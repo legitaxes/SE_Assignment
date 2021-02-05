@@ -4,23 +4,22 @@ using System.Text;
 
 namespace SEAssignment
 {
-    class Student
+    public class Student
     {
         //attributes 
         // use propfull, <tab>, <tab> to create the variables with getter and setter
-        private int studentID;
+        private string studentID;
         private string name;
         private string password;
         private string address;
         private int mobileNumber;
 
         //---getter setter for properties---
-        public int StudentID
+        public string StudentID
         {
             get { return studentID; }
             set { studentID = value; }
         }
-
 
         public string Name
         {
@@ -47,13 +46,13 @@ namespace SEAssignment
         }
 
         //constructor
-        public Student(int id, string sname, string pw, string add, int mobile) {
-
-            id = studentID;
-            sname = name;
-            pw = password;
-            add = address;
-            mobile = mobileNumber;
+        public Student(string id, string sname, string pw, string add, int mobile)
+        {
+            StudentID = id;
+            name = sname;
+            password = pw;
+            address = add;
+            mobileNumber = mobile;
 
         }
 
@@ -105,7 +104,7 @@ namespace SEAssignment
                     case 4: // transfer season parking pass
                         transferSeasonPass();
                         break;
-                    
+
                     case 5: // enter parking 
                         enterParking();
                         break;
@@ -130,32 +129,38 @@ namespace SEAssignment
 
             }
         }
-        public void viewSeasonPass() { 
+        public void viewSeasonPass()
+        {
             // implementation for viewing season parking pass
 
         }
 
-        public void renewSeasonPass() { 
+        public void renewSeasonPass()
+        {
             // implementation for renew season parking pass
 
         }
 
-        public void terminateSeasonPass() { 
+        public void terminateSeasonPass()
+        {
             // implementation for terminate season parking pass
 
         }
 
-        public void transferSeasonPass() { 
+        public void transferSeasonPass()
+        {
             // implementation for transfer season parking pass
 
         }
 
-        public void enterParking() { 
+        public void enterParking()
+        {
             // implementation for enter parking lot
 
         }
 
-        public void exitParking() { 
+        public void exitParking()
+        {
             // implementation for exit parking lot
 
         }
