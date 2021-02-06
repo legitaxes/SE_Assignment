@@ -14,11 +14,10 @@ namespace SEAssignment
         private int totalParkingSpace;
         private string description;
         private string location;
-        private int remainingSpace;
-        
+        private int remainingSpace; //implied and calculated
         private double generatedRevenue;
-        private Dictionary<string, string> pastRevenue;
-        
+
+        private Dictionary<string, string> pastRevenue; // a list of past revenue of the year based on the month
         private List<ParkingSession> vehicleParkingList; // many to many association (Vehicle and ParkingSession)
 
 
@@ -76,7 +75,7 @@ namespace SEAssignment
             totalParkingSpace = tps;
             description = desc;
             location = loc;
-            remainingSpace = totalParkingSpace;
+            remainingSpace = totalParkingSpace - vehicleParkingList.Count;
             generatedRevenue = gr;
 
             // defining vehicleList in carpark - many to many association with vehicles
@@ -151,7 +150,6 @@ namespace SEAssignment
             Console.WriteLine("| 7 am to 10.30 pm           | $1.20 per hour (/min)    | $1.20 per hour (/min)    |");
             Console.WriteLine("| Sundays & Public Holidays  | Free                     | Free                     |");
             Console.WriteLine("------------------------------------------------------------------------------------");
-            Console.WriteLine("------------------------------------------------------------------------------------");
             Console.WriteLine("--------------------------------- For Motorcycles ----------------------------------");
             Console.WriteLine("------------------------------------------------------------------------------------");
             Console.WriteLine("| Season Parking (For Staff) |         $15/month        |          $17/month       |");
@@ -162,6 +160,10 @@ namespace SEAssignment
             Console.WriteLine("|                            | capped at $0.65 /session | capped at $0.65 /session |");
             Console.WriteLine("| Sundays & Public Holidays  | Free                     | Free                     |");
             Console.WriteLine("------------------------------------------------------------------------------------");
+        }
+
+        public void UpdateParkingSlots() { //updates the remaining parking slots left
+            remainingSpace = totalParkingSpace - vehicleParkingList.Count;
         }
     }
 }

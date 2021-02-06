@@ -12,6 +12,7 @@ namespace SEAssignment
         private string iuNumber;
         private DateTime startDate;
         private DateTime endDate;
+        private int remainingMonth; //calculated and implied from start and end date | check constructor
         private Vehicle vehicle; // one to one association with Vehicle class
 
         //states properties implementation - season parking pass
@@ -53,6 +54,11 @@ namespace SEAssignment
             set { endDate = value; }
         }
 
+        public int RemainingMonth {
+            get { return remainingMonth; }
+            set { remainingMonth = value; }
+        }
+
         // one to one association with vehicle
         public Vehicle Vehicle {
             set {
@@ -81,6 +87,7 @@ namespace SEAssignment
             startDate = sd;
             endDate = ed;
             vehicle = v;
+            remainingMonth = endDate.Month - startDate.Month;
         }
 
         // !!! functions to be called to run the function in the specific state !!!

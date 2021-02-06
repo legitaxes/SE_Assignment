@@ -60,6 +60,7 @@ namespace SEAssignment
 
         // one to many association with User and Vehicle
         public User UserVehicle {
+            get { return userVehicle; }
             set {
                 if (userVehicle != value)
                 {
