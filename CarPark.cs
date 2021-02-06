@@ -108,6 +108,7 @@ namespace SEAssignment
             Console.WriteLine();
             Console.WriteLine("Generating Financial Report...");
             Thread.Sleep(TimeSpan.FromSeconds(2));
+            Console.WriteLine();
             Console.WriteLine("=========== " + DateTime.Now + " ===========");
             Console.WriteLine();
             Console.WriteLine("Financial Report for the Month of {0} for {1}", pastRevenue.ElementAt(Convert.ToInt32(month - 1)).Key, carParkName);

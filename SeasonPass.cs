@@ -9,12 +9,13 @@ namespace SEAssignment
         //---properties---
         private int seasonPassID;
         private string vehicleType;
+        private int iuNumber;
         private DateTime startDate;
         private DateTime endDate;
         private Vehicle vehicle; // one to one association with Vehicle class
 
         //states properties implementation - season parking pass
-        private ISeasonPassState pendingState;
+        private ISeasonPassState pendingState; // not used as there is no apply season pass
         private ISeasonPassState validState;
         private ISeasonPassState terminatedState;
         private ISeasonPassState expiredState;
@@ -32,6 +33,12 @@ namespace SEAssignment
         {
             get { return vehicleType; }
             set { vehicleType = value; }
+        }
+
+        public int IUNumber
+        {
+            get { return iuNumber; }
+            set { iuNumber = value; }
         }
 
         public DateTime StartDate
@@ -68,7 +75,7 @@ namespace SEAssignment
         }
 
         //constructor for seasonpass
-        public SeasonPass() {
+        public SeasonPass(int id, string vt, int iun, DateTime sd, DateTime ed, Vehicle v) {
             // season pass states goes here
             pendingState = new PendingState(this);
             validState = new ValidState(this);
@@ -78,7 +85,12 @@ namespace SEAssignment
             currentState = validState;
 
             //rest of the property define below for seasonpass
-
+            seasonPassID = id;
+            vehicleType = vt;
+            iuNumber = iun;
+            startDate = sd;
+            endDate = ed;
+            vehicle = v;
         }
 
         // !!! functions to be called to run the function in the specific state !!!

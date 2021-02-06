@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace SEAssignment
 {
@@ -94,12 +95,12 @@ namespace SEAssignment
             };
 
             // create a list of carpark and add all initialized carpark into the list
-            List<CarPark> cpList = new List<CarPark>();
-            cpList.Add(cp1);
-            cpList.Add(cp2);
-            cpList.Add(cp3);
-
-
+            List<CarPark> cpList = new List<CarPark>
+            {
+                cp1,
+                cp2,
+                cp3
+            };
 
 
             // create a few Parking Session for Vehicles Parked in carparks
@@ -184,11 +185,18 @@ namespace SEAssignment
                     case 3: //login as manager
                         Console.Write("Enter your ManagerID: ");
                         string managerID = Console.ReadLine();
-
-                        // retrieve manager details, check to ensure its a valid ID as well
-
+                        //chcek and validate manager ID
+                        Console.WriteLine("Logging in...");
+                        Thread.Sleep(TimeSpan.FromSeconds(1));
+                        if (managerID.ToLower() != manager.ManagerID.ToLower())
+                        {
+                            Console.WriteLine("User not found!");
+                            break;
+                        }
+                        Console.WriteLine();
+                        Console.WriteLine("Login Successful!");
+                        Console.WriteLine("Welcome! {0}", manager.Name);
                         ManagerMenu();
-                        //manager.managerMenu();
                         break;
 
                     case 4: //exit the program
@@ -345,7 +353,6 @@ namespace SEAssignment
                 while (condition)
                 {
                     Console.WriteLine();
-                    //Console.WriteLine("Testing something");
                     Console.WriteLine("=== Manager Landing Page ===");
                     Console.WriteLine("1) Process Season Parking Pass");
                     Console.WriteLine("2) Generate Report for Specific Car Park");

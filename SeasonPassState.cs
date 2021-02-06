@@ -16,10 +16,10 @@ namespace SEAssignment
 
     //pendingstate class
     class PendingState : ISeasonPassState {
-        private SeasonPass sp;
+        private SeasonPass vsp;
         public PendingState(SeasonPass sp)
         {
-            this.sp = sp;
+            vsp = sp;
         }
 
         public void Renew() {
@@ -46,17 +46,20 @@ namespace SEAssignment
 
     //validstate class
     class ValidState : ISeasonPassState {
-        private SeasonPass sp;
+        private SeasonPass vsp;
         public ValidState(SeasonPass sp)
         {
-            this.sp = sp;
+            vsp = sp;
         }
 
         public void Renew()
         {
-            if(sp.StartDate <= sp.EndDate)
+            if(vsp.StartDate <= vsp.EndDate)
             {
-                sp.SetCurrentState(sp.GetValidState());
+                // # TODO print a few lines of code that says pass successfully extended and set end month of season pass according to input
+                // asssginees: yongfarm
+                //dont have to set state to valid as it is already at valid state
+                vsp.SetCurrentState(vsp.GetValidState()); 
             }
             // implementation here
         }
@@ -82,10 +85,10 @@ namespace SEAssignment
 
     //terminatedstate class
     class TerminatedState : ISeasonPassState {
-        private SeasonPass sp;
+        private SeasonPass vsp;
         public TerminatedState(SeasonPass sp)
         {
-            this.sp = sp;
+            vsp = sp;
         }
 
         public void Renew()
@@ -114,15 +117,15 @@ namespace SEAssignment
 
     // expiredstate class
     class ExpiredState : ISeasonPassState {
-        private SeasonPass sp;
+        private SeasonPass vsp;
         public ExpiredState(SeasonPass sp)
         {
-            this.sp = sp;
+            vsp = sp;
         }
 
         public void Renew()
         {
-            sp.SetCurrentState(sp.GetValidState());
+            vsp.SetCurrentState(vsp.GetValidState());
             // implementation here
         }
 
