@@ -339,6 +339,10 @@ namespace SEAssignment
                             break;
 
                         case 2: //renew season parking pass
+                            Console.WriteLine("Renew Season Parking Pass");
+                            Console.Write("Please enter no. of months you want to renew: ");
+                            string rpMonth = Console.ReadLine();
+
                             //renewSeasonPass();
                             break;
 
