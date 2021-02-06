@@ -54,7 +54,7 @@ namespace SEAssignment
 
         public int RemainingSpace {
             get { return remainingSpace; }
-            set { remainingSpace = value; }
+            set { remainingSpace = totalParkingSpace - vehicleParkingList.Count; }
         }
 
         public double GeneratedRevenue
@@ -75,7 +75,7 @@ namespace SEAssignment
             totalParkingSpace = tps;
             description = desc;
             location = loc;
-            remainingSpace = totalParkingSpace - vehicleParkingList.Count;
+            remainingSpace = totalParkingSpace;
             generatedRevenue = gr;
 
             // defining vehicleList in carpark - many to many association with vehicles
