@@ -30,8 +30,12 @@ namespace SEAssignment
             Lecturer lect4 = new Lecturer("4", "Ms Hock", "1234", "Belk Street 64", 78631242);
             Lecturer lect5 = new Lecturer("5", "Mr Mak", "1234", "Traverse Town District #1", 67356235);
 
-
-
+            LecturerList lecturerList = new LecturerList();
+            lecturerList.LecturerCollection.Add(lect1);
+            lecturerList.LecturerCollection.Add(lect2);
+            lecturerList.LecturerCollection.Add(lect3);
+            lecturerList.LecturerCollection.Add(lect4);
+            lecturerList.LecturerCollection.Add(lect5);
 
             // initialize a manager
             Manager manager = new Manager("S1111", "Timmy TRG", "blackpeople", "Wattsons Street 61", 82905692);
@@ -227,30 +231,37 @@ namespace SEAssignment
                 switch (main_choice)
                 {
                     case 1: //login as student
-                        Console.Write("Enter your StudentID: ");
+                        Console.Write("Enter your Student ID: ");
                         string studID = Console.ReadLine();
 
-                        StudentIterator iterator = new StudentIterator(studentList, studID);
-                        if (iterator.isfound == true)
+                        StudentIterator studentiterator = new StudentIterator(studentList, studID);
+                        if (studentiterator.isfound == true)
                         {
-                            Student student = (Student)iterator.Found();
+                            Student student = (Student)studentiterator.Found();
                             Console.Write("Welcome, {0}", student.Name);
                             StudentMenu();
                             //student.studentMenu();
                             break;
                         }
+
                         Console.Write("No student with the given student ID found.");
                         break;
 
                     case 2: //login as lecturer
-                        Console.Write("Enter your LecturerID: ");
-                        string lecturerID = Console.ReadLine();
+                        Console.Write("Enter your Staff ID: ");
+                        string staffID = Console.ReadLine();
 
-                        // retrieve lecturer details, check to ensure its a valid ID as well
+                        LecturerIterator lectureriterator = new LecturerIterator(lecturerList, staffID);
+                        if (lectureriterator.isfound == true)
+                        {
+                            Lecturer lecturer = (Lecturer)lectureriterator.Found();
+                            Console.Write("Welcome, {0}", lecturer.Name);
+                            LecturerMenu();
+                            //lecturer.lecturerMenu();
+                            break;
+                        }
 
-                        //Lecturer lecturer = new Lecturer();
-                        LecturerMenu();
-                        //lect1.lecturerMenu();
+                        Console.Write("No Lecturer with the given staff ID found.");
                         break;
 
                     case 3: //login as manager

@@ -16,7 +16,9 @@ namespace SEAssignment
         }
 
         private List<Student> studentCollection;
-        public List<Student> StudentCollection { 
+
+        public List<Student> StudentCollection 
+        { 
             get { return studentCollection; }
             set { studentCollection = value; }
         }
@@ -30,6 +32,7 @@ namespace SEAssignment
         {
             studentCollection = new List<Student>();
         }
+
         public StudentIterator CreateIterator()
         {
             return new StudentIterator(this, studentid);
