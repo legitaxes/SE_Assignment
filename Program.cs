@@ -140,7 +140,6 @@ namespace SEAssignment
                 cp3
             };
 
-
             // create a few Parking Session for Vehicles Parked in carparks to simulate cars that are parked
             DateTime dt8 = new DateTime(2020, 01, 01);
             DateTime dt9 = new DateTime(2020, 01, 03);

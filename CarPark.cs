@@ -137,5 +137,31 @@ namespace SEAssignment
             // concatenate the original input of the month with new generated revenue
             pastRevenue[pastRevenue.ElementAt(month - 1).Key] = o_i + amount;
         }
+
+        public void ShowCarParkFares() { //print parking charges
+            Console.WriteLine("------------------------------------------------------------------------------------");
+            Console.WriteLine("------------------------------------ For Cars --------------------------------------");
+            Console.WriteLine("------------------------------------------------------------------------------------");
+            Console.WriteLine("|                            |        Surface Lots      |       Sheltered Lots     |");
+            Console.WriteLine("------------------------------------------------------------------------------------");
+            Console.WriteLine("| Season Parking (For Staff) |         $80/month        |         $110/month       |");
+            Console.WriteLine("------------------------------------------------------------------------------------");
+            Console.WriteLine("| Vistor Parking             |                          |                          |");
+            Console.WriteLine("| Mondays to Saturdays       |                          |                          |");
+            Console.WriteLine("| 7 am to 10.30 pm           | $1.20 per hour (/min)    | $1.20 per hour (/min)    |");
+            Console.WriteLine("| Sundays & Public Holidays  | Free                     | Free                     |");
+            Console.WriteLine("------------------------------------------------------------------------------------");
+            Console.WriteLine("------------------------------------------------------------------------------------");
+            Console.WriteLine("--------------------------------- For Motorcycles ----------------------------------");
+            Console.WriteLine("------------------------------------------------------------------------------------");
+            Console.WriteLine("| Season Parking (For Staff) |         $15/month        |          $17/month       |");
+            Console.WriteLine("------------------------------------------------------------------------------------");
+            Console.WriteLine("| Vistor Parking             |                          |                          |");
+            Console.WriteLine("| Mondays to Saturdays       |                          |                          |");
+            Console.WriteLine("| 7 am to 10.30 pm           | $0.20 per hour (/min)    | $0.20 per hour (/min)    |");
+            Console.WriteLine("|                            | capped at $0.65 /session | capped at $0.65 /session |");
+            Console.WriteLine("| Sundays & Public Holidays  | Free                     | Free                     |");
+            Console.WriteLine("------------------------------------------------------------------------------------");
+        }
     }
 }
