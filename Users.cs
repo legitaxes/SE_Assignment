@@ -7,6 +7,10 @@ namespace SEAssignment
     public class User
     {
         private string name;
+        private string password;
+        private string address;
+        private int mobileNumber;
+        private List<Vehicle> myVehicles; // one to many association between Users and Vehicles
 
         public string Name
         {
@@ -14,15 +18,11 @@ namespace SEAssignment
             set { name = value; }
         }
 
-        private string password;
-
         public string Password
         {
             get { return password; }
             set { password = value; }
         }
-
-        private string address;
 
         public string Address
         {
@@ -30,16 +30,12 @@ namespace SEAssignment
             set { address = value; }
         }
 
-        private int mobileNumber;
-
         public int MobileNumber
         {
             get { return mobileNumber; }
             set { mobileNumber = value; }
         }
 
-        // one to many association between Users and Vehicles
-        private List<Vehicle> myVehicles;
 
         public User(string sname, string pw, string add, int mobile) {
             name = sname;

@@ -15,7 +15,7 @@ namespace SEAssignment
         private Vehicle vehicle; // one to one association with Vehicle class
 
         //states properties implementation - season parking pass
-        private ISeasonPassState pendingState; // not used as there is no apply season pass
+        private ISeasonPassState pendingState; // not used for apply season pass because it is not implemented
         private ISeasonPassState validState;
         private ISeasonPassState terminatedState;
         private ISeasonPassState expiredState;
@@ -63,19 +63,9 @@ namespace SEAssignment
             }
         }
 
-        //retrieve states
-        public ISeasonPassState GetPendingState() { return pendingState; }
-        public ISeasonPassState GetValidState() { return validState; }
-        public ISeasonPassState GetTerminatedState() { return terminatedState; }
-        public ISeasonPassState GetExpiredState() { return expiredState; }
-        
-        //sets the state
-        public void SetCurrentState(ISeasonPassState currentState) { 
-            this.currentState = currentState;
-        }
-
         //constructor for seasonpass
-        public SeasonPass(int id, string vt, int iun, DateTime sd, DateTime ed, Vehicle v) {
+        public SeasonPass(int id, string vt, int iun, DateTime sd, DateTime ed, Vehicle v)
+        {
             // season pass states goes here
             pendingState = new PendingState(this);
             validState = new ValidState(this);
@@ -94,6 +84,20 @@ namespace SEAssignment
         }
 
         // !!! functions to be called to run the function in the specific state !!!
+        //retrieve states
+        public ISeasonPassState GetPendingState() { return pendingState; }
+        public ISeasonPassState GetValidState() { return validState; }
+        public ISeasonPassState GetTerminatedState() { return terminatedState; }
+        public ISeasonPassState GetExpiredState() { return expiredState; }
+
+        // sets the state
+        public void SetCurrentState(ISeasonPassState currentState)
+        {
+            this.currentState = currentState;
+        }
+
+        // Functions in SeasonPassstate.cs
+        public void ApprovePass() { currentState.ApprovePass(); }
         public void Renew() { currentState.Renew(); }
         public void TransferPass(Vehicle v) { currentState.TransferPass(v); }
         public void TerminatePass() { currentState.TerminatePass(); }

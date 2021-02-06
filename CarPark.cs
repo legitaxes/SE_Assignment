@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace SEAssignment
 {
-    class CarPark
+    public class CarPark
     {
         //---properties---
         private int carParkID;

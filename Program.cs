@@ -38,7 +38,7 @@ namespace SEAssignment
 
 
 
-            // set season parking pass to a few students's vehicle and lecturer's vehicle
+            // create and set season parking pass to a few students's vehicle and lecturer's vehicle
             // each season parking pass is unique to ONE vehicle ONLY
 
 
@@ -103,7 +103,7 @@ namespace SEAssignment
             };
 
 
-            // create a few Parking Session for Vehicles Parked in carparks
+            // create a few Parking Session for Vehicles Parked in carparks to simulate cars that are parked
 
 
 

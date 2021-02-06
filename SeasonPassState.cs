@@ -6,6 +6,8 @@ namespace SEAssignment
 {
     public interface ISeasonPassState
     {
+        void ApprovePass();
+
         void Renew();
 
         void TransferPass(Vehicle v);
@@ -22,9 +24,13 @@ namespace SEAssignment
             vsp = sp;
         }
 
+        public void ApprovePass() { 
+            //implementation of Approve Season Parking Pass
+        }
+
         public void Renew() {
             // implementation
-            Console.WriteLine("You are not allowed to renew when you don't have a season pass!");
+            Console.WriteLine("Not allowed to renew when you don't have a season pass!");
         }
 
         public void TransferPass(Vehicle v) { 
@@ -39,7 +45,7 @@ namespace SEAssignment
         }
         public void TerminatePass()
         {
-            // implementation here - should not allow
+            Console.WriteLine("Not allowed to Terminate Season Pass in Pending state!");
         }
 
     }
@@ -50,6 +56,10 @@ namespace SEAssignment
         public ValidState(SeasonPass sp)
         {
             vsp = sp;
+        }
+
+        public void ApprovePass() {
+            Console.WriteLine("Not allowed to Approve Season Pass that is already Valid!");
         }
 
         public void Renew()
@@ -78,7 +88,7 @@ namespace SEAssignment
 
         public void TerminatePass()
         {
-            // implementation here - should not allow
+            //implementation
         }
 
     }
@@ -91,26 +101,24 @@ namespace SEAssignment
             vsp = sp;
         }
 
+        public void ApprovePass()
+        {
+            Console.WriteLine("Not allowed to Approve Season Pass that is already Terminated!");
+        }
+
         public void Renew()
         {
-            // implementation here
+            Console.WriteLine("Not allowed to Renew Season Pass that is already Terminated!");
         }
 
         public void TransferPass(Vehicle v)
         {
-            // vt - vehicletype in string (Lorry, Car, Motorbike)
-            // implementation of transfering pass to another vehicle
-            // code below works, i accidentally did it lol. all i did was create a class called vehicle and put vehicle property under seasonpass
-            //if (sp.VehicleType == vt) {
-            //    sp.Vehicle = v;
-            //    Console.WriteLine("Pass Transferred Successfully!");
-            // if vehicle type does not match
-            //    do something..
+            Console.WriteLine("Not allowed to Transfer Season Pass that is already Terminated!");
         }
 
         public void TerminatePass()
         {
-            // implementation here - should not allow
+            Console.WriteLine("Not allowed to Terminate Season Pass that is already Terminated!");
         }
 
     }
@@ -122,6 +130,10 @@ namespace SEAssignment
         {
             vsp = sp;
         }
+        public void ApprovePass()
+        {
+            Console.WriteLine("Not allowed to Approve Season Pass that has already Expired!");
+        }
 
         public void Renew()
         {
@@ -131,19 +143,12 @@ namespace SEAssignment
 
         public void TransferPass(Vehicle v)
         {
-            // vt - vehicletype in string (Lorry, Car, Motorbike)
-            // implementation of transfering pass to another vehicle
-            // code below works, i accidentally did it lol. all i did was create a class called vehicle and put vehicle property under seasonpass
-            //if (sp.VehicleType == vt) {
-            //    sp.Vehicle = v;
-            //    Console.WriteLine("Pass Transferred Successfully!");
-            // if vehicle type does not match
-            //    do something..
+            Console.WriteLine("Not allowed to Transfer Season Pass that has already Expired!");
         }
 
         public void TerminatePass()
         {
-            // implementation here - should not allow
+            Console.WriteLine("Not allowed to Terminate Season Pass that has already Expired!");
         }
 
     }

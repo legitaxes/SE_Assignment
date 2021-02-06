@@ -12,8 +12,9 @@ namespace SEAssignment
         private string vehicleType;
         private int iuNumber; // 10 digit number
         private List<string> offences;
+
         private List<ParkingSession> vehicleParkingList; // many to many association (Vehicle and CarPark)
-        
+        private User userVehicle; // one to many assoication with User to Vehicles
         private SeasonPass vehicleSeasonPass; //one to one association (Vehicle and SeasonPass)
 
         //---getter setter for properties---
@@ -57,26 +58,29 @@ namespace SEAssignment
             }
         }
 
-        // one to many assoication with Users to Vehicles
-        private User userVehicle;
-
+        // one to many association with User and Vehicle
         public User UserVehicle {
             set {
-                if (userVehicle != value) {
+                if (userVehicle != value)
+                {
                     userVehicle = value;
                     value.RegisterVehicle(this);
+                }
+                else {
+                    Console.WriteLine("This user already has the vehicle assigned to him");
                 }
             }
         }
         
         //---constructor---
-        public Vehicle(int id, string lp, string vt, int iun)
+        public Vehicle(int id, string lp, string vt, int iun, User carOwner)
         {
             vehicleID = id;
             licensePlate = lp;
             vehicleType = vt;
             iuNumber = iun;
             vehicleSeasonPass = null;
+            userVehicle = carOwner;
 
             offences = new List<string>();
             vehicleParkingList = new List<ParkingSession>();
