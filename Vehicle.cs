@@ -10,7 +10,7 @@ namespace SEAssignment
         private int vehicleID;
         private string licensePlate;
         private string vehicleType;
-        private int iuNumber; // 10 digit number
+        private string iuNumber; // 10 digit number
         private List<string> offences;
 
         private List<ParkingSession> vehicleParkingList; // many to many association (Vehicle and CarPark)
@@ -36,7 +36,7 @@ namespace SEAssignment
             set { vehicleType = value; }
         }
 
-        public int IUNumber
+        public string IUNumber
         {
             get { return iuNumber; }
             set { iuNumber = value; }
@@ -73,7 +73,7 @@ namespace SEAssignment
         }
         
         //---constructor---
-        public Vehicle(int id, string lp, string vt, int iun, User carOwner)
+        public Vehicle(int id, string lp, string vt, string iun, User carOwner)
         {
             vehicleID = id;
             licensePlate = lp;

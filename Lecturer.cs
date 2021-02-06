@@ -22,27 +22,6 @@ namespace SEAssignment
         }
 
         // methods / actions
-        //public void viewSeasonPass() { 
-        //    // implementation for view season parking pass
-        //}
-
-        //public void renewSeasonPass()
-        //{
-        //    // implementation for renew season parking pass
-
-        //}
-
-        //public void terminateSeasonPass()
-        //{
-        //    // implementation for terminate season parking pass
-
-        //}
-
-        //public void transferSeasonPass()
-        //{
-        //    // implementation for transfer season parking pass
-
-        //}
 
     }
 }

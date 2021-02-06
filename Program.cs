@@ -9,18 +9,26 @@ namespace SEAssignment
         static void Main(string[] args)
         {
             // initialize a few students
-            Student s1 = new Student("1", "Peter", "1234", "Abc Street", 12346689);
-            Student s2 = new Student("2", "Jane", "1234", "Def Street", 12346789);
+            Student s1 = new Student("1", "Peter", "1234", "Abc Street #77", 12346689);
+            Student s2 = new Student("2", "Jane", "1234", "Def Street #56", 12346789);
+            Student s3 = new Student("3", "Jenny", "1234", "Down in the Street #23", 12346789);
+            Student s4 = new Student("4", "Pooler", "1234", "Route 59", 12346789);
+            Student s5 = new Student("5", "Godot", "1234", "Heaven's Door", 12346789);
 
             StudentList studentList = new StudentList();
             studentList.StudentCollection.Add(s1);
             studentList.StudentCollection.Add(s2);
-
+            studentList.StudentCollection.Add(s3);
+            studentList.StudentCollection.Add(s4);
+            studentList.StudentCollection.Add(s5);
 
 
             // initialize a few lecturers
-            Lecturer lect1 = new Lecturer("1", "Mr Tan", "1234", "Xyz Street", 52634789);
-            Lecturer lect2 = new Lecturer("2", "Ms Lee", "1234", "Lmn Street", 58749632);
+            Lecturer lect1 = new Lecturer("1", "Mr Tan", "1234", "Xyz Street 679", 52634789);
+            Lecturer lect2 = new Lecturer("2", "Ms Lee", "1234", "Lmn Street 66", 58749632);
+            Lecturer lect3 = new Lecturer("3", "Mr Guan", "1234", "Queit Street 33", 98953111);
+            Lecturer lect4 = new Lecturer("4", "Ms Hock", "1234", "Belk Street 64", 78631242);
+            Lecturer lect5 = new Lecturer("5", "Mr Mak", "1234", "Traverse Town District #1", 67356235);
 
 
 
@@ -31,19 +39,49 @@ namespace SEAssignment
 
 
             // create many vehicles and assign to students and lecturer
+            Vehicle v1 = new Vehicle(1, "7BJT254", "Car", "4255459871", lect1);
+            Vehicle v2 = new Vehicle(2, "XMPLPL8", "Lorry", "7339451801", lect1);
+            Vehicle v3 = new Vehicle(3, "CVBN21V", "Motorbike", "1990744994", lect2);
+            Vehicle v4 = new Vehicle(4, "3BSGNA1", "Motorbike", "5615482270", lect3);
+            Vehicle v5 = new Vehicle(5, "6HBFBV7", "Car", "5061391536", lect5);
+            Vehicle v6 = new Vehicle(6, "IJV5LPA", "Car", "1199152458", lect3);
+            Vehicle v7 = new Vehicle(7, "FY6LU7A", "Motorbike", "0893730734", lect4);
+            Vehicle v8 = new Vehicle(8, "FIBS2RA", "Motorbike", "9750302576", s1);
+            Vehicle v9 = new Vehicle(9, "FTYPPgA", "Car", "5495875714", s2);
+            Vehicle v10 = new Vehicle(10, "MOEVMMA", "Motorbike", "9597863958", s3);
+            Vehicle v11 = new Vehicle(11, "MKKW5OA", "Car", "5475482306", s4);
+            Vehicle v12 = new Vehicle(12, "CKMMONA", "Motorbike", "7432282064", s5);
+            Vehicle v13 = new Vehicle(13, "MWOJ4NA", "Car", "1552733025", s5);
 
-
-
-
+            //the only vehicle without season pass
+            Vehicle v14 = new Vehicle(14, "CINJRDA", "Motorbike", "8355822804", s1);
 
 
 
             // create and set season parking pass to a few students's vehicle and lecturer's vehicle
             // each season parking pass is unique to ONE vehicle ONLY
+            DateTime dt1 = new DateTime(2021, 01, 01);
+            DateTime dt2 = new DateTime(2021, 02, 01);
+            DateTime dt3 = new DateTime(2020, 10, 01);
+            DateTime dt4 = new DateTime(2020, 11, 01);
+            DateTime dt5 = new DateTime(2020, 12, 01);
+            DateTime dt6 = new DateTime(2020, 08, 01);
+            DateTime dt7 = new DateTime(2020, 09, 01);
 
-
-
-
+            
+            SeasonPass sp1 = new SeasonPass(1, "Car", "4255459871", dt1, dt2, v1);
+            SeasonPass sp2 = new SeasonPass(2, "Lorry", "7339451801", dt3, dt4, v2);
+            SeasonPass sp3 = new SeasonPass(3, "Motorbike", "1990744994", dt3, dt4, v3);
+            SeasonPass sp4 = new SeasonPass(4, "Motorbike", "5615482270", dt1, dt2, v4);
+            SeasonPass sp5 = new SeasonPass(5, "Car", "5061391536", dt4, dt5, v5);
+            SeasonPass sp6 = new SeasonPass(6, "Car", "1199152458", dt4, dt5, v6);
+            SeasonPass sp7 = new SeasonPass(7, "Motorbike", "0893730734", dt4, dt5, v7);
+            SeasonPass sp8 = new SeasonPass(8, "Motorbike", "9750302576", dt6, dt7, v8);
+            SeasonPass sp9 = new SeasonPass(9, "Car", "5495875714", dt6, dt4, v9);
+            SeasonPass sp10 = new SeasonPass(10, "Motorbike", "9597863958", dt7, dt1, v10);
+            SeasonPass sp11 = new SeasonPass(11, "Car", "5475482306", dt7, dt3, v11);
+            SeasonPass sp12 = new SeasonPass(12, "Motorbike", "7432282064", dt7, dt2, v12);
+            SeasonPass sp13 = new SeasonPass(13, "Car", "1552733025", dt6, dt2, v13);
 
 
 
@@ -104,16 +142,50 @@ namespace SEAssignment
 
 
             // create a few Parking Session for Vehicles Parked in carparks to simulate cars that are parked
+            DateTime dt8 = new DateTime(2020, 01, 01);
+            DateTime dt9 = new DateTime(2020, 01, 03);
+            DateTime dt10 = new DateTime(2020, 10, 01);
+            DateTime dt11 = new DateTime(2020, 10, 05);
+            DateTime dt12 = new DateTime(2020, 11, 06);
+            DateTime dt13 = new DateTime(2020, 11, 07);
 
-
-
-
+            ParkingSession ps1 = new ParkingSession(1, dt10, dt11, v1, cp1); // vehicle1 parked in carpark1
+            ParkingSession ps2 = new ParkingSession(2, dt8, dt9, v2, cp2); // vehicle2 parked in carpark2
+            ParkingSession ps3 = new ParkingSession(3, dt12, dt13, v3, cp3); // vehicle3 parked in carpark3
+            ParkingSession ps4 = new ParkingSession(4, dt10, dt12, v4, cp2); // vehicle4 parked in carpark2
+            ParkingSession ps5 = new ParkingSession(5, dt11, dt12, v5, cp1); // vehicle5 parked in carpark1
+            ParkingSession ps6 = new ParkingSession(6, dt12, dt13, v6, cp3); // vehicle6 parked in carpark3
+            ParkingSession ps7 = new ParkingSession(7, dt10, dt12, v7, cp2); // vehicle7 parked in carpark2
+            ParkingSession ps8 = new ParkingSession(8, dt9, dt10, v8, cp2); // vehicle8 parked in carpark2
+            ParkingSession ps9 = new ParkingSession(9, dt10, dt12, v9, cp1); // vehicle9 parked in carpark1
+            ParkingSession ps10 = new ParkingSession(10, dt11, dt12, v10, cp1); // vehicle10 parked in carpark1
 
 
 
             // have a few vehicles parked in some of the carparks
+            //add to parking list under carpark
+            cp1.AddVehicleParking(ps1);
+            cp1.AddVehicleParking(ps5);
+            cp1.AddVehicleParking(ps9);
+            cp1.AddVehicleParking(ps10);
+            cp2.AddVehicleParking(ps2);
+            cp2.AddVehicleParking(ps4);
+            cp2.AddVehicleParking(ps7);
+            cp2.AddVehicleParking(ps8);
+            cp3.AddVehicleParking(ps3);
+            cp3.AddVehicleParking(ps6);
 
-
+            //add the location of vehicle where the carpark is parked
+            v1.AddVehicleParking(ps1);
+            v2.AddVehicleParking(ps2);
+            v3.AddVehicleParking(ps3);
+            v4.AddVehicleParking(ps4);
+            v5.AddVehicleParking(ps5);
+            v6.AddVehicleParking(ps6);
+            v7.AddVehicleParking(ps7);
+            v8.AddVehicleParking(ps8);
+            v9.AddVehicleParking(ps9);
+            v10.AddVehicleParking(ps10);
 
 
 

@@ -62,11 +62,6 @@ namespace SEAssignment
             mobileNumber = Convert.ToInt32(newMobile);
         }
 
-        public virtual void ApplyPass(int userID) {
-            // not implementing since apply use case not assigned to anyone
-            Console.WriteLine("Not implemented... Try again next time!");
-        }
-
         public void RegisterVehicle(Vehicle v) {
             if (!myVehicles.Contains(v))
             {

@@ -9,7 +9,7 @@ namespace SEAssignment
         //---properties---
         private int seasonPassID;
         private string vehicleType;
-        private int iuNumber;
+        private string iuNumber;
         private DateTime startDate;
         private DateTime endDate;
         private Vehicle vehicle; // one to one association with Vehicle class
@@ -35,7 +35,7 @@ namespace SEAssignment
             set { vehicleType = value; }
         }
 
-        public int IUNumber
+        public string IUNumber
         {
             get { return iuNumber; }
             set { iuNumber = value; }
@@ -64,7 +64,7 @@ namespace SEAssignment
         }
 
         //constructor for seasonpass
-        public SeasonPass(int id, string vt, int iun, DateTime sd, DateTime ed, Vehicle v)
+        public SeasonPass(int id, string vt, string iun, DateTime sd, DateTime ed, Vehicle v)
         {
             // season pass states goes here
             pendingState = new PendingState(this);
@@ -72,7 +72,7 @@ namespace SEAssignment
             terminatedState = new TerminatedState(this);
             expiredState = new ExpiredState(this);
 
-            currentState = validState;
+            currentState = pendingState;
 
             //rest of the property define below for seasonpass
             seasonPassID = id;
