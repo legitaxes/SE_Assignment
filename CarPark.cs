@@ -69,6 +69,8 @@ namespace SEAssignment
         }
 
         //---constructor---
+        public CarPark() { } //empty carpar constructor
+
         public CarPark(int id, string name, int tps, string desc, string loc, double gr) {
             carParkID = id;
             carParkName = name;
@@ -102,39 +104,179 @@ namespace SEAssignment
             }
         }
 
-        public void GenerateReport(int month) {
-            int currentMonth = DateTime.Now.Month;
-            Console.WriteLine();
-            Console.WriteLine("Generating Financial Report...");
-            Thread.Sleep(TimeSpan.FromSeconds(2));
-            Console.WriteLine();
-            Console.WriteLine("=========== " + DateTime.Now + " ===========");
-            Console.WriteLine();
-            Console.WriteLine("Financial Report for the Month of {0} for {1}", pastRevenue.ElementAt(Convert.ToInt32(month - 1)).Key, carParkName);
+        public void GenerateReport(List<CarPark> cpList)
+        {
+            // code to generatereport function -- # TODO calculate the total amount for the month
 
-            // if month entered is the same as the current month in the computer, the printed revenue will be for the current month as well
-            // put the generatedrevenue into the current month
-            if (currentMonth == month)
+            int currentMonth = DateTime.Now.Month; //set currentMonth as this month
+            double totalAmount = 0;
+            int totalVehicleEntry = 0;
+            int countCars = 0;
+            int countMotorBike = 0;
+            int countLorry = 0;
+            double ta = 0;
+
+            // prompt user for what month should the report be generated
+            Console.Write("Enter Month in numbers to Generate Report for: ");
+            string month = Console.ReadLine();
+            int months;
+            bool c = Int32.TryParse(month, out months);
+            if (!c)
             {
-                AddToPastRevenue(month);
+                Console.WriteLine();
+                Console.WriteLine("Please Enter Interger Input only!");
+                return;
             }
-            // print the carpark name and the generated revenue for the month of each year
-            Console.WriteLine("Total amount of revenue generated from " + carParkName + " for the month of {0} is...", pastRevenue.ElementAt(month - 1).Key);
-            
-            //split the string by comma and print it out line by line for better visibility
-            string[] yearofRevenue = pastRevenue.ElementAt(month - 1).Value.Split(",");
-            foreach (var x in yearofRevenue) {
-                Console.WriteLine(x);
+            if (months < 0 || months > 12)
+            {
+                Console.WriteLine("Please enter a valid month between 1 - 12");
+                return;
             }
-        }
 
-        public void AddToPastRevenue(int month) { // this function adds the current generatedrevenue into the dictionary of month
-            // save the original input of the month
-            string o_i = pastRevenue.ElementAt(month - 1).Value;
-            // concatenate the year and value together
-            string amount = "," + DateTime.Now.Year.ToString() + ": " + generatedRevenue;
-            // concatenate the original input of the month with new generated revenue
-            pastRevenue[pastRevenue.ElementAt(month - 1).Key] = o_i + amount;
+            //prompt user whether to generate report for all carparks or only 1 carpark
+            Console.Write("Do you want to display ALL carpark generated revenue? [Y/N] ");
+            string confirmation = Console.ReadLine();
+            if (confirmation.ToUpper() == "N") //display one carpark only
+            {
+                //list all carpark and prompt for user to select one carpark
+                Console.WriteLine();
+                Console.WriteLine("======= Listing All Carparks =======");
+                Console.WriteLine();
+                foreach (var cp in cpList)
+                {
+                    Console.WriteLine("{0}.  {1}", cp.CarParkID, cp.CarParkName);
+                }
+                // prompt for input of carpark #
+                Console.WriteLine();
+                Console.Write("Select Carpark: ");
+                string cpNumber = Console.ReadLine();
+                int cpn;
+                c = Int32.TryParse(cpNumber, out cpn);
+                if (!c)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Please Enter an Interger Input only!");
+                    return;
+                }
+                if (cpn < 0 || cpn > 3)
+                {
+                    Console.WriteLine("Please enter a valid Carpark number between 1 - 3");
+                    return;
+                }
+
+                // code to generate report for one carpark
+
+                // cast the carpark into a local object 
+                CarPark currentCP = cpList[Convert.ToInt32(cpNumber) - 1];
+                Console.WriteLine();
+                Console.WriteLine("Generating Financial Report...");
+                Thread.Sleep(TimeSpan.FromSeconds(2));
+                Console.WriteLine();
+                Console.WriteLine("=========== " + DateTime.Now + " ===========");
+                Console.WriteLine();
+                Console.WriteLine("Financial Report for the Month of {0} for {1}", currentCP.PastRevenue.ElementAt(months - 1).Key, currentCP.CarParkName);
+
+                // if month entered is the same as the current month in the computer, the printed revenue will be for the current month as well
+                // put the generatedrevenue into the current month
+                if (currentMonth == months) // add to pastrevenue if month matches
+                {
+                    string o_i = currentCP.PastRevenue.ElementAt(months - 1).Value;
+                    // concatenate the year and value together
+                    string amount = "," + DateTime.Now.Year.ToString() + ": $" + currentCP.GeneratedRevenue;
+                    // concatenate the original input of the month with new generated revenue
+                    currentCP.PastRevenue[currentCP.PastRevenue.ElementAt(months - 1).Key] = o_i + amount;
+                }
+
+                // count the number of cars and motorcycle that entered the carpark
+                List<ParkingSession> psList = currentCP.vehicleParkingList; // cast the parkingsession list into a ParkingSession object first
+                foreach (var ps in psList)
+                { // not efficient way to doing it but too bad!
+                    if (ps.Vehicle.VehicleType == "Car") { countCars += 1; }
+                    else if (ps.Vehicle.VehicleType == "Motorbike") { countMotorBike += 1; }
+                    else if (ps.Vehicle.VehicleType == "Lorry") { countLorry += 1; }
+                }
+                // print the number of vehicles that entered
+                Console.WriteLine("No. of Vehicles entered to {0}: {1}", currentCP.carParkName, currentCP.vehicleParkingList.Count());
+                // print number of vehicles that entered, split between the count of cars and motorbikes
+                Console.WriteLine("No. of Cars: {0} | Number of Motorcycles: {1} | Number of Lorries: {2}", countCars, countMotorBike, countLorry);
+                // print the carpark name and the generated revenue for the month of each year
+                Console.WriteLine("Total amount of revenue generated from " + currentCP.CarParkName + " for the month of {0} is...", currentCP.pastRevenue.ElementAt(months - 1).Key);
+
+                //split the string by comma and print it out line by line for better visibility
+                string[] yearofRevenue = currentCP.PastRevenue.ElementAt(months - 1).Value.Split(",");
+                foreach (var x in yearofRevenue)
+                {
+                    string y = x.Substring(7);
+                    double amount = Convert.ToDouble(y);
+                    totalAmount = amount + totalAmount;
+                    Console.WriteLine(x);
+                }
+                Console.WriteLine("The total amount of revenue generated over the years are {0}", Math.Round(totalAmount, 2));
+            }
+
+            // code to generate report for ALL carpark
+            else
+            {
+                Console.WriteLine();
+                Console.WriteLine("Generating Financial Report...");
+                Thread.Sleep(TimeSpan.FromSeconds(2));
+                Console.WriteLine();
+                Console.WriteLine("=========== " + DateTime.Now + " ===========");
+                Console.WriteLine();
+                Console.WriteLine("Financial Report for the Month of {0} for all carparks", cpList[0].PastRevenue.ElementAt(months - 1).Key);
+
+                // print the carpark name and the generated revenue for the month of each year
+                Console.WriteLine("Total amount of revenue generated for all carparks are for the month of {0} is...", cpList[0].pastRevenue.ElementAt(months - 1).Key);
+                Console.WriteLine();
+                // Calculate the parking charges for ALL carparks. 
+                // Calculate and print carpark by carpark
+                foreach (var ccp in cpList)
+                {
+                    countLorry = 0;
+                    countCars = 0;
+                    countMotorBike = 0;
+                    totalVehicleEntry = 0;
+                    ta = 0;
+                    // if month entered is the same as the current month in the computer, the printed revenue will be for the current month as well
+                    // put the generatedrevenue into the current month, add to past revenue for current month if the revenue matches
+                    if (currentMonth == months)
+                    {
+                        string o_i = ccp.PastRevenue.ElementAt(months - 1).Value;
+                        // concatenate the year and value together
+                        string amount = "," + DateTime.Now.Year.ToString() + ": $" + ccp.GeneratedRevenue;
+                        // concatenate the original input of the month with new generated revenue
+                        ccp.PastRevenue[ccp.PastRevenue.ElementAt(months - 1).Key] = o_i + amount;
+                    }
+
+                    //get the year's revenue in double datatype
+                    string[] yearofRevenue = ccp.PastRevenue.ElementAt(months - 1).Value.Split(",");
+                    foreach (var x in yearofRevenue)
+                    {
+                        string y = x.Substring(7);
+                        double amount = Convert.ToDouble(y);
+                        totalAmount = amount + totalAmount;
+                        ta = amount + ta;
+                    }
+
+                    totalVehicleEntry = ccp.vehicleParkingList.Count() + totalVehicleEntry;
+                    Console.WriteLine("============================ " + ccp.CarParkName + " ============================");
+                    Console.WriteLine("No. of Vehicles entered: {0}", ccp.vehicleParkingList.Count());
+                    // count the number of cars and motorcycle that entered the carpark
+                    List<ParkingSession> psList = ccp.vehicleParkingList; // cast the parkingsession list into a ParkingSession object first
+                    foreach (var ps in psList)
+                    { // not efficient way to doing it but too bad!
+                        if (ps.Vehicle.VehicleType == "Car") { countCars += 1; }
+                        else if (ps.Vehicle.VehicleType == "Motorbike") { countMotorBike += 1; }
+                        else if (ps.Vehicle.VehicleType == "Lorry") { countLorry += 1; }
+                    }
+                    Console.WriteLine("No. of Cars: {0} | Number of Motorcycles: {1} | Number of Lorries: {2}", countCars, countMotorBike, countLorry);
+                    Console.WriteLine("The total number of Vehicle entered across all carparks are {0}", totalVehicleEntry);
+                    //print the amount generated in total for all Carparks
+                    Console.WriteLine("Total Generated Revenue: {0}", Math.Round(ta, 2)); 
+                    Console.WriteLine();
+                }
+                Console.WriteLine("Total Generated Revenue for all carparks: ${0}", Math.Round(totalAmount, 2));
+            }
         }
 
         public void ShowCarParkFares() { //print parking charges

@@ -15,6 +15,7 @@ namespace SEAssignment
             Student s4 = new Student("4", "Pooler", "1234", "Route 59", 12346789);
             Student s5 = new Student("5", "Godot", "1234", "Heaven's Door", 12346789);
 
+            //add into studentlist's Student Collection 
             StudentList studentList = new StudentList();
             studentList.StudentCollection.Add(s1);
             studentList.StudentCollection.Add(s2);
@@ -314,7 +315,8 @@ namespace SEAssignment
                     Console.WriteLine("2) Renew Season Parking Pass");
                     Console.WriteLine("3) Terminate Season Parking Pass");
                     Console.WriteLine("4) Transfer Season Parking Pass");
-                    Console.WriteLine("5) Logout");
+                    Console.WriteLine("5) View Parking Charges");
+                    Console.WriteLine("6) Logout");
                     Console.WriteLine();
 
 
@@ -354,7 +356,11 @@ namespace SEAssignment
                             //transferSeasonPass();
                             break;
 
-                        case 5: //log out of student
+                        case 5:
+                            cp1.ShowCarParkFares();
+                            break;
+
+                        case 6: //log out of student
                             Console.WriteLine();
                             Console.WriteLine("Logging out...");
                             Console.WriteLine();
@@ -382,7 +388,8 @@ namespace SEAssignment
                     Console.WriteLine("2) Renew Season Parking Pass");
                     Console.WriteLine("3) Terminate Season Parking Pass");
                     Console.WriteLine("4) Transfer Season Parking Pass");
-                    Console.WriteLine("5) Logout");
+                    Console.WriteLine("5) View Parking Charges");
+                    Console.WriteLine("6) Logout");
                     Console.WriteLine();
 
                     int lecturer_choice;
@@ -417,7 +424,11 @@ namespace SEAssignment
                             //transferSeasonPass();
                             break;
 
-                        case 5: //log out of lecturer
+                        case 5:
+                            cp1.ShowCarParkFares();
+                            break;
+
+                        case 6: //log out of lecturer
                             Console.WriteLine();
                             Console.WriteLine("Logging out...");
                             condition = false;
@@ -435,6 +446,7 @@ namespace SEAssignment
 
             void ManagerMenu()
             {
+                CarPark cp = new CarPark();
                 bool condition = true;
                 while (condition)
                 {
@@ -463,58 +475,18 @@ namespace SEAssignment
                             break;
 
                         case 2: // generate report for specific car park
-                            // Retrieve list of Carparks 
-                            Console.WriteLine();
-                            Console.WriteLine("======= Listing All Carparks =======");
-                            Console.WriteLine();
-                            foreach (var cp in cpList) {
-                                Console.WriteLine("{0}.  {1}", cp.CarParkID, cp.CarParkName);
-                            }
-                            // prompt for input of carpark #
-                            Console.WriteLine();
-                            Console.Write("Select Carpark: ");
-                            string cpNumber = Console.ReadLine();
-                            int cpn;
-                            bool c = Int32.TryParse(cpNumber, out cpn);
-                            if (!c)
-                            {
-                                Console.WriteLine();
-                                Console.WriteLine("Please Enter an Interger Input only!");
-                                continue;
-                            }
-                            if (cpn < 0 || cpn > 3)
-                            {
-                                Console.WriteLine("Please enter a valid Carpark number between 1 - 3");
-                                continue;
-                            }
-
-                            // code to generatereport function -- # TODO calculate the total amount for the month
-                            Console.Write("Enter Month in numbers to Generate Report for: ");
-                            string month = Console.ReadLine();
-                            int months;
-                            c = Int32.TryParse(month, out months);
-                            if (!c)
-                            {
-                                Console.WriteLine();
-                                Console.WriteLine("Please Enter Interger Input only!");
-                                continue;
-                            }
-                            if (months < 0 || months > 12) {
-                                Console.WriteLine("Please enter a valid month between 1 - 12");
-                                continue;
-                            }
-
-                            switch (cpn) { //execute according to carpark number - probably the wrong way to do this but idrc
-                                case 1:
-                                    cp1.GenerateReport(months);
-                                    break;
-                                case 2:
-                                    cp2.GenerateReport(months);
-                                    break;
-                                case 3:
-                                    cp3.GenerateReport(months);
-                                    break;
-                            }
+                            cp.GenerateReport(cpList);
+                            //switch (cpn) { //execute according to carpark number - probably the wrong way to do this but idrc
+                            //    case 1:
+                            //        cp1.GenerateReport(months);
+                            //        break;
+                            //    case 2:
+                            //        cp2.GenerateReport(months);
+                            //        break;
+                            //    case 3:
+                            //        cp3.GenerateReport(months);
+                            //        break;
+                            //}
                             break; //finish generating report
 
                         case 3: // log out of manager
