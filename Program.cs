@@ -60,7 +60,7 @@ namespace SEAssignment
             //the only vehicle without season pass
             Vehicle v14 = new Vehicle(14, "CINJRDA", "Motorbike", "8355822804", s1);
 
-
+            
 
             // create and set season parking pass to a few students's vehicle and lecturer's vehicle
             // each season parking pass is unique to ONE vehicle ONLY
@@ -87,6 +87,7 @@ namespace SEAssignment
             SeasonPass sp12 = new SeasonPass(12, "Motorbike", "7432282064", dt7, dt2, v12);
             SeasonPass sp13 = new SeasonPass(13, "Car", "1552733025", dt6, dt2, v13);
 
+            List<SeasonPass> spList = new List<SeasonPass> { sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, sp11, sp12, sp13 }; //was trying to display the indiv student season pass but failed
 
 
             // initialize 3 carparks - int id, string name, int tps, string desc, string loc, int gr [Refer to constructor of carpark]
@@ -334,16 +335,37 @@ namespace SEAssignment
                     {
                         case 1: // view season parking pass
                             Console.WriteLine("Viewing Your Season Parking Pass");
+                            foreach (var v in vList)
+                            {
+                                
+                                
+                            }
                             //viewSeasonPass();
 
                             break;
 
                         case 2: //renew season parking pass
+                            
+
                             Console.WriteLine("Renew Season Parking Pass");
                             Console.Write("Please enter no. of months you want to renew: ");
                             string rpMonth = Console.ReadLine();
+                            int rpm;
+                            bool r = Int32.TryParse(rpMonth, out rpm);
+                            if(!r)
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("Please enter valid number");
+                                continue;
+                            }
+                            if(rpm < 0 || rpm > 12)
+                            {
+                                Console.WriteLine("Please enter a valid month between 1 -12");
+                                continue;
+                            }
 
-                            //renewSeasonPass();
+                            
+                            sp3.Renew();
                             break;
 
                         case 3: // terminate season parking pass
@@ -370,6 +392,8 @@ namespace SEAssignment
 
                 }
             }
+
+
 
             void LecturerMenu()
             {
@@ -406,6 +430,8 @@ namespace SEAssignment
                             break;
 
                         case 2: //renew season parking pass
+                            Console.WriteLine("Renew Season Parking Pass");
+                            Console.Write("Please enter no. of months you want to renew: ");
                             //renewSeasonPass();
                             break;
 
