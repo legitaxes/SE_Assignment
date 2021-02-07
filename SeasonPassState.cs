@@ -64,14 +64,47 @@ namespace SEAssignment
 
         public void Renew()
         {
-            if(vsp.StartDate <= vsp.EndDate)
+            
+            int monthNo = DateTime.Now.Month; //not sure how to get the number of months fromm input
+            Console.WriteLine("Renewing season parking pass...");
+            Console.WriteLine("Month to extend season parking pass is " + monthNo);
+
+            string confirmation = Confirm("");
+            if(confirmation.Equals("Y"))
+            {
+                Console.WriteLine("Pass successfully renewed for another " + monthNo);
+                
+            }
+
+            else
+            {
+                Renew();
+            }
+            /*if (vsp.StartDate <= vsp.EndDate)
             {
                 // # TODO print a few lines of code that says pass successfully extended and set end month of season pass according to input
                 // asssginees: yongfarm
                 //dont have to set state to valid as it is already at valid state
-                vsp.SetCurrentState(vsp.GetValidState()); 
-            }
+                //Console.WriteLine("Renewing season parking pass...");
+                //Console.WriteLine("Month to extend season parking pass is " + month);
+                
+
+                Console.WriteLine();
+
+                //vsp.SetCurrentState(vsp.GetValidState()); 
+            }*/
             // implementation here
+        }
+
+        private static string Confirm(string message)
+        {
+            Console.WriteLine("Please enter ");
+            string confirmPass = Console.ReadLine();
+            if (!confirmPass.Equals("Y") && !confirmPass.Equals("N"))
+            {
+                confirmPass = Confirm("Please enter only 'Y/N' to confirm: ");
+            }
+            return (confirmPass);
         }
 
         public void TransferPass(Vehicle v)

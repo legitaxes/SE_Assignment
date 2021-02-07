@@ -106,15 +106,7 @@ namespace SEAssignment
 
         // Functions in SeasonPassstate.cs
         public void ApprovePass() { currentState.ApprovePass(); }
-        public void Renew(int month) {
-
-            Console.WriteLine();
-            Console.WriteLine("Renewing season parking pass...");
-            
-
-
-            currentState.Renew(); 
-        }
+        public void Renew() {currentState.Renew(); }
         public void TransferPass(Vehicle v) { currentState.TransferPass(v); }
         public void TerminatePass() { currentState.TerminatePass(); }
     }
