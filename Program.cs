@@ -308,6 +308,7 @@ namespace SEAssignment
             // ====================================================================
             void StudentMenu(Student student)
             {
+                
                 bool condition = true;
                 while (condition)
                 {
@@ -323,6 +324,7 @@ namespace SEAssignment
 
 
                     //validation to ensure the input are NUMBERS ONLY
+                    
                     int stud_choice;
                     Console.Write("Enter choice: ");
                     string choice = Console.ReadLine();
@@ -338,37 +340,47 @@ namespace SEAssignment
                     {
                         case 1: // view season parking pass
                             Console.WriteLine("Viewing Your Season Parking Pass");
-                            //foreach (var v in vList)
-                            //{
-                                
-                                
-                            //}
+                            for (int i = 0; i < student.MyVehicle.Count(); i++)
+                            {
+                                foreach (SeasonPass sp in spList)
+                                {
+                                    if (sp.IUNumber == student.MyVehicle[i].IUNumber)
+                                    {
+                                        //Console.WriteLine($"{sp.IUNumber}");
+                                        Console.WriteLine("{0}.  {1}. {2}. {3}", sp.SeasonPassID, sp.IUNumber, sp.VehicleType, sp.RemainingMonth);
+                                    }
+
+                                }
+                            }
                             //viewSeasonPass();
 
                             break;
 
                         case 2: //renew season parking pass
-                            Console.WriteLine(student.MyVehicle.Count);
-
-                            Console.WriteLine("Renew Season Parking Pass");
-                            Console.Write("Please enter no. of months you want to renew: ");
-                            string rpMonth = Console.ReadLine();
-                            int rpm;
-                            bool r = Int32.TryParse(rpMonth, out rpm);
-                            if(!r)
-                            {
-                                Console.WriteLine();
-                                Console.WriteLine("Please enter valid number");
-                                continue;
-                            }
-                            if(rpm < 0 || rpm > 12)
-                            {
-                                Console.WriteLine("Please enter a valid month between 1 -12");
-                                continue;
-                            }
 
                             
-                            sp3.Renew();
+                            //Console.WriteLine("Number of season parking pass: {0}",student.MyVehicle.Count);
+                            Console.WriteLine("");
+
+
+
+                            for (int i = 0; i < student.MyVehicle.Count(); i++)
+                            {
+                                foreach (SeasonPass sp in spList)
+                                {
+                                    if (sp.IUNumber == student.MyVehicle[i].IUNumber)
+                                    {
+                                        //Console.WriteLine($"{sp.IUNumber}");
+                                        Console.WriteLine("{0}.  {1}. {2}. {3}", sp.SeasonPassID, sp.IUNumber, sp.VehicleType, sp.RemainingMonth);
+                                        //continue;
+                                        
+                                    }
+                                    //sp.Renew();
+                                   
+                                }
+                                
+                            }
+
                             break;
 
                         case 3: // terminate season parking pass

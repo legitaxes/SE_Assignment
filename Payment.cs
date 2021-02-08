@@ -61,5 +61,10 @@ namespace SEAssignment
             paymentMode = pm; //credit, visa
             purchaseType = pt; // type of trasaction - Sheltered Lot/ Unsheltered Lot
         }
+
+        public void makePayment()
+        {
+            //implementation
+        }
     }
 }
