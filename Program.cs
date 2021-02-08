@@ -91,6 +91,35 @@ namespace SEAssignment
             List<SeasonPass> spList = new List<SeasonPass> { sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, sp11, sp12, sp13 }; //was trying to display the indiv student season pass but failed
 
 
+            // add a few payment records for the above season pass
+            DateTime d1 = new DateTime(2020, 01, 01);
+            DateTime d2 = new DateTime(2020, 02, 01);
+            DateTime d3 = new DateTime(2020, 03, 01);
+            DateTime d4 = new DateTime(2020, 04, 01);
+            DateTime d5 = new DateTime(2020, 05, 01);
+            DateTime d6 = new DateTime(2020, 06, 01);
+            DateTime d7 = new DateTime(2020, 07, 01);
+
+            // 80dollar car - Surface | 110 dollar car - Sheltered | 17 dollar motorbike Sheltered | 15 dollar motorbike Surface 
+            Payment p1 = new Payment(d1, 80, "Credit Card", "Surface", sp1);
+            Payment p2 = new Payment(d3, 80, "Credit Card", "Surface", sp1);
+            Payment p3 = new Payment(d2, 110, "Credit Card", "Sheltered", sp2);
+            Payment p4 = new Payment(d3, 17, "Credit Card", "Sheltered", sp3);
+            Payment p5 = new Payment(d4, 15, "Credit Card", "Surface", sp4);
+            Payment p6 = new Payment(d5, 80, "Credit Card", "Surface", sp5);
+            Payment p7 = new Payment(d2, 110, "VISA", "Sheltered", sp6);
+            Payment p8 = new Payment(d1, 15, "VISA", "Surface", sp7);
+            Payment p9 = new Payment(d2, 17, "VISA", "Sheltered", sp8);
+            Payment p10 = new Payment(d3, 110, "VISA", "Sheltered", sp9);
+            Payment p11 = new Payment(d4, 15, "VISA", "Surface", sp10);
+            Payment p12 = new Payment(d5, 80, "VISA", "Surface", sp11);
+            Payment p13 = new Payment(d6, 15, "Credit Card", "Surface", sp12);
+            Payment p14 = new Payment(d7, 110, "Credit Card", "Sheltered", sp13);
+            Payment p15 = new Payment(d2, 110, "Credit Card", "Sheltered", sp1);
+
+            
+
+
             // initialize 3 carparks - int id, string name, int tps, string desc, string loc, int gr [Refer to constructor of carpark]
             CarPark cp1 = new CarPark(1, "NP CarPark #1", 50, "Carpark at IS Block", "Blk 56", 343.67);
             CarPark cp2 = new CarPark(2, "NP CarPark #2", 70, "Carpark near Munch Canteen", "Blk 16", 1124.30);
@@ -164,35 +193,6 @@ namespace SEAssignment
             ParkingSession ps8 = new ParkingSession(8, dt9, dt10, v8, cp2); // vehicle8 parked in carpark2
             ParkingSession ps9 = new ParkingSession(9, dt10, dt12, v9, cp1); // vehicle9 parked in carpark1
             ParkingSession ps10 = new ParkingSession(10, dt11, dt12, v10, cp1); // vehicle10 parked in carpark1
-
-
-
-            //// have a few vehicles parked in some of the carparks
-            ////add to parking list under carpark
-            //cp1.AddVehicleParking(ps1);
-            //cp1.AddVehicleParking(ps5);
-            //cp1.AddVehicleParking(ps9);
-            //cp1.AddVehicleParking(ps10);
-            //cp2.AddVehicleParking(ps2);
-            //cp2.AddVehicleParking(ps4);
-            //cp2.AddVehicleParking(ps7);
-            //cp2.AddVehicleParking(ps8);
-            //cp3.AddVehicleParking(ps3);
-            //cp3.AddVehicleParking(ps6);
-
-            ////add the location of vehicle where the carpark is parked
-            //v1.AddVehicleParking(ps1);
-            //v2.AddVehicleParking(ps2);
-            //v3.AddVehicleParking(ps3);
-            //v4.AddVehicleParking(ps4);
-            //v5.AddVehicleParking(ps5);
-            //v6.AddVehicleParking(ps6);
-            //v7.AddVehicleParking(ps7);
-            //v8.AddVehicleParking(ps8);
-            //v9.AddVehicleParking(ps9);
-            //v10.AddVehicleParking(ps10);
-
-
 
 
             // Indian tier code for proof of concept that student iterator is working
@@ -501,7 +501,7 @@ namespace SEAssignment
                             break;
 
                         case 2: // generate report for specific car park
-                            cp.GenerateReport(cpList);
+                            cp.GenerateReport(cpList, spList);
                             //switch (cpn) { //execute according to carpark number - probably the wrong way to do this but idrc
                             //    case 1:
                             //        cp1.GenerateReport(months);
