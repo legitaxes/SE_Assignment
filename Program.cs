@@ -73,20 +73,20 @@ namespace SEAssignment
             DateTime dt6 = new DateTime(2020, 08, 01);
             DateTime dt7 = new DateTime(2020, 09, 01);
 
-            
-            SeasonPass sp1 = new SeasonPass(1, "Car", "4255459871", dt1, dt2, v1);
-            SeasonPass sp2 = new SeasonPass(2, "Lorry", "7339451801", dt3, dt4, v2);
-            SeasonPass sp3 = new SeasonPass(3, "Motorbike", "1990744994", dt3, dt4, v3);
-            SeasonPass sp4 = new SeasonPass(4, "Motorbike", "5615482270", dt1, dt2, v4);
-            SeasonPass sp5 = new SeasonPass(5, "Car", "5061391536", dt4, dt5, v5);
-            SeasonPass sp6 = new SeasonPass(6, "Car", "1199152458", dt4, dt5, v6);
-            SeasonPass sp7 = new SeasonPass(7, "Motorbike", "0893730734", dt4, dt5, v7);
-            SeasonPass sp8 = new SeasonPass(8, "Motorbike", "9750302576", dt6, dt7, v8);
-            SeasonPass sp9 = new SeasonPass(9, "Car", "5495875714", dt6, dt4, v9);
-            SeasonPass sp10 = new SeasonPass(10, "Motorbike", "9597863958", dt7, dt1, v10);
-            SeasonPass sp11 = new SeasonPass(11, "Car", "5475482306", dt7, dt3, v11);
-            SeasonPass sp12 = new SeasonPass(12, "Motorbike", "7432282064", dt7, dt2, v12);
-            SeasonPass sp13 = new SeasonPass(13, "Car", "1552733025", dt6, dt2, v13);
+            //initialize season pass and force its state
+            SeasonPass sp1 = new SeasonPass(1, "Car", "4255459871", dt1, dt2, v1, "valid");
+            SeasonPass sp2 = new SeasonPass(2, "Lorry", "7339451801", dt3, dt4, v2, "valid");
+            SeasonPass sp3 = new SeasonPass(3, "Motorbike", "1990744994", dt3, dt4, v3, "expired");
+            SeasonPass sp4 = new SeasonPass(4, "Motorbike", "5615482270", dt1, dt2, v4, "expired");
+            SeasonPass sp5 = new SeasonPass(5, "Car", "5061391536", dt4, dt5, v5, "expired");
+            SeasonPass sp6 = new SeasonPass(6, "Car", "1199152458", dt4, dt5, v6, "terminated");
+            SeasonPass sp7 = new SeasonPass(7, "Motorbike", "0893730734", dt4, dt5, v7, "terminated");
+            SeasonPass sp8 = new SeasonPass(8, "Motorbike", "9750302576", dt6, dt7, v8, "terminated");
+            SeasonPass sp9 = new SeasonPass(9, "Car", "5495875714", dt6, dt4, v9, "pending");
+            SeasonPass sp10 = new SeasonPass(10, "Motorbike", "9597863958", dt7, dt1, v10, "pending");
+            SeasonPass sp11 = new SeasonPass(11, "Car", "5475482306", dt7, dt3, v11, "pending");
+            SeasonPass sp12 = new SeasonPass(12, "Motorbike", "7432282064", dt7, dt2, v12, "valid");
+            SeasonPass sp13 = new SeasonPass(13, "Car", "1552733025", dt6, dt2, v13, "valid");
 
             List<SeasonPass> spList = new List<SeasonPass> { sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, sp11, sp12, sp13 }; //was trying to display the indiv student season pass but failed
 
@@ -337,11 +337,11 @@ namespace SEAssignment
                     {
                         case 1: // view season parking pass
                             Console.WriteLine("Viewing Your Season Parking Pass");
-                            foreach (var v in vList)
-                            {
+                            //foreach (var v in vList)
+                            //{
                                 
                                 
-                            }
+                            //}
                             //viewSeasonPass();
 
                             break;

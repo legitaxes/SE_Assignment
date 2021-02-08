@@ -155,7 +155,7 @@ namespace SEAssignment
                 if (!c)
                 {
                     Console.WriteLine();
-                    Console.WriteLine("Please Enter an Interger Input only!");
+                    Console.WriteLine("Please Enter an Integer Input only!");
                     return;
                 }
                 if (cpn < 0 || cpn > 3)
@@ -215,7 +215,7 @@ namespace SEAssignment
             }
 
             // code to generate report for ALL carpark
-            else
+            else if (confirmation.ToUpper() == "Y")
             {
                 Console.WriteLine();
                 Console.WriteLine("Generating Financial Report...");
@@ -272,10 +272,13 @@ namespace SEAssignment
                     Console.WriteLine("No. of Cars: {0} | Number of Motorcycles: {1} | Number of Lorries: {2}", countCars, countMotorBike, countLorry);
                     Console.WriteLine("The total number of Vehicle entered across all carparks are {0}", totalVehicleEntry);
                     //print the amount generated in total for all Carparks
-                    Console.WriteLine("Total Generated Revenue: {0}", Math.Round(ta, 2)); 
+                    Console.WriteLine("Total Generated Revenue: ${0}", Math.Round(ta, 2));
                     Console.WriteLine();
                 }
                 Console.WriteLine("Total Generated Revenue for all carparks: ${0}", Math.Round(totalAmount, 2));
+            }
+            else {
+                Console.WriteLine("Please enter a correct input!");
             }
         }
 
@@ -306,6 +309,20 @@ namespace SEAssignment
 
         public void UpdateParkingSlots() { //updates the remaining parking slots left
             remainingSpace = totalParkingSpace - vehicleParkingList.Count;
+        }
+
+        //this function will be run at the end of each month to add the amount to the dictionary
+        public void AddToPastRevenue(DateTime todayDate) { //add generated revenue to the dictionary
+            int month = todayDate.Month;
+
+            // save the original amount generated for the month for each year
+            string o = pastRevenue.ElementAt(month - 1).Value;
+            // concatenate the year and value together
+            string amount = "," + todayDate.Year.ToString() + ": " + generatedRevenue;
+            // concatenate the original input of the month with new generated revenue
+            pastRevenue[pastRevenue.ElementAt(month - 1).Key] = o + amount;
+
+            generatedRevenue = 0; //reset the generated revenue to 0
         }
     }
 }

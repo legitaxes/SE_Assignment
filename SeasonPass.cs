@@ -71,7 +71,7 @@ namespace SEAssignment
         }
 
         //constructor for seasonpass
-        public SeasonPass(int id, string vt, string iun, DateTime sd, DateTime ed, Vehicle v)
+        public SeasonPass(int id, string vt, string iun, DateTime sd, DateTime ed, Vehicle v, string validity)
         {
             // season pass states goes here
             pendingState = new PendingState(this);
@@ -79,7 +79,11 @@ namespace SEAssignment
             terminatedState = new TerminatedState(this);
             expiredState = new ExpiredState(this);
 
-            currentState = pendingState;
+            // added the ability to force seasonpass at the correct state upon creation
+            if (validity == "pending") { currentState = pendingState; }
+            else if (validity == "valid") { currentState = validState; }
+            else if (validity == "terminated") { currentState = terminatedState; }
+            else if (validity == "expired") { currentState = expiredState; }
 
             //rest of the property define below for seasonpass
             seasonPassID = id;
