@@ -33,7 +33,7 @@ namespace SEAssignment
             Console.WriteLine("Not allowed to renew when you don't have a season pass!");
         }
 
-        public void TransferPass(Vehicle v) { 
+        public void TransferPass(Vehicle v) {
             // vt - vehicletype in string (Lorry, Car, Motorbike)
             // implementation of transfering pass to another vehicle
             // code below works, i accidentally did it lol. all i did was create a class called vehicle and put vehicle property under seasonpass
@@ -42,6 +42,7 @@ namespace SEAssignment
             //    Console.WriteLine("Pass Transferred Successfully!");
             // if vehicle type does not match
             //    do something..
+            Console.WriteLine("Not allowed to Transfer Season Pass in Pending state!");
         }
         public void TerminatePass()
         {
@@ -117,6 +118,11 @@ namespace SEAssignment
             //    Console.WriteLine("Pass Transferred Successfully!");
             // if vehicle type does not match
             //    do something..
+            if (vsp.VehicleType == v.VehicleType)
+            {
+                vsp.Vehicle = v;
+                Console.WriteLine("Season Pass Transferred Successfully!");
+            }
         }
 
         public void TerminatePass()
