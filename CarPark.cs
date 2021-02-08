@@ -54,7 +54,7 @@ namespace SEAssignment
 
         public int RemainingSpace {
             get { return remainingSpace; }
-            set { remainingSpace = totalParkingSpace - vehicleParkingList.Count; }
+            set { remainingSpace = value; }
         }
 
         public double GeneratedRevenue
@@ -86,6 +86,11 @@ namespace SEAssignment
         }
 
         //---methods---
+        //updates the remaining parking space 
+        public void UpdateParkingSpace() {
+            remainingSpace = remainingSpace - vehicleParkingList.Count();
+        }
+
         //check parking space and return the number of space
         public void CheckParkingSpace() {
             Console.WriteLine("There are " + remainingSpace + " spaces left");
@@ -104,7 +109,7 @@ namespace SEAssignment
             }
         }
 
-        public void GenerateReport(List<CarPark> cpList)
+        public void GenerateReport(List<CarPark> cpList, List<SeasonPass> spList)
         {
             // code to generatereport function -- # TODO calculate the total amount for the month
 
@@ -114,6 +119,9 @@ namespace SEAssignment
             int countCars = 0;
             int countMotorBike = 0;
             int countLorry = 0;
+            int seasonPassRevenue = 0;
+            int countCarSeasonPass = 0;
+            int countMotorBikeSeasonPass = 0;
             double ta = 0;
 
             // prompt user for what month should the report be generated
@@ -196,7 +204,7 @@ namespace SEAssignment
                     else if (ps.Vehicle.VehicleType == "Lorry") { countLorry += 1; }
                 }
                 // print the number of vehicles that entered
-                Console.WriteLine("No. of Vehicles entered to {0}: {1}", currentCP.carParkName, currentCP.vehicleParkingList.Count());
+                Console.WriteLine("No. of Vehicles entered {0}: {1}", currentCP.carParkName, currentCP.vehicleParkingList.Count());
                 // print number of vehicles that entered, split between the count of cars and motorbikes
                 Console.WriteLine("No. of Cars: {0} | Number of Motorcycles: {1} | Number of Lorries: {2}", countCars, countMotorBike, countLorry);
                 // print the carpark name and the generated revenue for the month of each year
@@ -211,7 +219,7 @@ namespace SEAssignment
                     totalAmount = amount + totalAmount;
                     Console.WriteLine(x);
                 }
-                Console.WriteLine("The total amount of revenue generated over the years are {0}", Math.Round(totalAmount, 2));
+                Console.WriteLine("The total amount of revenue generated over the years are ${0}", Math.Round(totalAmount, 2));
             }
 
             // code to generate report for ALL carpark
@@ -226,7 +234,7 @@ namespace SEAssignment
                 Console.WriteLine("Financial Report for the Month of {0} for all carparks", cpList[0].PastRevenue.ElementAt(months - 1).Key);
 
                 // print the carpark name and the generated revenue for the month of each year
-                Console.WriteLine("Total amount of revenue generated for all carparks are for the month of {0} is...", cpList[0].pastRevenue.ElementAt(months - 1).Key);
+                Console.WriteLine("Total amount of revenue generated for all carparks for the month of {0} is...", cpList[0].pastRevenue.ElementAt(months - 1).Key);
                 Console.WriteLine();
                 // Calculate the parking charges for ALL carparks. 
                 // Calculate and print carpark by carpark
@@ -279,7 +287,31 @@ namespace SEAssignment
             }
             else {
                 Console.WriteLine("Please enter a correct input!");
+                return;
             }
+            // calculate the season pass revenue generated for the month of purchase
+            foreach(var sp in spList)
+            {
+                List<Payment> pList = sp.Payment; //cast the payment list into an object locally
+                foreach (var p in pList) { //iterate through the payment list to find out the purchases of season pass
+                    if (p.PurchaseDate.Month == months) {
+                        seasonPassRevenue = p.Price + seasonPassRevenue;
+                        if (p.Price == 110 || p.Price == 80)
+                        {
+                            countCarSeasonPass++;
+                        }
+                        else if (p.Price == 15 || p.Price == 17)
+                        {
+                            countMotorBikeSeasonPass++;
+                        }
+                    }
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine("================= Number of Renewals/Purchases of Season Pass =================");
+            Console.WriteLine("Number of Car/Lorry SeasonPass Purchases: {0} ", countCarSeasonPass);
+            Console.WriteLine("Number of MotorBike SeasonPass Purchases: {0}", countMotorBikeSeasonPass);
+            Console.WriteLine("Total amount collected from Season Pass Puchases for the month {0}: ${1}", cpList[0].pastRevenue.ElementAt(months - 1).Key, seasonPassRevenue);
         }
 
         public void ShowCarParkFares() { //print parking charges
@@ -305,10 +337,6 @@ namespace SEAssignment
             Console.WriteLine("|                            | capped at $0.65 /session | capped at $0.65 /session |");
             Console.WriteLine("| Sundays & Public Holidays  | Free                     | Free                     |");
             Console.WriteLine("------------------------------------------------------------------------------------");
-        }
-
-        public void UpdateParkingSlots() { //updates the remaining parking slots left
-            remainingSpace = totalParkingSpace - vehicleParkingList.Count;
         }
 
         //this function will be run at the end of each month to add the amount to the dictionary
