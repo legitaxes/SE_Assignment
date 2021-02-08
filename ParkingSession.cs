@@ -55,7 +55,9 @@ namespace SEAssignment
             checkOutDate = co;
             vehicle = v;
             vehicleCarPark = vcp;
-        
+
+            v.AddVehicleParking(this);
+            vcp.AddVehicleParking(this);
         }
     }
 }

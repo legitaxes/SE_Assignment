@@ -44,24 +44,24 @@ namespace SEAssignment
 
 
             // create many vehicles and assign to students and lecturer
-            Vehicle v1 = new Vehicle(1, "7BJT254", "Car", "4255459871", lect1);
-            Vehicle v2 = new Vehicle(2, "XMPLPL8", "Lorry", "7339451801", lect1);
-            Vehicle v3 = new Vehicle(3, "CVBN21V", "Motorbike", "1990744994", lect2);
-            Vehicle v4 = new Vehicle(4, "3BSGNA1", "Motorbike", "5615482270", lect3);
-            Vehicle v5 = new Vehicle(5, "6HBFBV7", "Car", "5061391536", lect5);
-            Vehicle v6 = new Vehicle(6, "IJV5LPA", "Car", "1199152458", lect3);
-            Vehicle v7 = new Vehicle(7, "FY6LU7A", "Motorbike", "0893730734", lect4);
-            Vehicle v8 = new Vehicle(8, "FIBS2RA", "Motorbike", "9750302576", s1);
-            Vehicle v9 = new Vehicle(9, "FTYPPgA", "Car", "5495875714", s2);
-            Vehicle v10 = new Vehicle(10, "MOEVMMA", "Motorbike", "9597863958", s3);
-            Vehicle v11 = new Vehicle(11, "MKKW5OA", "Car", "5475482306", s4);
-            Vehicle v12 = new Vehicle(12, "CKMMONA", "Motorbike", "7432282064", s5);
-            Vehicle v13 = new Vehicle(13, "MWOJ4NA", "Car", "1552733025", s5);
+            Vehicle v1 = new Vehicle(1, "7BJT254", "Car", "4255459871", s1);
+            Vehicle v2 = new Vehicle(2, "XMPLPL8", "Lorry", "7339451801", s1);
+            Vehicle v3 = new Vehicle(3, "CVBN21V", "Motorbike", "1990744994", s1);
+            Vehicle v4 = new Vehicle(4, "3BSGNA1", "Motorbike", "5615482270", s1);
+            Vehicle v5 = new Vehicle(5, "6HBFBV7", "Car", "5061391536", s1);
+            Vehicle v6 = new Vehicle(6, "IJV5LPA", "Car", "1199152458", s2);
+            Vehicle v7 = new Vehicle(7, "FY6LU7A", "Motorbike", "0893730734", s3);
+            Vehicle v8 = new Vehicle(8, "FIBS2RA", "Motorbike", "9750302576", s4);
+            Vehicle v9 = new Vehicle(9, "FTYPPgA", "Car", "5495875714", s5);
+            Vehicle v10 = new Vehicle(10, "MOEVMMA", "Motorbike", "9597863958", lect1);
+            Vehicle v11 = new Vehicle(11, "MKKW5OA", "Car", "5475482306", lect2);
+            Vehicle v12 = new Vehicle(12, "CKMMONA", "Motorbike", "7432282064", lect3);
+            Vehicle v13 = new Vehicle(13, "MWOJ4NA", "Car", "1552733025", lect4);
 
             //the only vehicle without season pass
-            Vehicle v14 = new Vehicle(14, "CINJRDA", "Motorbike", "8355822804", s1);
+            Vehicle v14 = new Vehicle(14, "CINJRDA", "Motorbike", "8355822804", lect5);
 
-            
+
 
             // create and set season parking pass to a few students's vehicle and lecturer's vehicle
             // each season parking pass is unique to ONE vehicle ONLY
@@ -167,30 +167,30 @@ namespace SEAssignment
 
 
 
-            // have a few vehicles parked in some of the carparks
-            //add to parking list under carpark
-            cp1.AddVehicleParking(ps1);
-            cp1.AddVehicleParking(ps5);
-            cp1.AddVehicleParking(ps9);
-            cp1.AddVehicleParking(ps10);
-            cp2.AddVehicleParking(ps2);
-            cp2.AddVehicleParking(ps4);
-            cp2.AddVehicleParking(ps7);
-            cp2.AddVehicleParking(ps8);
-            cp3.AddVehicleParking(ps3);
-            cp3.AddVehicleParking(ps6);
+            //// have a few vehicles parked in some of the carparks
+            ////add to parking list under carpark
+            //cp1.AddVehicleParking(ps1);
+            //cp1.AddVehicleParking(ps5);
+            //cp1.AddVehicleParking(ps9);
+            //cp1.AddVehicleParking(ps10);
+            //cp2.AddVehicleParking(ps2);
+            //cp2.AddVehicleParking(ps4);
+            //cp2.AddVehicleParking(ps7);
+            //cp2.AddVehicleParking(ps8);
+            //cp3.AddVehicleParking(ps3);
+            //cp3.AddVehicleParking(ps6);
 
-            //add the location of vehicle where the carpark is parked
-            v1.AddVehicleParking(ps1);
-            v2.AddVehicleParking(ps2);
-            v3.AddVehicleParking(ps3);
-            v4.AddVehicleParking(ps4);
-            v5.AddVehicleParking(ps5);
-            v6.AddVehicleParking(ps6);
-            v7.AddVehicleParking(ps7);
-            v8.AddVehicleParking(ps8);
-            v9.AddVehicleParking(ps9);
-            v10.AddVehicleParking(ps10);
+            ////add the location of vehicle where the carpark is parked
+            //v1.AddVehicleParking(ps1);
+            //v2.AddVehicleParking(ps2);
+            //v3.AddVehicleParking(ps3);
+            //v4.AddVehicleParking(ps4);
+            //v5.AddVehicleParking(ps5);
+            //v6.AddVehicleParking(ps6);
+            //v7.AddVehicleParking(ps7);
+            //v8.AddVehicleParking(ps8);
+            //v9.AddVehicleParking(ps9);
+            //v10.AddVehicleParking(ps10);
 
 
 
@@ -241,7 +241,7 @@ namespace SEAssignment
                         {
                             Student student = (Student)studentiterator.Found();
                             Console.Write("Welcome, {0}", student.Name);
-                            StudentMenu();
+                            StudentMenu(student);
                             //student.studentMenu();
                             break;
                         }
@@ -305,7 +305,7 @@ namespace SEAssignment
             // ====================================================================
             // ============================= Menus ================================
             // ====================================================================
-            void StudentMenu()
+            void StudentMenu(Student student)
             {
                 bool condition = true;
                 while (condition)
@@ -347,7 +347,7 @@ namespace SEAssignment
                             break;
 
                         case 2: //renew season parking pass
-                            
+                            Console.WriteLine(student.MyVehicle.Count);
 
                             Console.WriteLine("Renew Season Parking Pass");
                             Console.Write("Please enter no. of months you want to renew: ");

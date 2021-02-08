@@ -67,9 +67,6 @@ namespace SEAssignment
                     userVehicle = value;
                     value.RegisterVehicle(this);
                 }
-                else {
-                    Console.WriteLine("This user already has the vehicle assigned to him");
-                }
             }
         }
         
@@ -82,6 +79,7 @@ namespace SEAssignment
             iuNumber = iun;
             vehicleSeasonPass = null;
             userVehicle = carOwner;
+            carOwner.RegisterVehicle(this);
 
             offences = new List<string>();
             vehicleParkingList = new List<ParkingSession>();

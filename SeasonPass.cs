@@ -93,6 +93,7 @@ namespace SEAssignment
             endDate = ed;
             vehicle = v;
             remainingMonth = endDate.Month - startDate.Month;
+            v.VehicleSeasonPass = this;
         }
 
         // !!! functions to be called to run the function in the specific state !!!

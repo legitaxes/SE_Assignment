@@ -36,6 +36,9 @@ namespace SEAssignment
             set { mobileNumber = value; }
         }
 
+        public List<Vehicle> MyVehicle {
+            get { return myVehicles; }
+        } 
 
         public User(string sname, string pw, string add, int mobile) {
             name = sname;
@@ -68,9 +71,6 @@ namespace SEAssignment
             {
                 myVehicles.Add(v);
                 v.UserVehicle = this;
-            }
-            else {
-                Console.WriteLine("Vehicle already registered!");
             }
         }
 
