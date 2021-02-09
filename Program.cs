@@ -349,7 +349,7 @@ namespace SEAssignment
                                 {
                                     if (v == sssp.Vehicle)
                                     {
-                                        Console.WriteLine("{0}.  {1}. {2}. {3}", sssp.SeasonPassID, sssp.IUNumber, sssp.VehicleType, sssp.RemainingMonth);
+                                        Console.WriteLine("{0}.  {1} {2} {3}", sssp.SeasonPassID, sssp.IUNumber, sssp.VehicleType, sssp.RemainingMonth);
                                     }
                                 }
                             }
@@ -367,7 +367,8 @@ namespace SEAssignment
                                 {
                                     if (v == spp.Vehicle)
                                     {
-                                        Console.WriteLine("{0}.  {1}. {2}. {3}", spp.SeasonPassID, spp.IUNumber, spp.VehicleType, spp.RemainingMonth);
+                                        //Console.WriteLine("SeasonPassID  IUNumber  VehicleType  StartDate  EndDate  RemainingMonth ");
+                                        Console.WriteLine("{0}. IUN:{1}  Vehicle:{2}     SD:{3}  ED:{4}  RemainMonth:{5}", spp.SeasonPassID, spp.IUNumber, spp.VehicleType, spp.StartDate, spp.EndDate, spp.RemainingMonth);
                                     }
                                 }
                             }
@@ -516,11 +517,11 @@ namespace SEAssignment
                             Console.WriteLine("");
                             foreach (Vehicle v in lecturer.MyVehicle)
                             {
-                                foreach (SeasonPass sp in spList)
+                                foreach (SeasonPass spp in spList)
                                 {
-                                    if (v == sp.Vehicle)
+                                    if (v == spp.Vehicle)
                                     {
-                                        Console.WriteLine("{0}.  {1}. {2}. {3}", sp.SeasonPassID, sp.IUNumber, sp.VehicleType, sp.RemainingMonth);
+                                        Console.WriteLine("{0}.  {1}. {2}. {3}", spp.SeasonPassID, spp.IUNumber, spp.VehicleType, spp.RemainingMonth);
                                     }
                                     //sp.Renew();
                                 }
@@ -532,15 +533,37 @@ namespace SEAssignment
                         case 2: //renew season parking pass
                             foreach (Vehicle v in lecturer.MyVehicle)
                             {
-                                foreach (SeasonPass sp in spList)
+                                foreach (SeasonPass spp in spList)
                                 {
-                                    if (v == sp.Vehicle)
+                                    if (v == spp.Vehicle)
                                     {
-                                        Console.WriteLine("{0}.  {1}. {2}. {3}", sp.SeasonPassID, sp.IUNumber, sp.VehicleType, sp.RemainingMonth);
+                                        //Console.WriteLine("SeasonPassID  IUNumber  VehicleType  StartDate  EndDate  RemainingMonth ");
+                                        Console.WriteLine("{0}. IUN:{1}  Vehicle:{2}     SD:{3}  ED:{4}  RemainMonth:{5}", spp.SeasonPassID, spp.IUNumber, spp.VehicleType, spp.StartDate, spp.EndDate, spp.RemainingMonth);
                                     }
                                 }
                             }
-                            spass.Renew();
+                            Console.Write("Please select the Season Pass you want to renew: ");
+                            string sPass = Console.ReadLine();
+                            int sp;
+                            bool s = Int32.TryParse(sPass, out sp);
+                            if (!s)
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("Please enter a valid number!");
+                                return;
+                            }
+                            if (sp < 0 || sp> 1)
+                            {
+                                Console.WriteLine("Please enter a season pass displayed.");
+                                return;
+                            }
+                            foreach (SeasonPass x in spList)
+                            {
+                                if (Convert.ToInt32(sPass) == x.SeasonPassID)
+                                {
+                                    x.Renew();
+                                }
+                            }
                             //renewSeasonPass();
                             break;
 
