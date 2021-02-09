@@ -62,7 +62,7 @@ namespace SEAssignment
             //the only vehicle without season pass
             Vehicle v14 = new Vehicle(14, "CINJRDA", "Motorbike", "8355822804", lect5);
 
-
+            List<Vehicle> vList = new List<Vehicle> { v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14 };
 
             // create and set season parking pass to a few students's vehicle and lecturer's vehicle
             // each season parking pass is unique to ONE vehicle ONLY
@@ -75,6 +75,7 @@ namespace SEAssignment
             DateTime dt7 = new DateTime(2020, 09, 01);
 
             //initialize season pass and force its state
+            
             SeasonPass sp1 = new SeasonPass(1, "Car", "4255459871", dt1, dt2, v1, "valid");
             SeasonPass sp2 = new SeasonPass(2, "Lorry", "7339451801", dt3, dt4, v2, "valid");
             SeasonPass sp3 = new SeasonPass(3, "Motorbike", "1990744994", dt3, dt4, v3, "expired");
@@ -209,6 +210,7 @@ namespace SEAssignment
             // =====================================================================            
             while (true)
             {
+              
                 int main_choice;
                 // simple login option
                 //Console.WriteLine();
@@ -308,7 +310,7 @@ namespace SEAssignment
             // ====================================================================
             void StudentMenu(Student student)
             {
-                
+                SeasonPass spass = new SeasonPass();
                 bool condition = true;
                 while (condition)
                 {
@@ -340,16 +342,15 @@ namespace SEAssignment
                     {
                         case 1: // view season parking pass
                             Console.WriteLine("Viewing Your Season Parking Pass");
-                            for (int i = 0; i < student.MyVehicle.Count(); i++)
+                            Console.WriteLine("");
+                            foreach (Vehicle v in student.MyVehicle)
                             {
                                 foreach (SeasonPass sp in spList)
                                 {
-                                    if (sp.IUNumber == student.MyVehicle[i].IUNumber)
+                                    if (v == sp.Vehicle)
                                     {
-                                        //Console.WriteLine($"{sp.IUNumber}");
                                         Console.WriteLine("{0}.  {1}. {2}. {3}", sp.SeasonPassID, sp.IUNumber, sp.VehicleType, sp.RemainingMonth);
                                     }
-
                                 }
                             }
                             //viewSeasonPass();
@@ -361,27 +362,27 @@ namespace SEAssignment
                             
                             //Console.WriteLine("Number of season parking pass: {0}",student.MyVehicle.Count);
                             Console.WriteLine("");
-
-
-
-                            for (int i = 0; i < student.MyVehicle.Count(); i++)
+                            foreach(Vehicle v in student.MyVehicle)
                             {
-                                foreach (SeasonPass sp in spList)
+                                foreach(SeasonPass sp in spList)
                                 {
-                                    if (sp.IUNumber == student.MyVehicle[i].IUNumber)
+                                    if (v == sp.Vehicle)
                                     {
-                                        //Console.WriteLine($"{sp.IUNumber}");
                                         Console.WriteLine("{0}.  {1}. {2}. {3}", sp.SeasonPassID, sp.IUNumber, sp.VehicleType, sp.RemainingMonth);
-                                        //continue;
-                                        
                                     }
                                     //sp.Renew();
-                                   
                                 }
-                                
                             }
 
+                            spass.Renew();
                             break;
+                            /*sp2.Renew();
+                            break;
+                            sp3.Renew();
+                            break;
+                            sp4.Renew();
+                            break;
+                            sp5.Renew();*/
 
                         case 3: // terminate season parking pass
                             //terminateSeasonPass();
@@ -471,6 +472,7 @@ namespace SEAssignment
 
             void LecturerMenu(Lecturer lecturer)
             {
+                SeasonPass spass = new SeasonPass();
                 bool condition = true;
                 while (condition)
                 {
@@ -500,13 +502,34 @@ namespace SEAssignment
                         case 1: // view season parking pass
                             Console.WriteLine();
                             Console.WriteLine("Viewing Your Season Parking Pass");
+                            Console.WriteLine("");
+                            foreach (Vehicle v in lecturer.MyVehicle)
+                            {
+                                foreach (SeasonPass sp in spList)
+                                {
+                                    if (v == sp.Vehicle)
+                                    {
+                                        Console.WriteLine("{0}.  {1}. {2}. {3}", sp.SeasonPassID, sp.IUNumber, sp.VehicleType, sp.RemainingMonth);
+                                    }
+                                    //sp.Renew();
+                                }
+                            }
                             //viewSeasonPass();
 
                             break;
 
                         case 2: //renew season parking pass
-                            Console.WriteLine("Renew Season Parking Pass");
-                            Console.Write("Please enter no. of months you want to renew: ");
+                            foreach (Vehicle v in lecturer.MyVehicle)
+                            {
+                                foreach (SeasonPass sp in spList)
+                                {
+                                    if (v == sp.Vehicle)
+                                    {
+                                        Console.WriteLine("{0}.  {1}. {2}. {3}", sp.SeasonPassID, sp.IUNumber, sp.VehicleType, sp.RemainingMonth);
+                                    }
+                                }
+                            }
+                            spass.Renew();
                             //renewSeasonPass();
                             break;
 

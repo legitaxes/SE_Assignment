@@ -63,6 +63,7 @@ namespace SEAssignment
 
         // one to one association with vehicle
         public Vehicle Vehicle {
+            get { return vehicle; }
             set {
                 if (vehicle != value) {
                     vehicle = value;
@@ -75,6 +76,8 @@ namespace SEAssignment
         {
             get { return payment; }
         }
+
+        public SeasonPass() { }
         //constructor for seasonpass
         public SeasonPass(int id, string vt, string iun, DateTime sd, DateTime ed, Vehicle v, string validity)
         {
