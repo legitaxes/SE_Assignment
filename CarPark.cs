@@ -111,8 +111,7 @@ namespace SEAssignment
 
         public void GenerateReport(List<CarPark> cpList, List<SeasonPass> spList)
         {
-            // code to generatereport function -- # TODO calculate the total amount for the month
-
+            // code to generatereport function 
             int currentMonth = DateTime.Now.Month; //set currentMonth as this month
             double totalAmount = 0;
             int totalVehicleEntry = 0;
@@ -278,7 +277,7 @@ namespace SEAssignment
                         else if (ps.Vehicle.VehicleType == "Lorry") { countLorry += 1; }
                     }
                     Console.WriteLine("No. of Cars: {0} | Number of Motorcycles: {1} | Number of Lorries: {2}", countCars, countMotorBike, countLorry);
-                    Console.WriteLine("The total number of Vehicle entered across all carparks are {0}", totalVehicleEntry);
+                    Console.WriteLine("The total number of Vehicle entered across the carpark is {0}", totalVehicleEntry);
                     //print the amount generated in total for all Carparks
                     Console.WriteLine("Total Generated Revenue: ${0}", Math.Round(ta, 2));
                     Console.WriteLine();
