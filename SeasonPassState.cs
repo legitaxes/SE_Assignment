@@ -69,123 +69,82 @@ namespace SEAssignment
 
         public void Renew()
         {
-
-            Console.WriteLine("Please select the season parking pass you want to renew: ");
-            string sPass = Console.ReadLine();
-            int sp;
-            bool s = Int32.TryParse(sPass, out sp);
-            if(!s)
+            int price = 0;
+            bool status = true;
+            while (status) //if user did not confirm
             {
-                Console.WriteLine();
-                Console.WriteLine("Please enter a valid number!");
-                return;
-            }
-            if(sp <0 || sp>5   )
-            {
-                Console.WriteLine("Please enter a season pass displayed.");
-                return;
-            }
-
-
-            Console.WriteLine("----Renew Season Parking Pass----");
-            Console.WriteLine("Please enter no. of months you want to renew: ");
-            string rpMonth = Console.ReadLine();
-            int rpm;
-            bool r = Int32.TryParse(rpMonth, out rpm);
-            if(!r)
-            {
-                Console.WriteLine();
-                Console.WriteLine("Please enter valid number");
-                return;
-            }
-            if(rpm<0 || rpm >12)
-            {
-                Console.WriteLine("Please enter a valid month between 1 -12");
-                return;
-            }
-
-            Console.WriteLine("Renewing season parking pass...");
-            Console.WriteLine("Extend season parking pass for another " + rpm + " month(s)");
-            
-
-            string confirmation = Confirm("");
-            if (confirmation.Equals("y"))
-            {
-                Console.WriteLine("You decide to renew " + rpm + " month(s) of your season parking pass");
-                Console.WriteLine();
-                Console.WriteLine("Calculating season pass amount...");
-                //int sprice = 0;
-                int amt = 0;
-                Console.WriteLine("Amount needed to pay: $" + amt);
-              
-            }
-
-            else
-            {
-                Console.WriteLine("Please enter no. of months you want to renew: ");
-                string rpMonth2 = Console.ReadLine();
-                int rpm2;
-                bool r2 = Int32.TryParse(rpMonth2, out rpm2);
-                if (!r2)
+                Console.WriteLine("----Renew Season Parking Pass----");
+                Console.Write("Please enter no. of months you want to renew: ");
+                string rpMonth = Console.ReadLine();
+                int rpm;
+                bool r = Int32.TryParse(rpMonth, out rpm);
+                if(!r)
                 {
                     Console.WriteLine();
                     Console.WriteLine("Please enter valid number");
                     return;
                 }
-                if (rpm2 < 0 || rpm2 > 12)
+                if(rpm<0 || rpm >12)
                 {
                     Console.WriteLine("Please enter a valid month between 1 -12");
                     return;
                 }
 
                 Console.WriteLine("Renewing season parking pass...");
-                Console.WriteLine("Extend season parking pass for another " + rpm2 + " month(s)");
-                string confirmation2 = Confirm("");
-                if (confirmation2.Equals("y"))
+                Console.WriteLine("Extend season parking pass for another " + rpm + " month(s)");
+
+
+                string confirmation = Confirm("");
+                if (confirmation.ToLower() == "y")
                 {
-                    Console.WriteLine("You decide to renew " + rpm2 + " month(s) of your season parking pass");
+                    Console.WriteLine("You decide to renew " + rpm + " month(s) of your season parking pass");
                     Console.WriteLine();
                     Console.WriteLine("Calculating season pass amount...");
-                    //int sprice = 0;
-                    int amt = 0;
-                    Console.WriteLine("Amount needed to pay: $" + amt);
+                    if (vsp.VehicleType == "Car" || vsp.VehicleType == "Lorry") //if seasonpass is car type
+                    {
+                        price = 80;
+                        int amt = price * rpm;
+                        Console.WriteLine("Amount needed to pay: $" + amt);
+                        Console.WriteLine("Pass successfully extended for " + rpm + " month(s)");
 
+                        //add payment record
+                        Payment p = new Payment(DateTime.Now, amt, "Credit", "Surface", vsp);
+                        p.makePayment();
+                        vsp.AddPayment(p);
+                    }
+
+                    else if (vsp.VehicleType == "Motorbike")
+                    { //if seasonpass is motorbike type
+                        price = 15;
+                        int amt = price * rpm;
+                        Console.WriteLine("Amount needed to pay: $" + amt);
+
+                        Console.WriteLine("Pass successfully extended for " + rpm + " month(s)");
+
+                        //add payment record
+                        Payment p = new Payment(DateTime.Now, amt, "Credit", "Surface", vsp);
+                        p.makePayment();
+                        vsp.AddPayment(p);
+                    }
+                    //add number of months extended by user
+                    vsp.EndDate.AddMonths(rpm);
+                    vsp.RemainingMonth = vsp.RemainingMonth + rpm;
+                    Console.WriteLine("Your Season Pass New Expiry Date: {0}", vsp.EndDate);
+                    status = false;
                 }
             }
-
-            //Console.WriteLine("Calculating season pass amount...");
-            //Console.WriteLine();
-
-            /*if (vsp.StartDate <= vsp.EndDate)
-            {
-                // # TODO print a few lines of code that says pass successfully extended and set end month of season pass according to input
-                // asssginees: yongfarm
-                //dont have to set state to valid as it is already at valid state
-                //Console.WriteLine("Renewing season parking pass...");
-                //Console.WriteLine("Month to extend season parking pass is " + month);
-                
-
-                Console.WriteLine();
-
-                //vsp.SetCurrentState(vsp.GetValidState()); 
-            }*/
-            // implementation here
         }
-
-        
-
         private static string Confirm(string message)
         {
-            Console.WriteLine("Please enter y/n: ");
+            Console.Write("Please enter y/n: ");
             string confirmPass = Console.ReadLine();
+            confirmPass = confirmPass.ToLower();
             if (!confirmPass.Equals("y") && !confirmPass.Equals("n"))
             {
                 confirmPass = Confirm("Please enter only 'y/n' to confirm: ");
             }
             return (confirmPass);
         }
-
-        
 
         public void TransferPass(Vehicle v)
         {
@@ -255,90 +214,74 @@ namespace SEAssignment
 
         public void Renew()
         {
-            Console.WriteLine("Please select the season parking pass you want to renew: ");
-            string sPass = Console.ReadLine();
-            int sp;
-            bool s = Int32.TryParse(sPass, out sp);
-            if (!s)
+            int price = 0;
+            bool status = true;
+            while (status) //if user did not confirm
             {
-                Console.WriteLine();
-                Console.WriteLine("Please enter a valid number!");
-                return;
-            }
-            if (sp != vsp.SeasonPassID)
-            {
-                Console.WriteLine("Please enter a season pass displayed.");
-                return;
-            }
-
-
-            Console.WriteLine("----Renew Season Parking Pass----");
-            Console.WriteLine("Please enter no. of months you want to renew: ");
-            string rpMonth = Console.ReadLine();
-            int rpm;
-            bool r = Int32.TryParse(rpMonth, out rpm);
-            if (!r)
-            {
-                Console.WriteLine();
-                Console.WriteLine("Please enter valid number");
-                return;
-            }
-            if (rpm < 0 || rpm > 12)
-            {
-                Console.WriteLine("Please enter a valid month between 1 -12");
-                return;
-            }
-
-            Console.WriteLine("Renewing season parking pass...");
-            Console.WriteLine("Extend season parking pass for another " + rpm + " month(s)");
-
-
-            string confirmation = Confirm("");
-            if (confirmation.Equals("y"))
-            {
-                Console.WriteLine("You decide to renew " + rpm + " month(s) of your season parking pass");
-                Console.WriteLine();
-                Console.WriteLine("Calculating season pass amount...");
-                //int sprice = 0;
-                int amt = 0;
-                Console.WriteLine("Amount needed to pay: $" + amt);
-
-            }
-
-            else
-            {
-                Console.WriteLine("Please enter no. of months you want to renew: ");
-                string rpMonth2 = Console.ReadLine();
-                int rpm2;
-                bool r2 = Int32.TryParse(rpMonth2, out rpm2);
-                if (!r2)
+                Console.WriteLine("----Renew Season Parking Pass----");
+                Console.Write("Please enter no. of months you want to renew: ");
+                string rpMonth = Console.ReadLine();
+                int rpm;
+                bool r = Int32.TryParse(rpMonth, out rpm);
+                if (!r)
                 {
                     Console.WriteLine();
                     Console.WriteLine("Please enter valid number");
                     return;
                 }
-                if (rpm2 < 0 || rpm2 > 12)
+                if (rpm < 0 || rpm > 12)
                 {
                     Console.WriteLine("Please enter a valid month between 1 -12");
                     return;
                 }
 
                 Console.WriteLine("Renewing season parking pass...");
-                Console.WriteLine("Extend season parking pass for another " + rpm2 + " month(s)");
-                string confirmation2 = Confirm("");
-                if (confirmation2.Equals("y"))
+                Console.WriteLine("Extend season parking pass for another " + rpm + " month(s)");
+
+
+                string confirmation = Confirm("");
+                if (confirmation.ToLower() == "y")
                 {
-                    Console.WriteLine("You decide to renew " + rpm2 + " month(s) of your season parking pass");
+                    Console.WriteLine("You decide to renew " + rpm + " month(s) of your season parking pass");
                     Console.WriteLine();
                     Console.WriteLine("Calculating season pass amount...");
-                    //int sprice = 0;
-                    int amt = 0;
-                    Console.WriteLine("Amount needed to pay: $" + amt);
+                    if (vsp.VehicleType == "Car" || vsp.VehicleType == "Lorry") //if seasonpass is car type
+                    {
+                        price = 80;
+                        int amt = price * rpm;
+                        Console.WriteLine("Amount needed to pay: $" + amt);
+                        Console.WriteLine("Pass successfully extended for " + rpm + " month(s)");
 
+                        //add payment record
+                        Payment p = new Payment(DateTime.Now, amt, "Credit", "Surface", vsp);
+                        p.makePayment();
+                        vsp.AddPayment(p);
+                    }
+
+                    else if (vsp.VehicleType == "Motorbike")
+                    { //if seasonpass is motorbike type
+                        price = 15;
+                        int amt = price * rpm;
+                        Console.WriteLine("Amount needed to pay: $" + amt);
+
+                        Console.WriteLine("Pass successfully extended for " + rpm + " month(s)");
+                        
+                        //add payment record
+                        Payment p = new Payment(DateTime.Now, amt, "Credit", "Surface", vsp);
+                        p.makePayment();
+                        vsp.AddPayment(p);
+                    }
+                    //add number of months extended by user
+                    //vsp.EndDate.AddMonths(rpm);
+                    //vsp.RemainingMonth = vsp.RemainingMonth + rpm; //add input month to remaining month 
+                    vsp.StartDate = DateTime.Now;
+                    vsp.EndDate = DateTime.Now.AddMonths(rpm);
+                    vsp.RemainingMonth = vsp.StartDate.Month - vsp.EndDate.Month;
+                    vsp.SetCurrentState(vsp.GetValidState()); //set season pass state to valid
+                    Console.WriteLine("Your Season Pass New Expiry Date: {0}", vsp.EndDate);
+                    status = false;
                 }
             }
-            vsp.SetCurrentState(vsp.GetValidState());
-            // implementation here
         }
 
         private static string Confirm(string message)

@@ -345,11 +345,11 @@ namespace SEAssignment
                             Console.WriteLine("");
                             foreach (Vehicle v in student.MyVehicle)
                             {
-                                foreach (SeasonPass sp in spList)
+                                foreach (SeasonPass sssp in spList)
                                 {
-                                    if (v == sp.Vehicle)
+                                    if (v == sssp.Vehicle)
                                     {
-                                        Console.WriteLine("{0}.  {1}. {2}. {3}", sp.SeasonPassID, sp.IUNumber, sp.VehicleType, sp.RemainingMonth);
+                                        Console.WriteLine("{0}.  {1}. {2}. {3}", sssp.SeasonPassID, sssp.IUNumber, sssp.VehicleType, sssp.RemainingMonth);
                                     }
                                 }
                             }
@@ -359,30 +359,41 @@ namespace SEAssignment
 
                         case 2: //renew season parking pass
 
-                            
                             //Console.WriteLine("Number of season parking pass: {0}",student.MyVehicle.Count);
                             Console.WriteLine("");
                             foreach(Vehicle v in student.MyVehicle)
                             {
-                                foreach(SeasonPass sp in spList)
+                                foreach(SeasonPass spp in spList)
                                 {
-                                    if (v == sp.Vehicle)
+                                    if (v == spp.Vehicle)
                                     {
-                                        Console.WriteLine("{0}.  {1}. {2}. {3}", sp.SeasonPassID, sp.IUNumber, sp.VehicleType, sp.RemainingMonth);
+                                        Console.WriteLine("{0}.  {1}. {2}. {3}", spp.SeasonPassID, spp.IUNumber, spp.VehicleType, spp.RemainingMonth);
                                     }
-                                    //sp.Renew();
                                 }
                             }
-
-                            spass.Renew();
+                            Console.Write("Please select the Season Pass you want to renew: ");
+                            string sPass = Console.ReadLine();
+                            int sp;
+                            bool s = Int32.TryParse(sPass, out sp);
+                            if (!s)
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("Please enter a valid number!");
+                                return;
+                            }
+                            if (sp < 0 || sp > 5)
+                            {
+                                Console.WriteLine("Please enter a season pass displayed.");
+                                return;
+                            }
+                            foreach (SeasonPass x in spList)
+                            {
+                                if (Convert.ToInt32(sPass) == x.SeasonPassID)
+                                {
+                                    x.Renew();
+                                }
+                            }
                             break;
-                            /*sp2.Renew();
-                            break;
-                            sp3.Renew();
-                            break;
-                            sp4.Renew();
-                            break;
-                            sp5.Renew();*/
 
                         case 3: // terminate season parking pass
                             //terminateSeasonPass();

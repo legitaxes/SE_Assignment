@@ -39,6 +39,7 @@ namespace SEAssignment
         }
 
         public SeasonPass SeasonPass {
+            get { return seasonPass; }
             set {
                 if (seasonPass != value) {
                     seasonPass = value;
@@ -46,6 +47,8 @@ namespace SEAssignment
                 }
             }
         }
+
+        public Payment() { }
         public Payment(DateTime pd, int p, string pm, string pt, SeasonPass sp) {
             purchaseDate = pd;
             price = p;
@@ -64,7 +67,9 @@ namespace SEAssignment
 
         public void makePayment()
         {
-            //implementation
+            //implementation for payment method
+            Console.WriteLine("Your selected payment mode is {0}", paymentMode);
+            Console.WriteLine();
         }
     }
 }
