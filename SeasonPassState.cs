@@ -181,6 +181,13 @@ namespace SEAssignment
                    Console.WriteLine("Please enter your license plate number."); //System prompt for user to input license plate number.
                    string vehicleNo = Console.ReadLine();
                    vehicleNo = vehicleNo.ToUpper();
+                    /*foreach (char lp in Program)
+                    {
+                        if (lp.ToString() == vehicleNo)
+                        {
+                            
+                        }
+                    }*/
                    if (vsp.Vehicle.LicensePlate == vehicleNo){
                        Console.WriteLine("Please enter reason for termination."); //System prompt for user to input reason.
                        string termReason = Console.ReadLine();
