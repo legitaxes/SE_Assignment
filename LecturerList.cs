@@ -33,7 +33,7 @@ namespace SEAssignment
             lecturerCollection = new List<Lecturer>();
         }
 
-        public LecturerIterator CreateIterator()
+        public LecturerIterator CreateIterator(string staffid)
         {
             return new LecturerIterator(this, staffid);
         }

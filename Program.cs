@@ -254,7 +254,7 @@ namespace SEAssignment
                         Console.Write("Enter your Student ID: ");
                         string studID = Console.ReadLine();
 
-                        StudentIterator studentiterator = new StudentIterator(studentList, studID);
+                        StudentIterator studentiterator = studentList.CreateIterator(studID);
                         if (studentiterator.isfound == true)
                         {
                             Student student = (Student)studentiterator.Found();
@@ -273,7 +273,7 @@ namespace SEAssignment
                         Console.Write("Enter your Staff ID: ");
                         string staffID = Console.ReadLine();
 
-                        LecturerIterator lectureriterator = new LecturerIterator(lecturerList, staffID);
+                        LecturerIterator lectureriterator = lecturerList.CreateIterator(staffID);
                         if (lectureriterator.isfound == true)
                         {
                             Lecturer lecturer = (Lecturer)lectureriterator.Found();

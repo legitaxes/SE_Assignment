@@ -165,9 +165,9 @@ namespace SEAssignment
                     Console.WriteLine("Please Enter an Integer Input only!");
                     return;
                 }
-                if (cpn < 0 || cpn > 3)
+                if (cpn < 0 || cpn > cpList.Count)
                 {
-                    Console.WriteLine("Please enter a valid Carpark number between 1 - 3");
+                    Console.WriteLine("Please enter a valid Carpark number!");
                     return;
                 }
 
@@ -187,6 +187,13 @@ namespace SEAssignment
                 // put the generatedrevenue into the current month
                 if (currentMonth == months) // add to pastrevenue if month matches
                 {
+                    // check if the current input has the year already recorded for the month
+                    if (currentCP.PastRevenue.ElementAt(months - 1).Value.Contains(DateTime.Now.Year.ToString() + ":")) {
+                        int index = currentCP.PastRevenue.ElementAt(months - 1).Value.IndexOf("," + DateTime.Now.Year.ToString() + ":");
+                        if (index > 0)
+                            currentCP.PastRevenue[currentCP.PastRevenue.ElementAt(months - 1).Key] = currentCP.PastRevenue.ElementAt(months - 1).Value.Substring(0, index);
+                    }
+
                     string o_i = currentCP.PastRevenue.ElementAt(months - 1).Value;
                     // concatenate the year and value together
                     string amount = "," + DateTime.Now.Year.ToString() + ": $" + currentCP.GeneratedRevenue;
