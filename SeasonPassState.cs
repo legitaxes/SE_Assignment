@@ -86,7 +86,7 @@ namespace SEAssignment
                     Console.WriteLine("Please enter valid number");
                     return;
                 }
-                if(rpm<0 || rpm >12)
+                if(rpm<0 || rpm >15)
                 {
                     Console.WriteLine("Please enter a valid month between 1 -12");
                     return;
@@ -131,6 +131,7 @@ namespace SEAssignment
                     //add number of months extended by user
                     vsp.EndDate.AddMonths(rpm);
                     vsp.RemainingMonth = vsp.RemainingMonth + rpm;
+                    Console.WriteLine("The remianing month of your pass is {0} month(s)", vsp.RemainingMonth);
                     Console.WriteLine("Your Season Pass New Expiry Date: {0}", vsp.EndDate);
                     status = false;
                 }
@@ -231,7 +232,7 @@ namespace SEAssignment
                     Console.WriteLine("Please enter valid number");
                     return;
                 }
-                if (rpm < 0 || rpm > 12)
+                if (rpm < 0 || rpm > 15)
                 {
                     Console.WriteLine("Please enter a valid month between 1 -12");
                     return;
@@ -278,8 +279,9 @@ namespace SEAssignment
                     //vsp.RemainingMonth = vsp.RemainingMonth + rpm; //add input month to remaining month 
                     vsp.StartDate = DateTime.Now;
                     vsp.EndDate = DateTime.Now.AddMonths(rpm);
-                    vsp.RemainingMonth = vsp.StartDate.Month - vsp.EndDate.Month;
+                    vsp.RemainingMonth = vsp.EndDate.Month - vsp.StartDate.Month;
                     vsp.SetCurrentState(vsp.GetValidState()); //set season pass state to valid
+                    Console.WriteLine("The remianing month of your pass is {0} month(s)", vsp.RemainingMonth);
                     Console.WriteLine("Your Season Pass New Expiry Date: {0}", vsp.EndDate);
                     status = false;
                 }

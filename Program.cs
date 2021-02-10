@@ -18,7 +18,7 @@ namespace SEAssignment
             Student s6 = new Student("6", "Abdul", "1234", "Jalalabad", 12346789);
             Student s7 = new Student("7", "J. Epstein", "1234", "Metropolitan Correctional Center, New York", 12346789);
 
-            //add into studentlist's Student Collection 
+            //add into studentlist's Student Collection
             StudentList studentList = new StudentList();
             studentList.StudentCollection.Add(s1);
             studentList.StudentCollection.Add(s2);
@@ -116,7 +116,7 @@ namespace SEAssignment
             DateTime d6 = new DateTime(2020, 06, 01);
             DateTime d7 = new DateTime(2020, 07, 01);
 
-            // 80dollar car - Surface | 110 dollar car - Sheltered | 17 dollar motorbike Sheltered | 15 dollar motorbike Surface 
+            // 80dollar car - Surface | 110 dollar car - Sheltered | 17 dollar motorbike Sheltered | 15 dollar motorbike Surface
             Payment p1 = new Payment(d1, 80, "Credit Card", "Surface", sp1);
             Payment p2 = new Payment(d3, 80, "Credit Card", "Surface", sp1);
             Payment p3 = new Payment(d2, 110, "Credit Card", "Sheltered", sp2);
@@ -133,7 +133,7 @@ namespace SEAssignment
             Payment p14 = new Payment(d7, 110, "Credit Card", "Sheltered", sp13);
             Payment p15 = new Payment(d2, 110, "Credit Card", "Sheltered", sp1);
 
-            
+
 
 
             // initialize 3 carparks - int id, string name, int tps, string desc, string loc, int gr [Refer to constructor of carpark]
@@ -168,7 +168,7 @@ namespace SEAssignment
                 { "Nov", "2019: $867.44,2020: $123.78"},
                 { "Dec", "2019: $565.12,2020: $117.11"}
             };
-            cp3.PastRevenue = new Dictionary<string, string>() { 
+            cp3.PastRevenue = new Dictionary<string, string>() {
                 { "Jan", "2019: $2204.24,2020: $2458.68"},
                 { "Feb", "2019: $8530.23,2020: $2454.66"},
                 { "Mar", "2019: $2558.57,2020: $7573.23"},
@@ -219,10 +219,10 @@ namespace SEAssignment
 
             // =====================================================================
             // ======================= Start of Main Program =======================
-            // =====================================================================            
+            // =====================================================================
             while (true)
             {
-              
+
                 int main_choice;
                 // simple login option
                 //Console.WriteLine();
@@ -319,7 +319,7 @@ namespace SEAssignment
             }
             // ====================================================================
             // ======================= End of Main Program ========================
-            // ====================================================================           
+            // ====================================================================
 
             // --------------------------------------------------------------------
 
@@ -344,7 +344,7 @@ namespace SEAssignment
 
 
                     //validation to ensure the input are NUMBERS ONLY
-                    
+
                     int stud_choice;
                     Console.Write("Enter choice: ");
                     string choice = Console.ReadLine();
@@ -462,7 +462,7 @@ namespace SEAssignment
                                 Console.WriteLine("Please select the available vehicle! ");
                                 continue;
                             }
-                            else 
+                            else
                             {
                                 var stuv = student.MyVehicle[ssp-1];
                                 Console.WriteLine("");
@@ -475,7 +475,7 @@ namespace SEAssignment
                                 }
                                 Console.Write("Please enter vehicle type: ");
                                 string vt = Console.ReadLine();
-                                
+
                                 foreach (SeasonPass seas in spList)
                                 {
                                     if (seas.IUNumber == student.MyVehicle[ssp-1].IUNumber)
@@ -490,7 +490,7 @@ namespace SEAssignment
                                         {
                                             Console.WriteLine("Vehicle Types Do Not Match!");
                                         }
-                                        
+
                                     }
                                 }
                             }
@@ -553,7 +553,7 @@ namespace SEAssignment
                             Console.WriteLine("");
                             foreach (Vehicle v in lecturer.MyVehicle)
                             {
-                                foreach (SeasonPass sp in spList)
+                                foreach (SeasonPass spp in spList)
                                 {
                                     if (v == sp.Vehicle && sp.CurrentState.GetType() == typeof(PendingState))
                                     {
@@ -588,15 +588,36 @@ namespace SEAssignment
                         case 2: //renew season parking pass
                             foreach (Vehicle v in lecturer.MyVehicle)
                             {
-                                foreach (SeasonPass sp in spList)
+                                foreach (SeasonPass spp in spList)
                                 {
-                                    if (v == sp.Vehicle)
+                                    if (v == spp.Vehicle)
                                     {
                                         Console.WriteLine("{ID:{0}, IU#:{1}, Vehicle:{2}, Months:{3}", sp.SeasonPassID, sp.IUNumber, sp.VehicleType, sp.RemainingMonth);
                                     }
                                 }
                             }
-                            spass.Renew();
+                            Console.Write("Please select the Season Pass you want to renew: ");
+                            string sPass = Console.ReadLine();
+                            int sp;
+                            bool s = Int32.TryParse(sPass, out sp);
+                            if (!s)
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("Please enter a valid number!");
+                                return;
+                            }
+                            if (sp < 0 || sp> 1)
+                            {
+                                Console.WriteLine("Please enter a season pass displayed.");
+                                return;
+                            }
+                            foreach (SeasonPass x in spList)
+                            {
+                                if (Convert.ToInt32(sPass) == x.SeasonPassID)
+                                {
+                                    x.Renew();
+                                }
+                            }
                             //renewSeasonPass();
                             break;
 
