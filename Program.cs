@@ -485,9 +485,15 @@ namespace SEAssignment
                                     {
                                         if (vt == student.MyVehicle[ssp-1].VehicleType)
                                         {
-                                            stuv.LicensePlate = license;
-                                            stuv.VehicleType = vt;
-                                            seas.TransferPass(stuv);
+                                            if (seas.CurrentState.GetType() == typeof(ValidState))
+                                            {
+                                                stuv.LicensePlate = license;
+                                                seas.TransferPass(stuv);
+                                            }
+                                            else
+                                            {
+                                                seas.TransferPass(stuv);
+                                            }
                                         }
                                         else
                                         {
@@ -669,9 +675,15 @@ namespace SEAssignment
                                     {
                                         if (lvt == lecturer.MyVehicle[lsp - 1].VehicleType)
                                         {
-                                            lecv.LicensePlate = license;
-                                            lecv.VehicleType = lvt;
-                                            seas.TransferPass(lecv);
+                                            if (seas.CurrentState.GetType() == typeof(ValidState))
+                                            {
+                                                license = lecv.LicensePlate;
+                                                seas.TransferPass(lecv);
+                                            }
+                                            else
+                                            {
+                                                seas.TransferPass(lecv);
+                                            }
                                         }
                                         else
                                         {

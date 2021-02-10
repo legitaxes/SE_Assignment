@@ -45,7 +45,13 @@ namespace SEAssignment
             //    Console.WriteLine("Pass Transferred Successfully!");
             // if vehicle type does not match
             //    do something..
-            Console.WriteLine("Not allowed to Transfer Season Pass in Pending state!");
+            //if (vsp.CurrentState.GetType() != typeof(ValidState))
+            //{
+                //vsp.Vehicle.LicensePlate = v.LicensePlate;
+                Console.WriteLine("Not allowed to Transfer Season Pass in Pending state!");
+            //}
+            //Console.WriteLine("Not allowed to Transfer Season Pass in Pending state!");
+
         }
         public void TerminatePass()
         {
@@ -161,8 +167,13 @@ namespace SEAssignment
             //    do something..
             if (vsp.VehicleType == v.VehicleType)
             {
-                vsp.Vehicle = v;
-                Console.WriteLine("Season Pass Transferred Successfully!");
+                if (vsp.CurrentState.GetType() == typeof(ValidState))
+                {
+                    vsp.Vehicle = v;
+                    vsp.Vehicle.LicensePlate = v.LicensePlate;
+                    Console.WriteLine("Season Pass Transferred Successfully!");
+                }
+                
             }
         }
 
@@ -252,7 +263,11 @@ namespace SEAssignment
 
         public void TransferPass(Vehicle v)
         {
-            Console.WriteLine("Not allowed to Transfer Season Pass that is already Terminated!");
+            //if (vsp.CurrentState.GetType() != typeof(ValidState))
+           // {
+                //vsp.Vehicle = v;
+                Console.WriteLine("Not allowed to Transfer Season Pass that is already Terminated!");
+            //}
         }
 
         public void TerminatePass()
@@ -360,7 +375,11 @@ namespace SEAssignment
 
         public void TransferPass(Vehicle v)
         {
-            Console.WriteLine("Not allowed to Transfer Season Pass that has already Expired!");
+            //if (vsp.CurrentState.GetType() != typeof(ValidState))
+            //{
+               // vsp.Vehicle.LicensePlate = v.LicensePlate; 
+                Console.WriteLine("Not allowed to Transfer Season Pass that has already Expired!");
+            //}
         }
 
         public void TerminatePass()
