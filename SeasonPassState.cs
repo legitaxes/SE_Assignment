@@ -167,6 +167,48 @@ namespace SEAssignment
         public void TerminatePass()
         {
             //implementation
+            bool status = true;
+            while (status) {
+                Console.WriteLine("----Terminate Season Parking Pass----");
+                Console.Write("Would you like to terminate your Season Parking Pass? y/n");
+                string termPass = Console.ReadLine();
+                termPass = termPass.ToLower();
+
+                if (termPass.Equals("y")){
+                   Console.WriteLine("Please enter your license plate number.");
+                   string vehicleNo = Console.ReadLine();
+                   vehicleNo = vehicleNo.ToUpper();
+                   if (vsp.Vehicle.LicensePlate == vehicleNo){
+                       Console.WriteLine("Please enter reason for termination.");
+                       string termReason = Console.ReadLine();
+                       if (termReason == null) {
+                           Console.WriteLine("You cannot terminate pass without a reason.");
+                       }
+                       else
+                       {
+                           Console.WriteLine("Are you sure you want to Terminate your Season Parking Pass? y/n");
+                           string termConfirm = Console.ReadLine();
+                           termPass = termPass.ToLower();
+                           if (termConfirm.Equals("y")){
+                               Console.WriteLine("Your Season Parking Pass has been terminated. Thank you and have a nice day.");
+                               vsp.SetCurrentState (vsp.GetTerminatedState());
+                           }
+                       }
+                   }
+                   else 
+                   {
+                       Console.WriteLine("Vehicle is not found."); 
+                   }
+
+                }
+                if (!termPass.Equals("y") && !termPass.Equals("n"))
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Please enter y/n.");
+                    return;
+                }
+            }
+
         }
 
     }
