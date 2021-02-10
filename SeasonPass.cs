@@ -100,7 +100,17 @@ namespace SEAssignment
             startDate = sd;
             endDate = ed;
             vehicle = v;
-            remainingMonth = endDate.Month - startDate.Month;
+            if (endDate.Year == DateTime.Now.Year)
+            {
+                remainingMonth = endDate.Month - DateTime.Now.Month;
+            }
+            else if (endDate.Year > DateTime.Now.Year) {
+                int yeardiff = endDate.Year - DateTime.Now.Year;
+                remainingMonth = (endDate.Month - DateTime.Now.Month) + (12*yeardiff);
+            }
+            else
+                remainingMonth = 0;
+
             v.VehicleSeasonPass = this;
 
             payment = new List<Payment>(); // a list of payment

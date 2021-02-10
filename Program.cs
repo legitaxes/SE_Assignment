@@ -76,6 +76,7 @@ namespace SEAssignment
 
             // create and set season parking pass to a few students's vehicle and lecturer's vehicle
             // each season parking pass is unique to ONE vehicle ONLY
+            DateTime dt0 = new DateTime(2021, 04, 01);
             DateTime dt1 = new DateTime(2021, 01, 01);
             DateTime dt2 = new DateTime(2021, 02, 01);
             DateTime dt3 = new DateTime(2020, 10, 01);
@@ -86,28 +87,28 @@ namespace SEAssignment
 
             //initialize season pass and force its state
             SeasonPass sp1 = new SeasonPass(1, "Car", "4255459871", dt1, dt2, v1, "valid");
-            SeasonPass sp2 = new SeasonPass(2, "Lorry", "7339451801", dt3, dt4, v2, "valid");
+            SeasonPass sp2 = new SeasonPass(2, "Lorry", "7339451801", dt3, dt0, v2, "valid");
             SeasonPass sp3 = new SeasonPass(3, "Motorbike", "1990744994", dt3, dt4, v3, "expired");
-            SeasonPass sp4 = new SeasonPass(4, "Motorbike", "5615482270", dt1, dt2, v4, "expired");
+            SeasonPass sp4 = new SeasonPass(4, "Motorbike", "5615482270", dt3, dt4, v4, "expired");
             SeasonPass sp5 = new SeasonPass(5, "Car", "5061391536", dt4, dt5, v5, "expired");
             SeasonPass sp6 = new SeasonPass(6, "Car", "1199152458", dt4, dt5, v6, "terminated");
             SeasonPass sp7 = new SeasonPass(7, "Motorbike", "0893730734", dt4, dt5, v7, "terminated");
             SeasonPass sp8 = new SeasonPass(8, "Motorbike", "9750302576", dt6, dt7, v8, "terminated");
-            SeasonPass sp9 = new SeasonPass(9, "Car", "5495875714", dt6, dt4, v9, "pending");
-            SeasonPass sp10 = new SeasonPass(10, "Motorbike", "9597863958", dt7, dt1, v10, "pending");
-            SeasonPass sp11 = new SeasonPass(11, "Car", "5475482306", dt7, dt3, v11, "pending");
-            SeasonPass sp12 = new SeasonPass(12, "Motorbike", "7432282064", dt7, dt2, v12, "valid");
-            SeasonPass sp13 = new SeasonPass(13, "Car", "1552733025", dt6, dt2, v13, "valid");
+            SeasonPass sp9 = new SeasonPass(9, "Car", "5495875714", dt1, dt0, v9, "pending");
+            SeasonPass sp10 = new SeasonPass(10, "Motorbike", "9597863958", dt1, dt0, v10, "pending");
+            SeasonPass sp11 = new SeasonPass(11, "Car", "5475482306", dt2, dt0, v11, "pending");
+            SeasonPass sp12 = new SeasonPass(12, "Motorbike", "7432282064", dt1, dt0, v12, "valid");
+            SeasonPass sp13 = new SeasonPass(13, "Car", "1552733025", dt2, dt0, v13, "valid");
 
             // Simluating pending season passes
-            SeasonPass sp14 = new SeasonPass(14, v15.VehicleType, "5265957696", dt6, dt7, v15, "pending");
-            SeasonPass sp15 = new SeasonPass(15, v16.VehicleType, "2552220716", dt4, dt5, v16, "pending");
-            SeasonPass sp16 = new SeasonPass(16, v17.VehicleType, "5402177516", dt3, dt5, v17, "pending");
+            SeasonPass sp14 = new SeasonPass(14, v15.VehicleType, "5265957696", dt1, dt0, v15, "pending");
+            SeasonPass sp15 = new SeasonPass(15, v16.VehicleType, "2552220716", dt2, dt0, v16, "pending");
+            SeasonPass sp16 = new SeasonPass(16, v17.VehicleType, "5402177516", dt1, dt2, v17, "pending");
 
             List<SeasonPass> spList = new List<SeasonPass> { sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9, sp10, sp11, sp12, sp13, sp14, sp15, sp16}; //was trying to display the indiv student season pass but failed
 
 
-            // add a few payment records for the above season pass
+            //initialize a few dummy dates
             DateTime d1 = new DateTime(2020, 01, 01);
             DateTime d2 = new DateTime(2020, 02, 01);
             DateTime d3 = new DateTime(2020, 03, 01);
@@ -116,6 +117,8 @@ namespace SEAssignment
             DateTime d6 = new DateTime(2020, 06, 01);
             DateTime d7 = new DateTime(2020, 07, 01);
 
+
+            // add a few payment records for the above season pass
             // 80dollar car - Surface | 110 dollar car - Sheltered | 17 dollar motorbike Sheltered | 15 dollar motorbike Surface
             Payment p1 = new Payment(d1, 80, "Credit Card", "Surface", sp1);
             Payment p2 = new Payment(d3, 80, "Credit Card", "Surface", sp1);
@@ -132,7 +135,6 @@ namespace SEAssignment
             Payment p13 = new Payment(d6, 15, "Credit Card", "Surface", sp12);
             Payment p14 = new Payment(d7, 110, "Credit Card", "Sheltered", sp13);
             Payment p15 = new Payment(d2, 110, "Credit Card", "Sheltered", sp1);
-
 
 
 
@@ -191,13 +193,14 @@ namespace SEAssignment
                 cp3
             };
 
-            // create a few Parking Session for Vehicles Parked in carparks to simulate cars that are parked
+
             DateTime dt8 = new DateTime(2020, 01, 01);
             DateTime dt9 = new DateTime(2020, 01, 03);
             DateTime dt10 = new DateTime(2020, 10, 01);
             DateTime dt11 = new DateTime(2020, 10, 05);
             DateTime dt12 = new DateTime(2020, 11, 06);
             DateTime dt13 = new DateTime(2020, 11, 07);
+            // create a few Parking Session for Vehicles Parked in carparks to simulate cars that are parked
 
             ParkingSession ps1 = new ParkingSession(1, dt10, dt11, v1, cp1); // vehicle1 parked in carpark1
             ParkingSession ps2 = new ParkingSession(2, dt8, dt9, v2, cp2); // vehicle2 parked in carpark2
@@ -263,7 +266,7 @@ namespace SEAssignment
                             break;
                         }
 
-                        Console.Write("No student with the given student ID found.");
+                        Console.WriteLine("No student with the given student ID found.");
                         break;
 
                     case 2: //login as lecturer
@@ -282,7 +285,7 @@ namespace SEAssignment
                             break;
                         }
 
-                        Console.Write("No Lecturer with the given staff ID found.");
+                        Console.WriteLine("No Lecturer with the given staff ID found.");
                         break;
 
                     case 3: //login as manager
@@ -359,7 +362,7 @@ namespace SEAssignment
                     switch (stud_choice)
                     {
                         case 1: // view season parking pass
-                            Console.WriteLine("Viewing Your Season Parking Pass");
+                            Console.WriteLine("=============== Viewing Your Season Parking Pass ===============");
                             Console.WriteLine("");
                             foreach (Vehicle v in student.MyVehicle)
                             {
@@ -367,31 +370,29 @@ namespace SEAssignment
                                 {
                                     if (v == sssp.Vehicle && sssp.CurrentState.GetType() == typeof(PendingState))
                                     {
-                                        Console.WriteLine("This Season Parking Pass application is still pending. Preliminary details:");
-                                        Console.WriteLine("ID:{0}, IU#:{1}, Vehicle:{2}, Months:{3}", sssp.SeasonPassID, sssp.IUNumber, sssp.VehicleType, sssp.RemainingMonth);
+                                        //Console.WriteLine("This Season Parking Pass application is still pending. Preliminary details:");
+                                        Console.WriteLine("ID:{0}, IU#: {1}, Vehicle: {2}, Months Remaining: {3}, Expiry: {4}, Validity: {5}", sssp.SeasonPassID, sssp.IUNumber, sssp.VehicleType, sssp.RemainingMonth, sssp.EndDate.ToString("dd/MMM/yyyy"), "PENDING");
                                         Console.WriteLine();
                                     }
                                     else if (v == sssp.Vehicle && sssp.CurrentState.GetType() == typeof(TerminatedState))
                                     {
-                                        Console.WriteLine("This Season Parking Pass application has been terminated:");
-                                        Console.WriteLine("ID:{0}, IU#:{1}, Vehicle:{2}, Months:{3}", sssp.SeasonPassID, sssp.IUNumber, sssp.VehicleType, sssp.RemainingMonth);
+                                        //Console.WriteLine("This Season Parking Pass application has been terminated:");
+                                        Console.WriteLine("ID:{0}, IU#: {1}, Vehicle: {2}, Months Remaining: {3}, Expiry: {4}, Validity: {5}", sssp.SeasonPassID, sssp.IUNumber, sssp.VehicleType, sssp.RemainingMonth, sssp.EndDate.ToString("dd/MMM/yyyy"), "TERMINATED");
                                         Console.WriteLine();
                                     }
                                     else if (v == sssp.Vehicle && sssp.CurrentState.GetType() == typeof(ExpiredState))
                                     {
-                                        Console.WriteLine("This Season Parking Pass application has expired:");
-                                        Console.WriteLine("ID:{0}, IU#:{1}, Vehicle:{2}, Months:{3}", sssp.SeasonPassID, sssp.IUNumber, sssp.VehicleType, sssp.RemainingMonth);
+                                        //Console.WriteLine("This Season Parking Pass application has expired:");
+                                        Console.WriteLine("ID:{0}, IU#: {1}, Vehicle: {2}, Months Remaining: {3}, Expiry: {4}, Validity: {5}", sssp.SeasonPassID, sssp.IUNumber, sssp.VehicleType, sssp.RemainingMonth, sssp.EndDate.ToString("dd/MMM/yyyy"), "EXPIRED");
                                         Console.WriteLine();
                                     }
                                     else if(v == sssp.Vehicle)
                                     {
-                                        Console.WriteLine("ID:{0}, IU#:{1}, Vehicle:{2}, Months:{3}", sssp.SeasonPassID, sssp.IUNumber, sssp.VehicleType, sssp.RemainingMonth);
+                                        Console.WriteLine("ID:{0}, IU#: {1}, Vehicle: {2}, Months Remaining: {3}, Purchase Date: {4}, Expiry: {5}, Validity: {6}", sssp.SeasonPassID, sssp.IUNumber, sssp.VehicleType, sssp.RemainingMonth, sssp.StartDate.ToString("dd/MMM/yyyy"), sssp.EndDate.ToString("dd/MMM/yyyy"), "VALID");
                                         Console.WriteLine();
                                     }
                                 }
                             }
-                            //viewSeasonPass();
-
                             break;
 
                         case 2: //renew season parking pass
@@ -418,7 +419,7 @@ namespace SEAssignment
                                 Console.WriteLine("Please enter a valid number!");
                                 return;
                             }
-                            if (sp < 0 || sp > 5)
+                            if (sp <= 0 || sp > spList.Count)
                             {
                                 Console.WriteLine("Please enter a season pass displayed.");
                                 return;
@@ -439,7 +440,7 @@ namespace SEAssignment
                         case 4: // transfer season parking pass
                             //transferSeasonPass();
                             Console.WriteLine("");
-                            Console.WriteLine("=====Transfer Season Parking Pass====");
+                            Console.WriteLine("===== Transfer Season Parking Pass ====");
                             Console.WriteLine("");
                             for (int i = 0; i < student.MyVehicle.Count();i++)
                             {
@@ -548,41 +549,37 @@ namespace SEAssignment
                     switch (lecturer_choice)
                     {
                         case 1: // view season parking pass
-                            Console.WriteLine();
-                            Console.WriteLine("Viewing Your Season Parking Pass");
+                            Console.WriteLine("=============== Viewing Your Season Parking Pass ===============");
                             Console.WriteLine("");
                             foreach (Vehicle v in lecturer.MyVehicle)
                             {
-                                foreach (SeasonPass spp in spList)
+                                foreach (SeasonPass sssp in spList)
                                 {
-                                    if (v == spp.Vehicle && spp.CurrentState.GetType() == typeof(PendingState))
+                                    if (v == sssp.Vehicle && sssp.CurrentState.GetType() == typeof(PendingState))
                                     {
-                                        Console.WriteLine("This Season Parking Pass application is still pending. Preliminary details:");
-                                        Console.WriteLine("ID:{0}, IU#:{1}, Vehicle:{2}, Months:{3}", spp.SeasonPassID, spp.IUNumber, spp.VehicleType, spp.RemainingMonth);
+                                        //Console.WriteLine("This Season Parking Pass application is still pending. Preliminary details:");
+                                        Console.WriteLine("ID:{0}, IU#: {1}, Vehicle: {2}, Months Remaining: {3}, Expiry: {4}, Validity: {5}", sssp.SeasonPassID, sssp.IUNumber, sssp.VehicleType, sssp.RemainingMonth, sssp.EndDate.ToString("dd/MMM/yyyy"), "PENDING");
                                         Console.WriteLine();
                                     }
-                                    else if (v == spp.Vehicle && spp.CurrentState.GetType() == typeof(TerminatedState))
+                                    else if (v == sssp.Vehicle && sssp.CurrentState.GetType() == typeof(TerminatedState))
                                     {
-                                        Console.WriteLine("This Season Parking Pass application has been terminated:");
-                                        Console.WriteLine("ID:{0}, IU#:{1}, Vehicle:{2}, Months:{3}", spp.SeasonPassID, spp.IUNumber, spp.VehicleType, spp.RemainingMonth);
+                                        //Console.WriteLine("This Season Parking Pass application has been terminated:");
+                                        Console.WriteLine("ID:{0}, IU#: {1}, Vehicle: {2}, Months Remaining: {3}, Expiry: {4}, Validity: {5}", sssp.SeasonPassID, sssp.IUNumber, sssp.VehicleType, sssp.RemainingMonth, sssp.EndDate.ToString("dd/MMM/yyyy"), "TERMINATED");
                                         Console.WriteLine();
                                     }
-                                    else if (v == spp.Vehicle && spp.CurrentState.GetType() == typeof(ExpiredState))
+                                    else if (v == sssp.Vehicle && sssp.CurrentState.GetType() == typeof(ExpiredState))
                                     {
-                                        Console.WriteLine("This Season Parking Pass application has expired:");
-                                        Console.WriteLine("ID:{0}, IU#:{1}, Vehicle:{2}, Months:{3}", spp.SeasonPassID, spp.IUNumber, spp.VehicleType, spp.RemainingMonth);
+                                        //Console.WriteLine("This Season Parking Pass application has expired:");
+                                        Console.WriteLine("ID:{0}, IU#: {1}, Vehicle: {2}, Months Remaining: {3}, Expiry: {4}, Validity: {5}", sssp.SeasonPassID, sssp.IUNumber, sssp.VehicleType, sssp.RemainingMonth, sssp.EndDate.ToString("dd/MMM/yyyy"), "EXPIRED");
                                         Console.WriteLine();
                                     }
-                                    else if (v == spp.Vehicle)
+                                    else if (v == sssp.Vehicle)
                                     {
-                                        Console.WriteLine("ID:{0}, IU#:{1}, Vehicle:{2}, Months:{3}", spp.SeasonPassID, spp.IUNumber, spp.VehicleType, spp.RemainingMonth);
+                                        Console.WriteLine("ID:{0}, IU#: {1}, Vehicle: {2}, Months Remaining: {3}, Purchase Date: {4}, Expiry: {5}, Validity: {6}", sssp.SeasonPassID, sssp.IUNumber, sssp.VehicleType, sssp.RemainingMonth, sssp.StartDate.ToString("dd/MMM/yyyy"), sssp.EndDate.ToString("dd/MMM/yyyy"), "VALID");
                                         Console.WriteLine();
                                     }
-                                    //sp.Renew();
                                 }
                             }
-                            //viewSeasonPass();
-
                             break;
 
                         case 2: //renew season parking pass
@@ -606,7 +603,7 @@ namespace SEAssignment
                                 Console.WriteLine("Please enter a valid number!");
                                 return;
                             }
-                            if (sp < 0 || sp> 1)
+                            if (sp < 0 || sp > spList.Count)
                             {
                                 Console.WriteLine("Please enter a season pass displayed.");
                                 return;
@@ -618,7 +615,6 @@ namespace SEAssignment
                                     x.Renew();
                                 }
                             }
-                            //renewSeasonPass();
                             break;
 
                         case 3: // terminate season parking pass
@@ -628,7 +624,7 @@ namespace SEAssignment
                         case 4: // transfer season parking pass
                             //transferSeasonPass();
                             Console.WriteLine("");
-                            Console.WriteLine("=====Transfer Season Parking Pass====");
+                            Console.WriteLine("===== Transfer Season Parking Pass ====");
                             Console.WriteLine("");
                             for (int i = 0; i < lecturer.MyVehicle.Count(); i++)
                             {
@@ -734,12 +730,14 @@ namespace SEAssignment
                         case 1: // process season parking pass
                             //processSeasonParking();
                             Console.WriteLine();
+                            Console.WriteLine("================ Process Season Parking Pass ================");
                             List<SeasonPass> pendingList = new List<SeasonPass>();
                             for (int i = 0; i < spList.Count(); i++)
                             {
                                 if (spList[i].CurrentState.GetType() == typeof(PendingState))
                                 {
-                                    Console.WriteLine("ID:{0}, Vehicle:{1}, I#:{2}, Start date:{3}, End Date:{4}", spList[i].SeasonPassID, spList[i].VehicleType, spList[i].IUNumber, spList[i].StartDate, spList[i].EndDate);
+                                    Console.WriteLine("ID:{0}, IU#: {1}, Vehicle: {2}, Start Date: {3}, End Date: {4}", spList[i].SeasonPassID, spList[i].IUNumber, spList[i].VehicleType, spList[i].StartDate.ToString("dd/MMM/yyyy"), spList[i].EndDate.ToString("dd/MMM/yyyy"));
+                                    //Console.WriteLine("ID:{0}, Vehicle:{1}, I#:{2}, Start date:{3}, End Date:{4}", spList[i].SeasonPassID, spList[i].VehicleType, spList[i].IUNumber, spList[i].StartDate, spList[i].EndDate);
                                     pendingList.Add(spList[i]);
                                 }
                             }
@@ -764,10 +762,11 @@ namespace SEAssignment
                                         found = true;
                                         Console.WriteLine();
                                         Console.WriteLine("Processing Season Parking pass with ID of {0}: ", process_choice);
-                                        Console.WriteLine("Season Parking Pass Details:");
+                                        Console.WriteLine();
+                                        Console.WriteLine("============ Season Parking Pass Details ============");
                                         Console.WriteLine("ID:{0}, Vehicle:{1}, I#:{2}, Start date:{3}, End Date:{4}", pendingList[i].SeasonPassID, pendingList[i].VehicleType, pendingList[i].IUNumber, pendingList[i].StartDate, pendingList[i].EndDate);
                                         Console.WriteLine();
-                                        Console.WriteLine("Approve Season Park Pass? (y/n)");
+                                        Console.Write("Approve Season Park Pass? (y/n) ");
                                         string approve_choice = Console.ReadLine().ToLower();
                                         switch (approve_choice)
                                         {
@@ -804,17 +803,6 @@ namespace SEAssignment
 
                         case 2: // generate report for specific car park
                             cp.GenerateReport(cpList, spList);
-                            //switch (cpn) { //execute according to carpark number - probably the wrong way to do this but idrc
-                            //    case 1:
-                            //        cp1.GenerateReport(months);
-                            //        break;
-                            //    case 2:
-                            //        cp2.GenerateReport(months);
-                            //        break;
-                            //    case 3:
-                            //        cp3.GenerateReport(months);
-                            //        break;
-                            //}
                             break; //finish generating report
 
                         case 3: // log out of manager
