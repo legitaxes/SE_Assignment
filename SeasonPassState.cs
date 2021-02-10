@@ -165,15 +165,38 @@ namespace SEAssignment
             //    Console.WriteLine("Pass Transferred Successfully!");
             // if vehicle type does not match
             //    do something..
-            if (vsp.VehicleType == v.VehicleType)
+            if (vsp.CurrentState.GetType() == typeof(ValidState))
             {
-                if (vsp.CurrentState.GetType() == typeof(ValidState))
+                Console.WriteLine("");
+                Console.Write("Please enter new license plate: ");
+                string license = Console.ReadLine();
+                if (license.Length == 7)
                 {
-                    vsp.Vehicle = v;
-                    vsp.Vehicle.LicensePlate = v.LicensePlate;
-                    Console.WriteLine("Season Pass Transferred Successfully!");
+                    Console.Write("Please enter vehicle type: ");
+                    string lvt = Console.ReadLine();
+                    if (vsp.VehicleType == lvt)
+                    {
+                        Console.Write("Please enter the exact IUNumber: ");
+                        string liun = Console.ReadLine();
+                        if (liun == vsp.IUNumber)
+                        {
+                            v.LicensePlate = license;
+                            Console.WriteLine("Season Pass Transferred Successfully!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("IUNumber Do Not Match!");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Vehicle Type Do Not Match!");
+                    }
                 }
-                
+                else
+                {
+                    Console.WriteLine("Please enter a valid license plate!");
+                } 
             }
         }
 

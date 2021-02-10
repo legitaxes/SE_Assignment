@@ -440,21 +440,23 @@ namespace SEAssignment
                             break;
 
                         case 4: // transfer season parking pass
-                            //transferSeasonPass();
-                            Console.WriteLine("");
-                            Console.WriteLine("===== Transfer Season Parking Pass ====");
-                            Console.WriteLine("");
-                            for (int i = 0; i < student.MyVehicle.Count();i++)
+                            for (int i = 0; i < student.MyVehicle.Count(); i++)
                             {
-                                Console.WriteLine($"{i + 1}) License Plate: {student.MyVehicle[i].LicensePlate}  Vehicle Type: " +
-                                    $"{student.MyVehicle[i].VehicleType}  IUN {student.MyVehicle[i].IUNumber}");
+                                foreach (SeasonPass stusp in spList)
+                                {
+                                    if (stusp.IUNumber == student.MyVehicle[i].IUNumber)
+                                    {
+                                        Console.WriteLine($"{i + 1}) License Plate: {student.MyVehicle[i].LicensePlate}  Vehicle Type: " +
+                                    $"{student.MyVehicle[i].VehicleType}  IUNumber: {student.MyVehicle[i].IUNumber} Pass Status: {stusp.CurrentState.GetType().ToString().Substring(13)}");
+                                    }
+                                }
                             }
                             Console.WriteLine("");
                             Console.Write("Please select the vehicle to transfer season parking pass: ");
-                            string select = Console.ReadLine();
+                            string sselect = Console.ReadLine();
                             int ssp;
-                            bool stu = Int32.TryParse(select, out ssp);
-                            if (!stu)
+                            bool lec = Int32.TryParse(sselect, out ssp);
+                            if (!lec)
                             {
                                 Console.WriteLine("Please enter valid number");
                                 continue;
@@ -467,39 +469,12 @@ namespace SEAssignment
                             }
                             else
                             {
-                                var stuv = student.MyVehicle[ssp-1];
-                                Console.WriteLine("");
-                                Console.Write("Please enter new license plate: ");
-                                string license = Console.ReadLine();
-                                if (license.Length != 7)
-                                {
-                                    Console.WriteLine("Please enter a valid license plate!");
-                                    continue;
-                                }
-                                Console.Write("Please enter vehicle type: ");
-                                string vt = Console.ReadLine();
-
+                                var stuv = student.MyVehicle[ssp - 1];
                                 foreach (SeasonPass seas in spList)
                                 {
-                                    if (seas.IUNumber == student.MyVehicle[ssp-1].IUNumber)
+                                    if (seas.IUNumber == student.MyVehicle[ssp - 1].IUNumber)
                                     {
-                                        if (vt == student.MyVehicle[ssp-1].VehicleType)
-                                        {
-                                            if (seas.CurrentState.GetType() == typeof(ValidState))
-                                            {
-                                                stuv.LicensePlate = license;
-                                                seas.TransferPass(stuv);
-                                            }
-                                            else
-                                            {
-                                                seas.TransferPass(stuv);
-                                            }
-                                        }
-                                        else
-                                        {
-                                            Console.WriteLine("Vehicle Types Do Not Match!");
-                                        }
-
+                                        seas.TransferPass(stuv);
                                     }
                                 }
                             }
@@ -636,8 +611,14 @@ namespace SEAssignment
                             Console.WriteLine("");
                             for (int i = 0; i < lecturer.MyVehicle.Count(); i++)
                             {
-                                Console.WriteLine($"{i + 1}) License Plate: {lecturer.MyVehicle[i].LicensePlate}  Vehicle Type: " +
-                                    $"{lecturer.MyVehicle[i].VehicleType}  IUN {lecturer.MyVehicle[i].IUNumber}");
+                                foreach (SeasonPass llsp in spList)
+                                {
+                                    if (llsp.IUNumber == lecturer.MyVehicle[i].IUNumber)
+                                    {
+                                        Console.WriteLine($"{i + 1}) License Plate: {lecturer.MyVehicle[i].LicensePlate}  Vehicle Type: " +
+                                    $"{lecturer.MyVehicle[i].VehicleType}  IUNumber: {lecturer.MyVehicle[i].IUNumber} Pass Status: {llsp.CurrentState.GetType().ToString().Substring(13)}");
+                                    }
+                                }
                             }
                             Console.WriteLine("");
                             Console.Write("Please select the vehicle to transfer season parking pass: ");
@@ -658,38 +639,11 @@ namespace SEAssignment
                             else
                             {
                                 var lecv = lecturer.MyVehicle[lsp - 1];
-                                Console.WriteLine("");
-                                Console.Write("Please enter new license plate: ");
-                                string license = Console.ReadLine();
-                                if (license.Length != 7)
-                                {
-                                    Console.WriteLine("Please enter a valid license plate!");
-                                    continue;
-                                }
-                                Console.Write("Please enter vehicle type: ");
-                                string lvt = Console.ReadLine();
-
                                 foreach (SeasonPass seas in spList)
                                 {
                                     if (seas.IUNumber == lecturer.MyVehicle[lsp - 1].IUNumber)
                                     {
-                                        if (lvt == lecturer.MyVehicle[lsp - 1].VehicleType)
-                                        {
-                                            if (seas.CurrentState.GetType() == typeof(ValidState))
-                                            {
-                                                license = lecv.LicensePlate;
-                                                seas.TransferPass(lecv);
-                                            }
-                                            else
-                                            {
-                                                seas.TransferPass(lecv);
-                                            }
-                                        }
-                                        else
-                                        {
-                                            Console.WriteLine("Vehicle Types Do Not Match!");
-                                        }
-
+                                        seas.TransferPass(lecv);
                                     }
                                 }
                             }
