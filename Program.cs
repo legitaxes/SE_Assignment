@@ -755,7 +755,7 @@ namespace SEAssignment
                                 {
                                     Console.WriteLine();
                                     Console.WriteLine("Error: Please enter numbers only.");
-                                    ManagerMenu();
+                                    continue;
                                 }
                                 for (int i=0; i < pendingList.Count(); i++)
                                 {
