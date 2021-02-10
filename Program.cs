@@ -399,6 +399,7 @@ namespace SEAssignment
 
                             //Console.WriteLine("Number of season parking pass: {0}",student.MyVehicle.Count);
                             Console.WriteLine("");
+                            int count = 0;
                             foreach(Vehicle v in student.MyVehicle)
                             {
                                 foreach(SeasonPass spp in spList)
@@ -406,6 +407,7 @@ namespace SEAssignment
                                     if (v == spp.Vehicle)
                                     {
                                         Console.WriteLine("ID:{0}, IU#:{1}, Vehicle:{2}, Months:{3}", spp.SeasonPassID, spp.IUNumber, spp.VehicleType, spp.RemainingMonth);
+                                        count++;
                                     }
                                 }
                             }
@@ -417,12 +419,12 @@ namespace SEAssignment
                             {
                                 Console.WriteLine();
                                 Console.WriteLine("Please enter a valid number!");
-                                return;
+                                continue;
                             }
-                            if (sp <= 0 || sp > spList.Count)
+                            if (sp <= 0 || sp > count)
                             {
                                 Console.WriteLine("Please enter a season pass displayed.");
-                                return;
+                                continue;
                             }
                             foreach (SeasonPass x in spList)
                             {
