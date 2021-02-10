@@ -25,7 +25,9 @@ namespace SEAssignment
             vsp = sp;
         }
 
-        public void ApprovePass() { 
+        public void ApprovePass() {
+            vsp.SetCurrentState(vsp.GetValidState()); //set season pass state to valid
+            Console.WriteLine("Season pass with ID of {0} sucessfully approved.", vsp.SeasonPassID);
             //implementation of Approve Season Parking Pass
         }
 

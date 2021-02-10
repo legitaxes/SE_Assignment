@@ -107,6 +107,12 @@ namespace SEAssignment
 
         }
 
+        public ISeasonPassState CurrentState
+        {
+            get { return currentState; }
+            set { currentState = value; }
+        }
+
         // !!! functions to be called to run the function in the specific state !!!
         //retrieve states
         public ISeasonPassState GetPendingState() { return pendingState; }
