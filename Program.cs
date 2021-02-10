@@ -243,7 +243,7 @@ namespace SEAssignment
                 if (!success)
                 {
                     Console.WriteLine();
-                    Console.WriteLine("Please Enter Interger Input only!");
+                    Console.WriteLine("Please Enter Integer Input only!");
                     continue;
                 }
 
@@ -355,7 +355,7 @@ namespace SEAssignment
 
                     if (!success) //checks if 'choice' input is valid
                     {
-                        Console.WriteLine("Please Enter Interger Input only!");
+                        Console.WriteLine("Please Enter Integer Input only!");
                         continue;
                     }
 
@@ -399,13 +399,15 @@ namespace SEAssignment
 
                             //Console.WriteLine("Number of season parking pass: {0}",student.MyVehicle.Count);
                             Console.WriteLine("");
-                            foreach (Vehicle v in student.MyVehicle)
+                            int count = 0;
+                            foreach(Vehicle v in student.MyVehicle)
                             {
                                 foreach (SeasonPass spp in spList)
                                 {
                                     if (v == spp.Vehicle)
                                     {
                                         Console.WriteLine("ID:{0}, IU#:{1}, Vehicle:{2}, Months:{3}", spp.SeasonPassID, spp.IUNumber, spp.VehicleType, spp.RemainingMonth);
+                                        count++;
                                     }
                                 }
                             }
@@ -417,12 +419,12 @@ namespace SEAssignment
                             {
                                 Console.WriteLine();
                                 Console.WriteLine("Please enter a valid number!");
-                                return;
+                                continue;
                             }
-                            if (sp <= 0 || sp > spList.Count)
+                            if (sp <= 0 || sp > count)
                             {
                                 Console.WriteLine("Please enter a season pass displayed.");
-                                return;
+                                continue;
                             }
                             foreach (SeasonPass x in spList)
                             {
@@ -531,7 +533,7 @@ namespace SEAssignment
                                 Console.WriteLine("Please enter valid number");
                                 continue;
                             }
-                            if (ssp > student.MyVehicle.Count())
+                            if (ssp > student.MyVehicle.Count() || ssp < 1)
                             {
                                 Console.WriteLine("");
                                 Console.WriteLine("Please select the available vehicle! ");
@@ -616,7 +618,7 @@ namespace SEAssignment
 
                     if (!success)
                     {
-                        Console.WriteLine("Please Enter an Interger Input only!");
+                        Console.WriteLine("Please Enter an Integer Input only!");
                         continue;
                     }
 
@@ -715,7 +717,7 @@ namespace SEAssignment
                                 Console.WriteLine("Please enter valid number");
                                 continue;
                             }
-                            if (lsp > lecturer.MyVehicle.Count())
+                            if (lsp > lecturer.MyVehicle.Count() || lsp < 1)
                             {
                                 Console.WriteLine("");
                                 Console.WriteLine("Please select the available vehicle! ");
@@ -795,7 +797,7 @@ namespace SEAssignment
 
                     if (!success)
                     {
-                        Console.WriteLine("Please Enter Interger Input only!");
+                        Console.WriteLine("Please Enter Integer Input only!");
                         continue;
                     }
 
