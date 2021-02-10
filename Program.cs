@@ -243,7 +243,7 @@ namespace SEAssignment
                 if (!success)
                 {
                     Console.WriteLine();
-                    Console.WriteLine("Please Enter Interger Input only!");
+                    Console.WriteLine("Please Enter Integer Input only!");
                     continue;
                 }
 
@@ -355,7 +355,7 @@ namespace SEAssignment
 
                     if (!success) //checks if 'choice' input is valid
                     {
-                        Console.WriteLine("Please Enter Interger Input only!");
+                        Console.WriteLine("Please Enter Integer Input only!");
                         continue;
                     }
 
@@ -457,7 +457,7 @@ namespace SEAssignment
                                 Console.WriteLine("Please enter valid number");
                                 continue;
                             }
-                            if (ssp > student.MyVehicle.Count())
+                            if (ssp > student.MyVehicle.Count() || ssp < 1)
                             {
                                 Console.WriteLine("");
                                 Console.WriteLine("Please select the available vehicle! ");
@@ -542,7 +542,7 @@ namespace SEAssignment
 
                     if (!success)
                     {
-                        Console.WriteLine("Please Enter an Interger Input only!");
+                        Console.WriteLine("Please Enter an Integer Input only!");
                         continue;
                     }
 
@@ -641,7 +641,7 @@ namespace SEAssignment
                                 Console.WriteLine("Please enter valid number");
                                 continue;
                             }
-                            if (lsp > lecturer.MyVehicle.Count())
+                            if (lsp > lecturer.MyVehicle.Count() || lsp < 1)
                             {
                                 Console.WriteLine("");
                                 Console.WriteLine("Please select the available vehicle! ");
@@ -721,7 +721,7 @@ namespace SEAssignment
 
                     if (!success)
                     {
-                        Console.WriteLine("Please Enter Interger Input only!");
+                        Console.WriteLine("Please Enter Integer Input only!");
                         continue;
                     }
 
