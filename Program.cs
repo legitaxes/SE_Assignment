@@ -254,7 +254,7 @@ namespace SEAssignment
                         Console.Write("Enter your Student ID: ");
                         string studID = Console.ReadLine();
 
-                        StudentIterator studentiterator = new StudentIterator(studentList, studID);
+                        StudentIterator studentiterator = studentList.CreateIterator(studID);
                         if (studentiterator.isfound == true)
                         {
                             Student student = (Student)studentiterator.Found();
@@ -273,7 +273,7 @@ namespace SEAssignment
                         Console.Write("Enter your Staff ID: ");
                         string staffID = Console.ReadLine();
 
-                        LecturerIterator lectureriterator = new LecturerIterator(lecturerList, staffID);
+                        LecturerIterator lectureriterator = lecturerList.CreateIterator(staffID);
                         if (lectureriterator.isfound == true)
                         {
                             Lecturer lecturer = (Lecturer)lectureriterator.Found();
@@ -386,7 +386,7 @@ namespace SEAssignment
                                         Console.WriteLine("ID:{0}, IU#: {1}, Vehicle: {2}, Months Remaining: {3}, Expiry: {4}, Validity: {5}", sssp.SeasonPassID, sssp.IUNumber, sssp.VehicleType, sssp.RemainingMonth, sssp.EndDate.ToString("dd/MMM/yyyy"), "EXPIRED");
                                         Console.WriteLine();
                                     }
-                                    else if(v == sssp.Vehicle)
+                                    else if (v == sssp.Vehicle)
                                     {
                                         Console.WriteLine("ID:{0}, IU#: {1}, Vehicle: {2}, Months Remaining: {3}, Purchase Date: {4}, Expiry: {5}, Validity: {6}", sssp.SeasonPassID, sssp.IUNumber, sssp.VehicleType, sssp.RemainingMonth, sssp.StartDate.ToString("dd/MMM/yyyy"), sssp.EndDate.ToString("dd/MMM/yyyy"), "VALID");
                                         Console.WriteLine();
@@ -402,7 +402,7 @@ namespace SEAssignment
                             int count = 0;
                             foreach(Vehicle v in student.MyVehicle)
                             {
-                                foreach(SeasonPass spp in spList)
+                                foreach (SeasonPass spp in spList)
                                 {
                                     if (v == spp.Vehicle)
                                     {
@@ -436,8 +436,82 @@ namespace SEAssignment
                             break;
 
                         case 3: // terminate season parking pass
-                            //terminateSeasonPass();
+                                //       ValidState vs = new ValidState(spass);
+                                // vs.TerminatePass();
+                                //terminateSeasonPass();
+                            Console.WriteLine("");
+                            Console.WriteLine("===== Terminate Season Parking Pass ====");
+                            Console.WriteLine("");
+
+                            int price = 0;
+                            bool status = true;
+                            while (status) {
+                                Console.WriteLine("Would you like to terminate your Season Parking Pass? y/n.");
+                                string termPass = Console.ReadLine();
+                                termPass = termPass.ToLower();
+
+                                if (termPass.Equals("y")) {
+                                    Console.WriteLine("Please enter your license plate number."); //System prompt for user to input license plate number.
+                                    string vehicleNo = Console.ReadLine();
+                                    vehicleNo = vehicleNo.ToUpper();
+                                    foreach (Vehicle item in vList)
+                                    {
+                                        if (item.LicensePlate == vehicleNo)
+                                        {
+                                            Console.WriteLine("Please enter reason for termination."); //System prompt for user to input reason.
+                                            string termReason = Console.ReadLine();
+                                            if (termReason == null)
+                                            {
+
+                                                Console.WriteLine("You cannot terminate pass without a reason."); //Validation to make sure user has entered a reason to terminate season parking pass.
+                                                return;
+
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("Are you sure you want to Terminate your Season Parking Pass? y/n"); //2nd Confirmation of Termination.
+                                                string termConfirm = Console.ReadLine();
+                                                termPass = termPass.ToLower();
+                                                if (termConfirm.Equals("y"))
+                                                {
+                                                    if (item.VehicleType == "Car" || item.VehicleType == "Lorry")
+                                                    { //System calculates and refunds months not used based on Vehicle Type.
+                                                        price = 80;
+                                                        int refunded = price * spass.RemainingMonth;
+                                                        Console.WriteLine("Total amount of $" + refunded + " is refunded back to you.");
+                                                        Console.WriteLine("Your Season Parking Pass has been terminated. Thank you and have a nice day.");
+                                                        spass.SetCurrentState(spass.GetTerminatedState()); //User's account will be set to terminated.
+                                                        break;
+                                                    }
+                                                    else if (item.VehicleType == "Motorbike")
+                                                    { //System calculates and refunds months not used based on Vehicle Type.
+                                                        price = 15;
+                                                        int refunded = price * spass.RemainingMonth;
+                                                        Console.WriteLine("Total amount of $" + refunded + " is refunded back to you.");
+                                                        Console.WriteLine("Your Season Parking Pass has been terminated. Thank you and have a nice day.");
+                                                        spass.SetCurrentState(spass.GetTerminatedState()); //User's account will be set to terminated.
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            //Console.WriteLine("Vehicle is not found, please check that you have entered the correct license plate number."); //If license plate number is not found the system will prompt user to re-enter.
+                                            break;
+                                        }
+                                    }
+                                    if (!termPass.Equals("y") && !termPass.Equals("n")) //Validation to make sure user has entered either y/n.
+                                    {
+                                        Console.WriteLine();
+                                        Console.WriteLine("Please enter y/n.");
+                                        break;
+                                    }
+                                }
+                                break;
+                            }
                             break;
+
 
                         case 4: // transfer season parking pass
                             for (int i = 0; i < student.MyVehicle.Count(); i++)

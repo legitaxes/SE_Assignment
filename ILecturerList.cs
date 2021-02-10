@@ -6,6 +6,6 @@ namespace SEAssignment
 {
     public interface ILecturerList
     {
-        LecturerIterator CreateIterator();
+        LecturerIterator CreateIterator(string staffid);
     }
 }
