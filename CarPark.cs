@@ -308,9 +308,9 @@ namespace SEAssignment
             }
             Console.WriteLine();
             Console.WriteLine("================= Number of Renewals/Purchases of Season Pass =================");
-            Console.WriteLine("Number of Car/Lorry SeasonPass Purchases: {0} ", countCarSeasonPass);
-            Console.WriteLine("Number of MotorBike SeasonPass Purchases: {0}", countMotorBikeSeasonPass);
-            Console.WriteLine("Total amount collected from Season Pass Puchases for the month {0}: ${1}", cpList[0].pastRevenue.ElementAt(months - 1).Key, seasonPassRevenue);
+            Console.WriteLine("Number of Car/Lorry Season Parking Pass Purchases: {0} ", countCarSeasonPass);
+            Console.WriteLine("Number of MotorBike Season Parking Pass Purchases: {0}", countMotorBikeSeasonPass);
+            Console.WriteLine("Total amount collected from Season Parking Pass Purchases for the month {0}: ${1}", cpList[0].pastRevenue.ElementAt(months - 1).Key, seasonPassRevenue);
         }
 
         public void ShowCarParkFares() { //print parking charges
