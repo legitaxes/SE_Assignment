@@ -441,75 +441,43 @@ namespace SEAssignment
                             Console.WriteLine("===== Terminate Season Parking Pass ====");
                             Console.WriteLine("");
 
-                            int price = 0;
                             bool status = true;
+                            string input = "";
+                            string vehicleNo;
+                            bool found = false;
                             while (status)
                             {
-                                Console.WriteLine("Would you like to terminate your Season Parking Pass? y/n.");
-                                string termPass = Console.ReadLine();
-                                termPass = termPass.ToLower();
-
-                                if (termPass.Equals("y"))
+                                Console.WriteLine("Please enter your license plate number: "); //System prompt for user to input license plate number.
+                                input = Console.ReadLine();
+                                vehicleNo = input.ToUpper();
+                                foreach (SeasonPass item in spList)
                                 {
-                                    Console.WriteLine("Please enter your license plate number."); //System prompt for user to input license plate number.
-                                    string vehicleNo = Console.ReadLine();
-                                    vehicleNo = vehicleNo.ToUpper();
-                                    foreach (Vehicle item in vList)
+                                    if (item.Vehicle.LicensePlate == vehicleNo)
                                     {
-                                        if (item.LicensePlate == vehicleNo)
+                                        Console.WriteLine("Please enter reason for termination: "); //System prompt for user to input reason.
+                                        input = Console.ReadLine();
+                                        if (input == "")
                                         {
-                                            Console.WriteLine("Please enter reason for termination."); //System prompt for user to input reason.
-                                            string termReason = Console.ReadLine();
-                                            if (termReason == null)
-                                            {
+                                            Console.WriteLine("You cannot terminate pass without a reason."); //Validation to make sure user has entered a reason to terminate season parking pass.
+                                            return;
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("Are you sure you want to Terminate your Season Parking Pass? y/n"); //2nd Confirmation of Termination.
+                                            input = Console.ReadLine();
 
-                                                Console.WriteLine("You cannot terminate pass without a reason."); //Validation to make sure user has entered a reason to terminate season parking pass.
-                                                return;
-
-                                            }
-                                            else
+                                            if (input.Equals("y"))
                                             {
-                                                Console.WriteLine("Are you sure you want to Terminate your Season Parking Pass? y/n"); //2nd Confirmation of Termination.
-                                                string termConfirm = Console.ReadLine();
-                                                termPass = termPass.ToLower();
-                                                if (termConfirm.Equals("y"))
-                                                {
-                                                    foreach (SeasonPass seapass in spList)
-                                                    {
-                                                        if (item == seapass.Vehicle)
-                                                        { //System calculates and refunds months not used based on Vehicle Type.
-                                                            if (item.VehicleType == "Car" || item.VehicleType == "Lorry")
-                                                            {
-                                                                price = 80;
-                                                                int refunded = price * seapass.RemainingMonth;
-                                                                Console.WriteLine("Total amount of $" + refunded + " is refunded back to you.");
-                                                                Console.WriteLine("Your Season Parking Pass has been terminated. Thank you and have a nice day.");
-                                                                seapass.SetCurrentState(seapass.GetTerminatedState()); //User's account will be set to terminated.
-                                                                break;
-                                                            }
-                                                            else
-                                                            {
-                                                                price = 15;
-                                                                int refunded = price * seapass.RemainingMonth;
-                                                                Console.WriteLine("Total amount of $" + refunded + " is refunded back to you.");
-                                                                Console.WriteLine("Your Season Parking Pass has been terminated. Thank you and have a nice day.");
-                                                                seapass.SetCurrentState(seapass.GetTerminatedState()); //User's account will be set to terminated.
-                                                                break;
-                                                            }
-                                                        }
-                                                    }
-                                                }
+                                                item.TerminatePass();
                                             }
                                         }
-                                    }
-                                    if (!termPass.Equals("y") && !termPass.Equals("n")) //Validation to make sure user has entered either y/n.
-                                    {
-                                        Console.WriteLine();
-                                        Console.WriteLine("Please enter y/n.");
-                                        break;
+                                        found = true;
                                     }
                                 }
-                                break;
+                                if (!found)
+                                    Console.WriteLine("No vehicles with input License Plate No. found. Please try again.\n");
+                                else
+                                    break;
                             }
                             break;
 
@@ -681,75 +649,43 @@ namespace SEAssignment
                             Console.WriteLine("===== Terminate Season Parking Pass ====");
                             Console.WriteLine("");
 
-                            int price = 0;
                             bool status = true;
+                            string input = "";
+                            string vehicleNo;
+                            bool found = false;
                             while (status)
                             {
-                                Console.WriteLine("Would you like to terminate your Season Parking Pass? y/n.");
-                                string termPass = Console.ReadLine();
-                                termPass = termPass.ToLower();
-
-                                if (termPass.Equals("y"))
+                                Console.WriteLine("Please enter your license plate number: "); //System prompt for user to input license plate number.
+                                input = Console.ReadLine();
+                                vehicleNo = input.ToUpper();
+                                foreach (SeasonPass item in spList)
                                 {
-                                    Console.WriteLine("Please enter your license plate number."); //System prompt for user to input license plate number.
-                                    string vehicleNo = Console.ReadLine();
-                                    vehicleNo = vehicleNo.ToUpper();
-                                    foreach (Vehicle item in vList)
+                                    if (item.Vehicle.LicensePlate == vehicleNo)
                                     {
-                                        if (item.LicensePlate == vehicleNo)
+                                        Console.WriteLine("Please enter reason for termination: "); //System prompt for user to input reason.
+                                        input = Console.ReadLine();
+                                        if (input == "")
                                         {
-                                            Console.WriteLine("Please enter reason for termination."); //System prompt for user to input reason.
-                                            string termReason = Console.ReadLine();
-                                            if (termReason == null)
-                                            {
+                                            Console.WriteLine("You cannot terminate pass without a reason."); //Validation to make sure user has entered a reason to terminate season parking pass.
+                                            return;
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("Are you sure you want to Terminate your Season Parking Pass? y/n"); //2nd Confirmation of Termination.
+                                            input = Console.ReadLine();
 
-                                                Console.WriteLine("You cannot terminate pass without a reason."); //Validation to make sure user has entered a reason to terminate season parking pass.
-                                                return;
-
-                                            }
-                                            else
+                                            if (input.Equals("y"))
                                             {
-                                                Console.WriteLine("Are you sure you want to Terminate your Season Parking Pass? y/n"); //2nd Confirmation of Termination.
-                                                string termConfirm = Console.ReadLine();
-                                                termPass = termPass.ToLower();
-                                                if (termConfirm.Equals("y"))
-                                                {
-                                                    foreach (SeasonPass seapass in spList)
-                                                    {
-                                                        if (item == seapass.Vehicle)
-                                                        { //System calculates and refunds months not used based on Vehicle Type.
-                                                            if (item.VehicleType == "Car" || item.VehicleType == "Lorry")
-                                                            {
-                                                                price = 80;
-                                                                int refunded = price * seapass.RemainingMonth;
-                                                                Console.WriteLine("Total amount of $" + refunded + " is refunded back to you.");
-                                                                Console.WriteLine("Your Season Parking Pass has been terminated. Thank you and have a nice day.");
-                                                                seapass.SetCurrentState(seapass.GetTerminatedState()); //User's account will be set to terminated.
-                                                                break;
-                                                            }
-                                                            else
-                                                            {
-                                                                price = 15;
-                                                                int refunded = price * seapass.RemainingMonth;
-                                                                Console.WriteLine("Total amount of $" + refunded + " is refunded back to you.");
-                                                                Console.WriteLine("Your Season Parking Pass has been terminated. Thank you and have a nice day.");
-                                                                seapass.SetCurrentState(seapass.GetTerminatedState()); //User's account will be set to terminated.
-                                                                break;
-                                                            }
-                                                        }
-                                                    }
-                                                }
+                                                item.TerminatePass();
                                             }
                                         }
-                                    }
-                                    if (!termPass.Equals("y") && !termPass.Equals("n")) //Validation to make sure user has entered either y/n.
-                                    {
-                                        Console.WriteLine();
-                                        Console.WriteLine("Please enter y/n.");
-                                        break;
+                                        found = true;
                                     }
                                 }
-                                break;
+                                if (!found)
+                                    Console.WriteLine("No vehicles with input License Plate No. found. Please try again.\n");
+                               else 
+                                    break;
                             }
                             break;
 

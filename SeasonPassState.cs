@@ -202,7 +202,23 @@ namespace SEAssignment
 
         public void TerminatePass()
         {
-         
+            double price;
+            double refunded;
+            if (vsp.VehicleType == "Car" || vsp.VehicleType == "Lorry")
+            {
+                price = 80;
+            }
+            else
+            {
+                price = 15;
+            }
+
+            refunded = price * vsp.RemainingMonth;
+            Console.WriteLine("Total amount of $" + refunded + " is refunded back to you.");
+            Console.WriteLine("Your Season Parking Pass has been terminated. Thank you and have a nice day.");
+            //User's account will be set to terminated.
+            vsp.SetCurrentState(vsp.GetTerminatedState());
+            Console.WriteLine("Season pass has been terminated.");
         }
 
     }
@@ -236,6 +252,8 @@ namespace SEAssignment
 
         public void TerminatePass()
         {
+
+
             Console.WriteLine("Not allowed to Terminate Season Pass that is already Terminated!");
         }
 
