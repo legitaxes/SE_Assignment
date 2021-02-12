@@ -452,7 +452,7 @@ namespace SEAssignment
                                 vehicleNo = input.ToUpper();
                                 foreach (SeasonPass item in spList)
                                 {
-                                    if (item.Vehicle.LicensePlate == vehicleNo)
+                                    if (item.Vehicle.LicensePlate == vehicleNo && item.Vehicle.UserVehicle == student)
                                     {
                                         Console.WriteLine("Please enter reason for termination: "); //System prompt for user to input reason.
                                         input = Console.ReadLine();
@@ -490,7 +490,7 @@ namespace SEAssignment
                                     if (stusp.IUNumber == student.MyVehicle[i].IUNumber)
                                     {
                                         Console.WriteLine($"{i + 1}) License Plate: {student.MyVehicle[i].LicensePlate}  Vehicle Type: " +
-                                    $"{student.MyVehicle[i].VehicleType}  IUNumber: {student.MyVehicle[i].IUNumber} Pass Status: {stusp.CurrentState.GetType().ToString().Substring(13)}");
+                                        $"{student.MyVehicle[i].VehicleType}  IUNumber: {student.MyVehicle[i].IUNumber} Pass Status: {stusp.CurrentState.GetType().ToString().Substring(13)}");
                                     }
                                 }
                             }
@@ -660,7 +660,7 @@ namespace SEAssignment
                                 vehicleNo = input.ToUpper();
                                 foreach (SeasonPass item in spList)
                                 {
-                                    if (item.Vehicle.LicensePlate == vehicleNo)
+                                    if (item.Vehicle.LicensePlate == vehicleNo && item.Vehicle.UserVehicle == lecturer)
                                     {
                                         Console.WriteLine("Please enter reason for termination: "); //System prompt for user to input reason.
                                         input = Console.ReadLine();
