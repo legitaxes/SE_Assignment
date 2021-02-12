@@ -202,73 +202,7 @@ namespace SEAssignment
 
         public void TerminatePass()
         {
-            //implementation of Terminate Pass
-            int price = 0;
-            bool status = true;
-            while (status) {
-                Console.WriteLine("----Terminate Season Parking Pass----");
-                Console.Write("Would you like to terminate your Season Parking Pass? y/n"); //Confirmation of Termination.
-                string termPass = Console.ReadLine();
-                termPass = termPass.ToLower();
-
-                if (termPass.Equals("y")){
-                   Console.WriteLine("Please enter your license plate number."); //System prompt for user to input license plate number.
-                   string vehicleNo = Console.ReadLine();
-                   vehicleNo = vehicleNo.ToUpper();
-                    /*foreach (char lp in Program)
-                    {
-                        if (lp.ToString() == vehicleNo)
-                        {
-                            
-                        }
-                    }*/
-                   if (vsp.Vehicle.LicensePlate == vehicleNo){
-                       Console.WriteLine("Please enter reason for termination."); //System prompt for user to input reason.
-                       string termReason = Console.ReadLine();
-                       if (termReason == null) {
-
-                           Console.WriteLine("You cannot terminate pass without a reason."); //Validation to make sure user has entered a reason to terminate season parking pass.
-                           return;
-
-                       }
-                       else
-                       {
-                           Console.WriteLine("Are you sure you want to Terminate your Season Parking Pass? y/n"); //2nd Confirmation of Termination.
-                           string termConfirm = Console.ReadLine();
-                           termPass = termPass.ToLower();
-                           if (termConfirm.Equals("y")){
-                               if (vsp.VehicleType == "Car" || vsp.VehicleType == "Lorry") { //System calculates and refunds months not used based on Vehicle Type.
-                                   price = 80;
-                                   int refunded = price * vsp.RemainingMonth;
-                                   Console.WriteLine("Total amount of " + refunded + "is refunded back to you.");
-                                   Console.WriteLine("Your Season Parking Pass has been terminated. Thank you and have a nice day.");
-                                   vsp.SetCurrentState (vsp.GetTerminatedState()); //User's account will be set to terminated. 
-                               }
-                               else if (vsp.VehicleType == "Motorbike") { //System calculates and refunds months not used based on Vehicle Type.
-                                   price = 15;
-                                   int refunded = price * vsp.RemainingMonth;
-                                   Console.WriteLine("Total amount of " + refunded + "is refunded back to you.");
-                                   Console.WriteLine("Your Season Parking Pass has been terminated. Thank you and have a nice day.");
-                                   vsp.SetCurrentState (vsp.GetTerminatedState()); //User's account will be set to terminated.
-                               }
-                           }
-                       }
-                   }
-                   else 
-                   {
-                       Console.WriteLine("Vehicle is not found, please check that you have entered the correct license plate number."); //If license plate number is not found the system will prompt user to re-enter.
-                       return;
-                   }
-
-                }
-                if (!termPass.Equals("y") && !termPass.Equals("n")) //Validation to make sure user has entered either y/n.
-                {
-                    Console.WriteLine();
-                    Console.WriteLine("Please enter y/n.");
-                    return;
-                }
-            }
-
+         
         }
 
     }
