@@ -22,6 +22,7 @@ namespace SEAssignment
         private ISeasonPassState validState;
         private ISeasonPassState terminatedState;
         private ISeasonPassState expiredState;
+        private ISeasonPassState rejectedState;
 
         private ISeasonPassState currentState;
 
@@ -86,12 +87,14 @@ namespace SEAssignment
             validState = new ValidState(this);
             terminatedState = new TerminatedState(this);
             expiredState = new ExpiredState(this);
+            rejectedState = new RejectedState(this);
 
             // added the ability to force seasonpass at the correct state upon creation
             if (validity == "pending") { currentState = pendingState; }
             else if (validity == "valid") { currentState = validState; }
             else if (validity == "terminated") { currentState = terminatedState; }
             else if (validity == "expired") { currentState = expiredState; }
+            else if (validity == "rejected") { currentState = rejectedState;  }
 
             //rest of the property define below for seasonpass
             seasonPassID = id;
@@ -130,6 +133,8 @@ namespace SEAssignment
         public ISeasonPassState GetTerminatedState() { return terminatedState; }
         public ISeasonPassState GetExpiredState() { return expiredState; }
 
+        public ISeasonPassState GetRejectedState() { return rejectedState; }
+
         // sets the state
         public void SetCurrentState(ISeasonPassState currentState)
         {
@@ -141,6 +146,7 @@ namespace SEAssignment
         public void Renew() {currentState.Renew(); }
         public void TransferPass(Vehicle v) { currentState.TransferPass(v); }
         public void TerminatePass() { currentState.TerminatePass(); }
+        public void RejectPass() { currentState.RejectPass(); }
 
         public void AddPayment(Payment p) { 
             if (!payment.Contains(p))

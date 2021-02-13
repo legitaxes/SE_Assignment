@@ -387,6 +387,13 @@ namespace SEAssignment
                                         Console.WriteLine("ID:{0}, IU#: {1}, Vehicle: {2}, Months Remaining: {3}, Expiry: {4}, Validity: {5}", sssp.SeasonPassID, sssp.IUNumber, sssp.VehicleType, sssp.RemainingMonth, sssp.EndDate.ToString("dd/MMM/yyyy"), "EXPIRED");
                                         Console.WriteLine();
                                     }
+
+                                    else if (v == sssp.Vehicle && sssp.CurrentState.GetType() == typeof(RejectedState))
+                                    {
+                                        Console.WriteLine("ID:{0}, IU#: {1}, Vehicle: {2}, Months Remaining: {3}, Expiry: {4}, Validity: {5}", sssp.SeasonPassID, sssp.IUNumber, sssp.VehicleType, sssp.RemainingMonth, sssp.EndDate.ToString("dd/MMM/yyyy"), "REJECTED");
+                                        Console.WriteLine();
+                                    }
+
                                     else if (v == sssp.Vehicle)
                                     {
                                         Console.WriteLine("ID:{0}, IU#: {1}, Vehicle: {2}, Months Remaining: {3}, Purchase Date: {4}, Expiry: {5}, Validity: {6}", sssp.SeasonPassID, sssp.IUNumber, sssp.VehicleType, sssp.RemainingMonth, sssp.StartDate.ToString("dd/MMM/yyyy"), sssp.EndDate.ToString("dd/MMM/yyyy"), "VALID");
@@ -629,6 +636,12 @@ namespace SEAssignment
                                     {
                                         //Console.WriteLine("This Season Parking Pass application has expired:");
                                         Console.WriteLine("ID:{0}, IU#: {1}, Vehicle: {2}, Months Remaining: {3}, Expiry: {4}, Validity: {5}", sssp.SeasonPassID, sssp.IUNumber, sssp.VehicleType, sssp.RemainingMonth, sssp.EndDate.ToString("dd/MMM/yyyy"), "EXPIRED");
+                                        Console.WriteLine();
+                                    }
+                                    else if (v == sssp.Vehicle && sssp.CurrentState.GetType() == typeof(RejectedState))
+                                    {
+                                        //Console.WriteLine("This Season Parking Pass application has expired:");
+                                        Console.WriteLine("ID:{0}, IU#: {1}, Vehicle: {2}, Months Remaining: {3}, Expiry: {4}, Validity: {5}", sssp.SeasonPassID, sssp.IUNumber, sssp.VehicleType, sssp.RemainingMonth, sssp.EndDate.ToString("dd/MMM/yyyy"), "REJECTED");
                                         Console.WriteLine();
                                     }
                                     else if (v == sssp.Vehicle)
@@ -883,17 +896,16 @@ namespace SEAssignment
                                         Console.WriteLine("============ Season Parking Pass Details ============");
                                         Console.WriteLine("ID:{0}, Vehicle:{1}, I#:{2}, Start date:{3}, End Date:{4}", pendingList[i].SeasonPassID, pendingList[i].VehicleType, pendingList[i].IUNumber, pendingList[i].StartDate, pendingList[i].EndDate);
                                         Console.WriteLine();
-                                        Console.Write("Approve Season Park Pass? (y/n) ");
+                                        Console.Write("Approve or Reject Season Parking Pass? (Enter a to approve, r to reject.) ");
                                         string approve_choice = Console.ReadLine().ToLower();
                                         switch (approve_choice)
                                         {
-                                            case "y":
+                                            case "a":
                                                 pendingList[i].ApprovePass();
                                                 break;
 
-                                            case "n":
-                                                Console.WriteLine();
-                                                Console.WriteLine("Function still under the works. Season Parking Pass remains pending.");
+                                            case "r":
+                                                pendingList[i].RejectPass();
                                                 break;
 
                                             default:

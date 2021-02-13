@@ -15,6 +15,8 @@ namespace SEAssignment
 
         void TerminatePass();
 
+        void RejectPass();
+
     }
 
     //pendingstate class
@@ -25,12 +27,26 @@ namespace SEAssignment
             vsp = sp;
         }
 
-        public void ApprovePass() { 
-            vsp.SetCurrentState(vsp.GetValidState()); //set season pass state
-            Console.WriteLine("Season pass with ID of {0} sucessfully approved.", vsp.SeasonPassID);
-            //implementation of Approve Season Parking Pass
+        public void ApprovePass() {
+            Console.WriteLine();
+            Console.WriteLine("Are you sure you want to approve this Season Parking Pass? (y/n)");
+            string confirm_approve = Console.ReadLine().ToLower();
+            switch (confirm_approve)
+            {
+                case "y":
+                    vsp.SetCurrentState(vsp.GetValidState()); //set season pass state
+                    Console.WriteLine("Season pass with ID of {0} sucessfully approved.", vsp.SeasonPassID);
+                    break;
+                case "n":
+                    Console.WriteLine();
+                    Console.WriteLine("Action cancelled. Season Parking Pass remains pending.");
+                        break;
+                default:
+                    Console.WriteLine();
+                    Console.WriteLine("Invalid input. Returning to the main menu.");
+                    break;
+            }
         }
-
         public void Renew() {
             // implementation
             Console.WriteLine("Not allowed to renew when you don't have a season pass!");
@@ -58,6 +74,27 @@ namespace SEAssignment
             Console.WriteLine("Not allowed to Terminate Season Pass in Pending state!");
         }
 
+        public void RejectPass()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Are you sure you want to reject this Season Parking Pass? This will result in its termination. (y/n)");
+            string confirm_approve = Console.ReadLine().ToLower();
+            switch (confirm_approve)
+            {
+                case "y":
+                    vsp.SetCurrentState(vsp.GetRejectedState()); //set season pass state
+                    Console.WriteLine("Season pass with ID of {0} Rejected.", vsp.SeasonPassID);
+                    break;
+                case "n":
+                    Console.WriteLine();
+                    Console.WriteLine("Action cancelled. Season Parking Pass remains pending.");
+                    break;
+                default:
+                    Console.WriteLine();
+                    Console.WriteLine("Invalid input. Returning to the main menu.");
+                    break;
+            }
+        }
     }
 
     //validstate class
@@ -205,6 +242,10 @@ namespace SEAssignment
          
         }
 
+        public void RejectPass()
+        {
+            Console.WriteLine("Not allowed to reject a pass that was already approved!");
+        }
     }
 
     //terminatedstate class
@@ -239,6 +280,10 @@ namespace SEAssignment
             Console.WriteLine("Not allowed to Terminate Season Pass that is already Terminated!");
         }
 
+        public void RejectPass()
+        {
+            Console.WriteLine("Not allowed to reject a pass that has been terminated!");
+        }
     }
 
     // expiredstate class
@@ -351,5 +396,51 @@ namespace SEAssignment
             Console.WriteLine("Not allowed to Terminate Season Pass that has already Expired!");
         }
 
+        public void RejectPass()
+        {
+            Console.WriteLine("Not allowed to reject a pass that has been terminated!");
+        }
     }
+
+    // expiredstate class
+    class RejectedState : ISeasonPassState
+    {
+        private SeasonPass vsp;
+        public RejectedState(SeasonPass sp)
+        {
+            vsp = sp;
+        }
+
+        public void ApprovePass()
+        {
+            Console.WriteLine("You can't approve a Season Parking Pass that has been rejected!");
+        }
+
+        public void Renew()
+        {
+            Console.WriteLine("You can't renew a Season Parking Pass that has been rejected!");
+        }
+
+        public void TransferPass(Vehicle v)
+        {
+            //if (vsp.CurrentState.GetType() != typeof(ValidState))
+            //{
+            // vsp.Vehicle.LicensePlate = v.LicensePlate; 
+            Console.WriteLine("Not allowed to Transfer Season Pass that has already Expired!");
+            //}
+        }
+
+        public void TerminatePass()
+        {
+            Console.WriteLine("Not allowed to Terminate Season Pass that has already Expired!");
+        }
+
+        public void RejectPass()
+        {
+            Console.WriteLine("Not allowed to reject a pass that has already been rejected!");
+        }
+    }
+
+
 }
+
