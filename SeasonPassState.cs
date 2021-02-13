@@ -83,6 +83,7 @@ namespace SEAssignment
             {
                 case "y":
                     vsp.SetCurrentState(vsp.GetRejectedState()); //set season pass state
+                    Console.WriteLine();
                     Console.WriteLine("Season pass with ID of {0} Rejected.", vsp.SeasonPassID);
                     break;
                 case "n":
