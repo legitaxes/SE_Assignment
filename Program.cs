@@ -339,7 +339,7 @@ namespace SEAssignment
                 Console.WriteLine("Season Parking Passes will always start on the first of a month.");
 
                 Console.WriteLine();
-                Console.WriteLine("Please enter the month in numberical form that the pass will start on:");
+                Console.WriteLine("Please enter the month in numberical form that the pass will start on or enter 'c' to cancel :");
 
                 string chosenMonth = Console.ReadLine().ToLower();
 
@@ -430,7 +430,7 @@ namespace SEAssignment
                 Console.WriteLine("Season Parking Passes will always start on the first of a month.");
 
                 Console.WriteLine();
-                Console.WriteLine("Please enter the month in numerical form that the pass will start on:");
+                Console.WriteLine("Please enter the month in numerical form that the pass will start on or enter 'c' to cancel:");
 
                 string chosenMonth = Console.ReadLine().ToLower();
 
