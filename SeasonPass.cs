@@ -103,17 +103,21 @@ namespace SEAssignment
             startDate = sd;
             endDate = ed;
             vehicle = v;
-            if (endDate.Year == DateTime.Now.Year)
+            if (DateTime.Now >= startDate)
             {
-                remainingMonth = endDate.Month - DateTime.Now.Month;
+                remainingMonth = ((endDate.Year - DateTime.Now.Year ) * 12)  + endDate.Month - DateTime.Now.Month;
             }
-            else if (endDate.Year > DateTime.Now.Year) {
-                int yeardiff = endDate.Year - DateTime.Now.Year;
-                remainingMonth = (endDate.Month - DateTime.Now.Month) + (12*yeardiff);
-            }
-            else
-                remainingMonth = 0;
 
+            else
+            {
+                remainingMonth = ((endDate.Year - startDate.Year ) * 12 ) +  endDate.Month - startDate.Month;
+            }
+            //Check for negatives and sets it it 0, and state to expired
+            if (remainingMonth <= 0)
+            {
+                remainingMonth = 0;
+                currentState = expiredState;
+            }
             v.VehicleSeasonPass = this;
 
             payment = new List<Payment>(); // a list of payment

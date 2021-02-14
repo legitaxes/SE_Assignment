@@ -332,11 +332,16 @@ namespace SEAssignment
             {
                 string currentMonth = DateTime.Now.ToString("MM");
                 string currentYear = DateTime.Now.Year.ToString();
+
+                DateTime addedDate = DateTime.Now.AddMonths(1);
                 Console.WriteLine();
-                Console.WriteLine("The current Month in numerical form is is: {0}. The next available month for your pass is: {1}", currentMonth, Convert.ToInt32(currentMonth) + 1);
+                Console.WriteLine("The current Month in numerical form is: {0}. The next available month is {1}, year {2}", currentMonth, addedDate.Month, addedDate.Year.ToString());
                 Console.WriteLine("Season Parking Passes will always start on the first of a month.");
-                Console.WriteLine("Please enter the month in numberical form which your Season Parking Pass will start (Enter 'c' instead to cancel process):");
-                string chosenMonth = Console.ReadLine().ToLower() ;
+
+                Console.WriteLine();
+                Console.WriteLine("Please enter the month in numberical form that the pass will start on:");
+
+                string chosenMonth = Console.ReadLine().ToLower();
 
                 int convertedchosenMonth;
 
@@ -355,24 +360,26 @@ namespace SEAssignment
                     return;
                 }
 
-                else if (Convert.ToInt32(chosenMonth) <= Convert.ToInt32(currentMonth))
+                else if (convertedchosenMonth > 12 || convertedchosenMonth < 0)
                 {
-                    Console.WriteLine("You must pick a month greather that the current month. ");
+                    Console.WriteLine();
+                    Console.WriteLine("Error: Month out of range. Select a month from {0} to 12", addedDate.Month);
                     studentapplyPass(licensePlate, vehicleType, IU, student, cost);
                 }
 
-                else if ((Convert.ToInt32(chosenMonth) > 12))
+                else if (addedDate.Year == DateTime.Now.Year && convertedchosenMonth < DateTime.Now.Month)
                 {
-                    Console.WriteLine("You must pick a month less than 12 (December)");
+                    Console.WriteLine();
+                    Console.WriteLine("You must pick a month greather that the current month.");
                     studentapplyPass(licensePlate, vehicleType, IU, student, cost);
                 }
 
                 else
                 {
-                    savePoint:
-                        Console.WriteLine();
-                        Console.WriteLine("Enter the amount of months the Season Pass will be valid for (Minimum of 1 month, Maximum of 12):");
-                        string numofMonths = Console.ReadLine();
+                savePoint:
+                    Console.WriteLine();
+                    Console.WriteLine("Enter the amount of months the Season Pass will be valid for (Minimum of 1 month, Maximum of 12:");
+                    string numofMonths = Console.ReadLine();
                     int convertednumofMonths;
 
                     if (!Int32.TryParse(numofMonths, out convertednumofMonths))
@@ -397,13 +404,13 @@ namespace SEAssignment
                     else
                     {
                         Vehicle newVehicle = new Vehicle(vList.Last().VehicleID + 1, licensePlate, vehicleType, IU, student);
-                        DateTime startDT = new DateTime(Convert.ToInt32(currentYear), Convert.ToInt32(convertedchosenMonth), 01);
+                        DateTime startDT = new DateTime(Convert.ToInt32(addedDate.Year), convertedchosenMonth, 01);
                         DateTime endDT = startDT.AddMonths(convertednumofMonths);
                         SeasonPass appliedSeasonPass = new SeasonPass(spList.Last().SeasonPassID + 1, newVehicle.VehicleType, newVehicle.IUNumber, startDT, endDT, newVehicle, "pending");
                         vList.Add(newVehicle);
                         spList.Add(appliedSeasonPass);
                         Console.WriteLine();
-                        Console.WriteLine("ID:{0}, License Plate:{1}, IU#: {2} Vehicle Type: {2}", appliedSeasonPass.SeasonPassID, appliedSeasonPass.IUNumber, appliedSeasonPass.VehicleType);
+                        Console.WriteLine("ID:{0}, License Plate: {1}, IU#: {2} Vehicle Type: {3}", appliedSeasonPass.SeasonPassID, newVehicle.LicensePlate, appliedSeasonPass.IUNumber, appliedSeasonPass.VehicleType);
                         Console.WriteLine("Start Date: {0}, Expiry: {1}, Validity: {2}", appliedSeasonPass.StartDate, appliedSeasonPass.EndDate, "PENDING");
                         Console.WriteLine("A total of ${0} was deducted from your bank account", convertednumofMonths * cost);
                         Console.WriteLine();
@@ -416,10 +423,15 @@ namespace SEAssignment
             {
                 string currentMonth = DateTime.Now.ToString("MM");
                 string currentYear = DateTime.Now.Year.ToString();
+
+                DateTime addedDate = DateTime.Now.AddMonths(1);
                 Console.WriteLine();
-                Console.WriteLine("The current Month in numerical form is is: {0}. The next available month for your pass is: {1}", currentMonth, Convert.ToInt32(currentMonth) + 1);
+                Console.WriteLine("The current Month in numerical form is: {0}. The next available month is {1}, year {2}", currentMonth, addedDate.Month, addedDate.Year.ToString()) ;
                 Console.WriteLine("Season Parking Passes will always start on the first of a month.");
-                Console.WriteLine("Please enter the month in numberical form which your Season Parking Pass will start (Enter 'c' instead to cancel process):");
+
+                Console.WriteLine();
+                Console.WriteLine("Please enter the month in numerical form that the pass will start on:");
+
                 string chosenMonth = Console.ReadLine().ToLower();
 
                 int convertedchosenMonth;
@@ -439,15 +451,17 @@ namespace SEAssignment
                     return;
                 }
 
-                else if (Convert.ToInt32(chosenMonth) <= Convert.ToInt32(currentMonth))
+                else if (convertedchosenMonth > 12 || convertedchosenMonth < 0)
                 {
-                    Console.WriteLine("You must pick a month greather that the current month.");
+                    Console.WriteLine();
+                    Console.WriteLine("Error: Month out of range. Select a month from {0} to 12", addedDate.Month);
                     lecturerapplyPass(licensePlate, vehicleType, IU, lecturer, cost);
                 }
 
-                else if ((Convert.ToInt32(chosenMonth) > 12))
+                else if (addedDate.Year == DateTime.Now.Year && convertedchosenMonth < DateTime.Now.Month)
                 {
-                    Console.WriteLine("You must pick a month less than 12 (December)");
+                    Console.WriteLine();
+                    Console.WriteLine("You must pick a month greather that the current month.");
                     lecturerapplyPass(licensePlate, vehicleType, IU, lecturer, cost);
                 }
 
@@ -481,19 +495,21 @@ namespace SEAssignment
                     else
                     {
                         Vehicle newVehicle = new Vehicle(vList.Last().VehicleID + 1, licensePlate, vehicleType, IU, lecturer);
-                        DateTime startDT = new DateTime(Convert.ToInt32(currentYear), Convert.ToInt32(convertedchosenMonth), 01);
+                        DateTime startDT = new DateTime(Convert.ToInt32(addedDate.Year), convertedchosenMonth, 01);
                         DateTime endDT = startDT.AddMonths(convertednumofMonths) ;
                         SeasonPass appliedSeasonPass = new SeasonPass(spList.Last().SeasonPassID + 1, newVehicle.VehicleType, newVehicle.IUNumber, startDT, endDT, newVehicle, "pending");
                         vList.Add(newVehicle);
                         spList.Add(appliedSeasonPass);
                         Console.WriteLine();
-                        Console.WriteLine("ID:{0}, License Plate: {1}, IU#: {2} Vehicle Type: {2}", appliedSeasonPass.SeasonPassID, appliedSeasonPass.IUNumber, appliedSeasonPass.VehicleType);
+                        Console.WriteLine("ID:{0}, License Plate: {1}, IU#: {2} Vehicle Type: {3}", appliedSeasonPass.SeasonPassID, newVehicle.LicensePlate, appliedSeasonPass.IUNumber, appliedSeasonPass.VehicleType);
                         Console.WriteLine("Start Date: {0}, Expiry: {1}, Validity: {2}", appliedSeasonPass.StartDate, appliedSeasonPass.EndDate, "PENDING");
+                        Console.WriteLine("A total of ${0} was deducted from your bank account", convertednumofMonths * cost);
                         Console.WriteLine();
                         return;
                     }
                 }
             }
+
             // ====================================================================
             // ======================= End of Main Program ========================
             // ====================================================================
@@ -726,20 +742,13 @@ namespace SEAssignment
                                 {
                                     foreach (SeasonPass ssssp in spList)
                                     {
-                                        if (ssssp.Vehicle.LicensePlate == licensePlate && ssssp.CurrentState.GetType() != typeof(RejectedState))
+                                        if (ssssp.Vehicle.LicensePlate == licensePlate && ssssp.CurrentState.GetType() != typeof(RejectedState) && ssssp.CurrentState.GetType() != typeof(TerminatedState))
                                         {
                                             Console.WriteLine("Error: A vehicle with this license plate number already has a season parking pass.");
                                             studentapplyFound = true;
                                             break;
                                         }
-                                    }
-                                }
-
-                                else if (IU == v.IUNumber)
-                                {
-                                    foreach (SeasonPass ssssp in spList)
-                                    {
-                                        if (ssssp.Vehicle.IUNumber == IU && ssssp.CurrentState.GetType() != typeof(RejectedState))
+                                        if (ssssp.Vehicle.IUNumber == IU && ssssp.CurrentState.GetType() != typeof(RejectedState) && ssssp.CurrentState.GetType() != typeof(TerminatedState))
                                         {
                                             Console.WriteLine("Error: A vehicle with this IU number already has a season parking pass.");
                                             studentapplyFound = true;
@@ -1008,32 +1017,22 @@ namespace SEAssignment
                             bool lecturerapplyFound = false;
                             //Checking if a vehicle with the entered license plate number and iu number already exists
                             //Use case stops if the IU number or license plate is found in the list of existing vehicles, bringing the user back to the main menu
-                            foreach (Vehicle v in vList)
+                            foreach (SeasonPass ssssp in spList)
                             {
-                                if (licensePlate == v.LicensePlate)
+                                if (ssssp.Vehicle.LicensePlate == licensePlate && ssssp.CurrentState.GetType() != typeof(RejectedState) && ssssp.CurrentState.GetType() != typeof(TerminatedState))
                                 {
-                                    foreach (SeasonPass ssssp in spList)
-                                    {
-                                        if (ssssp.Vehicle.LicensePlate == licensePlate && ssssp.CurrentState.GetType() != typeof(RejectedState))
-                                        {
-                                            Console.WriteLine("Error: A vehicle with this license plate number already has a season parking pass.");
-                                            lecturerapplyFound = true;
-                                            break;
-                                        }
-                                    }
+                                    Console.WriteLine("Error: A vehicle with this license plate number already has a season parking pass.");
+                                    lecturerapplyFound = true;
                                 }
 
-                                else if (IU == v.IUNumber)
+                                if (ssssp.Vehicle.IUNumber == IU && ssssp.CurrentState.GetType() != typeof(RejectedState) && ssssp.CurrentState.GetType() != typeof(TerminatedState))
                                 {
-                                    foreach (SeasonPass ssssp in spList)
-                                    {
-                                        if (ssssp.Vehicle.IUNumber == IU && ssssp.CurrentState.GetType() != typeof(RejectedState))
-                                        {
-                                            Console.WriteLine("Error: A vehicle with this IU number already has a season parking pass.");
-                                            lecturerapplyFound = true;
-                                            break;
-                                        }
-                                    }
+                                    Console.WriteLine("Error: A vehicle with this IU number already has a season parking pass.");
+                                    lecturerapplyFound = true;
+                                }
+                                if (lecturerapplyFound == true)
+                                {
+                                    break;
                                 }
                             }
 
