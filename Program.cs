@@ -19,7 +19,7 @@ namespace SEAssignment
             Student s6 = new Student("6", "Abdul", "1234", "Jalalabad", 12346789);
             Student s7 = new Student("7", "J. Epstein", "1234", "Metropolitan Correctional Center, New York", 12346789);
             // One student without a season parking pass to simulate applying for one later on
-            Student s8 = new Student("8", "Ah Beng", "1234", "Aw aw Salakau", 12346789);
+            Student s8 = new Student("8", "Ah Beng", "1234", "Aw aw", 12346789);
 
             //add into studentlist's Student Collection
             StudentList studentList = new StudentList();
@@ -52,7 +52,7 @@ namespace SEAssignment
             lecturerList.LecturerCollection.Add(lect7);
 
             // initialize a manager
-            Manager manager = new Manager("S1111", "Timmy TRG", "blackpeople", "Wattsons Street 61", 82905692);
+            Manager manager = new Manager("S1111", "Timmy TRG", "blackpple", "Wattsons Street 61", 82905692);
 
 
 
@@ -220,11 +220,23 @@ namespace SEAssignment
             ParkingSession ps9 = new ParkingSession(9, dt10, dt12, v9, cp1); // vehicle9 parked in carpark1
             ParkingSession ps10 = new ParkingSession(10, dt11, dt12, v10, cp1); // vehicle10 parked in carpark1
 
+            Console.WriteLine("====== Features Completed ======");
+            Console.WriteLine("> Apply Season Pass");
+            Console.WriteLine("> Renew Season Pass");
+            Console.WriteLine("> Terminate Season Pass");
+            Console.WriteLine("> Transfer Season Pass");
+            Console.WriteLine("> Process Season Pass");
+            Console.WriteLine("> Generate CarPark Financial Report");
+            Console.WriteLine("> Validation should be completed for all features");
+            Console.WriteLine("> Student ID 1 has 5 Season Pass and 5 Vehicles for Testing Purposes");
+            Console.WriteLine("> Iterator Design Pattern was implemented for searching the correct user to login");
+            Console.WriteLine("> State Design Pattern was implemented for Season Parking Pass");
+            Console.WriteLine();
 
             // =====================================================================
             // ======================= End of Initialization =======================
             // =====================================================================
-
+            
             // ---------------------------------------------------------------------
 
             // =====================================================================
