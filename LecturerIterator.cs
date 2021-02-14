@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SEAssignment
 {
-    public class LecturerIterator : ILecturerIterator
+    public class LecturerIterator : IUserIterator
     {
         private LecturerList lecturerList;
         private int position = 0;

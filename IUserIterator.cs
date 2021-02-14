@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SEAssignment
 {
-    public interface ILecturerIterator
+    public interface IUserIterator
     {
         object Found();
         bool HasNext();
