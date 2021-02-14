@@ -49,7 +49,7 @@ namespace SEAssignment
         }
         public void Renew() {
             // implementation
-            Console.WriteLine("Not allowed to renew when you don't have a season pass!");
+            Console.WriteLine("Not allowed to renew pass that is in Pending state!");
         }
 
         public void TransferPass(Vehicle v) {
@@ -173,9 +173,9 @@ namespace SEAssignment
                         vsp.AddPayment(p);
                     }
                     //add number of months extended by user
-                    vsp.EndDate.AddMonths(rpm);
+                    vsp.EndDate = vsp.EndDate.AddMonths(rpm);
                     vsp.RemainingMonth = vsp.RemainingMonth + rpm;
-                    Console.WriteLine("The remianing month of your pass is {0} month(s)", vsp.RemainingMonth);
+                    Console.WriteLine("The remaining month of your pass is {0} month(s)", vsp.RemainingMonth);
                     Console.WriteLine("Your Season Pass New Expiry Date: {0}", vsp.EndDate);
                     status = false;
                 }

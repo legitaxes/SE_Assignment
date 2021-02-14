@@ -596,16 +596,31 @@ namespace SEAssignment
                         case 2: //renew season parking pass
 
                             //Console.WriteLine("Number of season parking pass: {0}",student.MyVehicle.Count);
+                            Vehicle storeVehicle = new Vehicle();
                             Console.WriteLine("");
-                            int count = 0;
                             foreach(Vehicle v in student.MyVehicle)
                             {
                                 foreach (SeasonPass spp in spList)
                                 {
-                                    if (v == spp.Vehicle)
+                                    if (v == spp.Vehicle && spp.CurrentState.GetType() == typeof(PendingState))
                                     {
-                                        Console.WriteLine("ID:{0}, IU#:{1}, Vehicle:{2}, Months:{3}", spp.SeasonPassID, spp.IUNumber, spp.VehicleType, spp.RemainingMonth);
-                                        count++;
+                                        Console.WriteLine("ID:{0}, IU#:{1}, Vehicle:{2}, Months:{3}, Validity: Pending", spp.SeasonPassID, spp.IUNumber, spp.VehicleType, spp.RemainingMonth);
+                                    }
+                                    else if (v == spp.Vehicle && spp.CurrentState.GetType() == typeof(TerminatedState))
+                                    {
+                                        Console.WriteLine("ID:{0}, IU#:{1}, Vehicle:{2}, Months:{3}, Validity: Terminated", spp.SeasonPassID, spp.IUNumber, spp.VehicleType, spp.RemainingMonth);
+                                    }
+                                    else if (v == spp.Vehicle && spp.CurrentState.GetType() == typeof(ExpiredState))
+                                    {
+                                        Console.WriteLine("ID:{0}, IU#:{1}, Vehicle:{2}, Months:{3}, Validity: Expired", spp.SeasonPassID, spp.IUNumber, spp.VehicleType, spp.RemainingMonth);
+                                    }
+                                    else if (v == spp.Vehicle && spp.CurrentState.GetType() == typeof(RejectedState))
+                                    {
+                                        Console.WriteLine("ID:{0}, IU#:{1}, Vehicle:{2}, Months:{3}, Validity: Rejected", spp.SeasonPassID, spp.IUNumber, spp.VehicleType, spp.RemainingMonth);
+                                    }
+                                    else if (v == spp.Vehicle && spp.CurrentState.GetType() == typeof(ValidState))
+                                    {
+                                        Console.WriteLine("ID:{0}, IU#:{1}, Vehicle:{2}, Months:{3}, Validity: Valid", spp.SeasonPassID, spp.IUNumber, spp.VehicleType, spp.RemainingMonth);
                                     }
                                 }
                             }
@@ -619,14 +634,20 @@ namespace SEAssignment
                                 Console.WriteLine("Please enter a valid number!");
                                 continue;
                             }
-                            if (sp <= 0 || sp > count)
+                            if (sp <= 0 || sp > spList.Count)
                             {
                                 Console.WriteLine("Please enter a season pass displayed.");
                                 continue;
                             }
+                            storeVehicle = spList[Convert.ToInt32(sPass) - 1].Vehicle;
+                            if (storeVehicle.UserVehicle != student)
+                            {
+                                Console.WriteLine("Please choose your own Vehicle only!");
+                                break;
+                            }
                             foreach (SeasonPass x in spList)
                             {
-                                if (Convert.ToInt32(sPass) == x.SeasonPassID)
+                                if (Convert.ToInt32(sPass) == x.SeasonPassID && x.Vehicle == storeVehicle)
                                 {
                                     x.Renew();
                                 }
@@ -876,13 +897,26 @@ namespace SEAssignment
                             break;
 
                         case 2: //renew season parking pass
+                            Vehicle storeVehicle = new Vehicle();
                             foreach (Vehicle v in lecturer.MyVehicle)
                             {
                                 foreach (SeasonPass spp in spList)
                                 {
-                                    if (v == spp.Vehicle)
+                                    if (v == spp.Vehicle && spp.CurrentState.GetType() == typeof(PendingState))
                                     {
-                                        Console.WriteLine("{ID:{0}, IU#:{1}, Vehicle:{2}, Months:{3}", spp.SeasonPassID, spp.IUNumber, spp.VehicleType, spp.RemainingMonth);
+                                        Console.WriteLine("ID:{0}, IU#:{1}, Vehicle:{2}, Months:{3}, Validity: Pending", spp.SeasonPassID, spp.IUNumber, spp.VehicleType, spp.RemainingMonth);
+                                    }
+                                    else if (v == spp.Vehicle && spp.CurrentState.GetType() == typeof(TerminatedState))
+                                    {
+                                        Console.WriteLine("ID:{0}, IU#:{1}, Vehicle:{2}, Months:{3}, Validity: Terminated", spp.SeasonPassID, spp.IUNumber, spp.VehicleType, spp.RemainingMonth);
+                                    }
+                                    else if (v == spp.Vehicle && spp.CurrentState.GetType() == typeof(ExpiredState))
+                                    {
+                                        Console.WriteLine("ID:{0}, IU#:{1}, Vehicle:{2}, Months:{3}, Validity: Expired", spp.SeasonPassID, spp.IUNumber, spp.VehicleType, spp.RemainingMonth);
+                                    }
+                                    else if (v == spp.Vehicle && spp.CurrentState.GetType() == typeof(RejectedState))
+                                    {
+                                        Console.WriteLine("ID:{0}, IU#:{1}, Vehicle:{2}, Months:{3}, Validity: Rejected", spp.SeasonPassID, spp.IUNumber, spp.VehicleType, spp.RemainingMonth);
                                     }
                                 }
                             }
@@ -901,9 +935,14 @@ namespace SEAssignment
                                 Console.WriteLine("Please enter a season pass displayed.");
                                 return;
                             }
+                            storeVehicle = spList[Convert.ToInt32(sPass) - 1].Vehicle;
+                            if (storeVehicle.UserVehicle != lecturer) {
+                                Console.WriteLine("Please choose your own Vehicle only!");
+                                break;
+                            }
                             foreach (SeasonPass x in spList)
                             {
-                                if (Convert.ToInt32(sPass) == x.SeasonPassID)
+                                if (Convert.ToInt32(sPass) == x.SeasonPassID && x.Vehicle == storeVehicle)
                                 {
                                     x.Renew();
                                 }

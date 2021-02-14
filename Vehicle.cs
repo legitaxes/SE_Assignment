@@ -84,6 +84,7 @@ namespace SEAssignment
             offences = new List<string>();
             vehicleParkingList = new List<ParkingSession>();
         }
+        public Vehicle() { }
 
         //---Functions---
         public void AddVehicleParking(ParkingSession ps)
