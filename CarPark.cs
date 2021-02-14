@@ -260,6 +260,7 @@ namespace SEAssignment
                         string amount = "," + DateTime.Now.Year.ToString() + ": $" + ccp.GeneratedRevenue;
                         // concatenate the original input of the month with new generated revenue
                         ccp.PastRevenue[ccp.PastRevenue.ElementAt(months - 1).Key] = o_i + amount;
+                        ccp.GeneratedRevenue = 0;
                     }
 
                     //get the year's revenue in double datatype
